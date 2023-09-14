@@ -15,12 +15,9 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction sprintEvent = delegate { };
     public event UnityAction sprintCanceledEvent = delegate { };
 
-    public event UnityAction pauseEvent = delegate { };
-
-    //menu
-    public event UnityAction unpauseEvent = delegate { };
-
     private GameInput gameInput;
+
+    public StateManager stateManager;
 
     private void OnEnable()
     {
@@ -32,12 +29,12 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
 
         }
 
-        EnableGameplayInput();
+        stateManager.onGameStateChanged += OnGameStateChanged;
     }
 
     private void OnDisable()
     {
-        DisableAllInput();
+        stateManager.onGameStateChanged -= OnGameStateChanged;
     }
 
     private void DisableAllInput()
@@ -79,22 +76,30 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
 
     public void OnUnpause(InputAction.CallbackContext context)
     {
-        DisableAllInput();
-
-        EnableGameplayInput();
-        unpauseEvent.Invoke();
+        if (context.phase == InputActionPhase.Canceled)
+            stateManager.UpdateGameState(GameState.Gameplay);
     }
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        DisableAllInput();
-
-        EnableMenuInput();
-        pauseEvent.Invoke();
+        if(context.phase == InputActionPhase.Canceled)
+            stateManager.UpdateGameState(GameState.Menu);
     }
 
     public void OnMouseRotation(InputAction.CallbackContext context)
     {
         mouseRotateEvent.Invoke(context.ReadValue<Vector2>());
+    }
+
+    // EVENT LISTENERS
+
+    public void OnGameStateChanged(GameState state)
+    {
+        DisableAllInput();
+
+        if(state == GameState.Gameplay)
+            EnableGameplayInput();
+        else if (state == GameState.Menu)
+            EnableMenuInput();
     }
 }

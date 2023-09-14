@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8b30166046f5641bd6d4e8b115be57, type: 3}
-  m_Name: InputManager
+  m_Script: {fileID: 11500000, guid: 2f0ca245a78c76443bdf5f9a2d0c0b4f, type: 3}
+  m_Name: StateManager
   m_EditorClassIdentifier: 
-  stateManager: {fileID: 11400000, guid: c1dda6cdf5dba4b41a4aae4ab8fbfd8e, type: 2}
+  currentState: 1
