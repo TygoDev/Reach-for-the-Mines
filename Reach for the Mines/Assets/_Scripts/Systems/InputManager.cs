@@ -14,6 +14,10 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction jumpEvent = delegate { };
     public event UnityAction sprintEvent = delegate { };
     public event UnityAction sprintCanceledEvent = delegate { };
+    public event UnityAction openInventoryEvent = delegate { };
+
+    //menu
+    public event UnityAction unPauseEvent = delegate { };
 
     private GameInput gameInput;
 
@@ -77,13 +81,27 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public void OnUnpause(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Canceled)
+        {
             stateManager.UpdateGameState(GameState.Gameplay);
+            unPauseEvent.Invoke();
+        }
+
     }
 
     public void OnPause(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Canceled)
+        if (context.phase == InputActionPhase.Canceled)
             stateManager.UpdateGameState(GameState.Menu);
+    }
+
+    public void OnOpenInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Canceled)
+        {
+            stateManager.UpdateGameState(GameState.Menu);
+            openInventoryEvent.Invoke();
+        }
+
     }
 
     public void OnMouseRotation(InputAction.CallbackContext context)
@@ -97,7 +115,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     {
         DisableAllInput();
 
-        if(state == GameState.Gameplay)
+        if (state == GameState.Gameplay)
             EnableGameplayInput();
         else if (state == GameState.Menu)
             EnableMenuInput();

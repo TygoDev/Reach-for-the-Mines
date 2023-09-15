@@ -12,34 +12,36 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject followTarget = null;
     [SerializeField] private Transform groundedCheck = null;
-    [SerializeField] private InputManager inputManager = default;
 
+    private Systems systems = default;
     private Vector3 movementInput = Vector3.zero;
     private Vector2 cameraAngle = Vector2.zero;
     private Rigidbody rigidBody = null;
     private Vector3 oldMovementInput = new Vector3();
 
-    private void OnEnable()
+    private void Start()
     {
-        inputManager.moveEvent += OnMove;
-        inputManager.mouseRotateEvent += OnCameraRotate;
-        inputManager.jumpEvent += OnJump;
-        inputManager.sprintEvent += OnSprint;
-        inputManager.sprintCanceledEvent += OnSprintCanceled;
+        rigidBody = GetComponent<Rigidbody>();
+        systems = Systems.Instance;
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        systems.inputManager.moveEvent += OnMove;
+        systems.inputManager.mouseRotateEvent += OnCameraRotate;
+        systems.inputManager.jumpEvent += OnJump;
+        systems.inputManager.sprintEvent += OnSprint;
+        systems.inputManager.sprintCanceledEvent += OnSprintCanceled;
     }
 
     private void OnDisable()
     {
-        inputManager.moveEvent -= OnMove;
-        inputManager.mouseRotateEvent -= OnCameraRotate;
-        inputManager.jumpEvent -= OnJump;
-        inputManager.sprintEvent -= OnSprint;
-        inputManager.sprintCanceledEvent -= OnSprintCanceled;
-    }
-
-    private void Start()
-    {
-        rigidBody = GetComponent<Rigidbody>();
+        systems.inputManager.moveEvent -= OnMove;
+        systems.inputManager.mouseRotateEvent -= OnCameraRotate;
+        systems.inputManager.jumpEvent -= OnJump;
+        systems.inputManager.sprintEvent -= OnSprint;
+        systems.inputManager.sprintCanceledEvent -= OnSprintCanceled;
     }
 
     private void Update()

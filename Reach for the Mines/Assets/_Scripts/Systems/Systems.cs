@@ -11,16 +11,8 @@ public class Systems : MonoBehaviour
     public static Systems Instance { get { return instance; } }
 
     public StateManager stateManager;
-
-    private void Start()
-    {
-        stateManager.onGameStateChanged += Test;
-    }
-
-    private void Test(GameState obj)
-    {
-        Debug.Log(obj);
-    }
+    public InventoryManager inventoryManager;
+    public InputManager inputManager;
 
     private void Awake()
     {
