@@ -11,14 +11,17 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] private Image itemImage = null;
     [SerializeField] private TMP_Text itemName = null;
     [SerializeField] private TMP_Text itemDescription = null;
+    [SerializeField] private TMP_Text itemAmount = null;
 
-    public void FillSlot(Item pItem)
+    public void FillSlot(KeyValuePair<Item, int> pItem)
     {
-        item = pItem;
+        item = pItem.Key;
         itemImage.sprite = item.icon;
         itemImage.gameObject.SetActive(true);
         itemName.text = item.name;
         itemDescription.text = item.description;
+        itemAmount.text = pItem.Value.ToString();
+        itemAmount.gameObject.SetActive(true);
     }
 
     public void ClearSlot()
@@ -28,5 +31,7 @@ public class InventoryItem : MonoBehaviour
         itemImage.gameObject.SetActive(false);
         itemName.text = null;
         itemDescription.text = null;
+        itemAmount.text = null;
+        itemAmount.gameObject.SetActive(false);
     }
 }

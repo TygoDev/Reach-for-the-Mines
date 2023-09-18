@@ -4,20 +4,26 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-    public List<Item> items = new List<Item>();
-    [SerializeField] private int slotLimit = 32;
+    public Dictionary<Item, int> items = new Dictionary<Item, int>();
+
+    [SerializeField] private int maxStackAmount = 50;
+    [SerializeField] private int maxSlots = 32;
 
     public void Add(Item item, GameObject worldItem)
     {
-        if (items.Count < slotLimit)
+        if (items.ContainsKey(item) && items[item] < maxStackAmount)
         {
+            items[item]++;
             Destroy(worldItem);
-            items.Add(item);
         }
-    }
-
-    public void Remove(Item item)
-    {
-        items.Remove(item);
+        else if (items.Count < maxSlots)
+        {
+            items.Add(item, 1);
+            Destroy(worldItem);
+        }
+        else
+        {
+            Debug.Log("inventory full");
+        }
     }
 }
