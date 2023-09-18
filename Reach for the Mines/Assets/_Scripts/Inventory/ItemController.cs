@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] private Item item = null;
+    public Item item = null;
 
     private Systems systems = default;
     private const string PLAYER = "Player";
 
     private void Start()
+    {
+        systems = Systems.Instance;
+    }
+
+    private void Awake()
     {
         systems = Systems.Instance;
     }

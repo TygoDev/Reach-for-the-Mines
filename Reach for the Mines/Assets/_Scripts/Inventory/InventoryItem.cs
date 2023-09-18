@@ -9,18 +9,18 @@ public class InventoryItem : MonoBehaviour
     public Item item = null;
 
     [SerializeField] private Image itemImage = null;
-    [SerializeField] private TMP_Text itemName = null;
-    [SerializeField] private TMP_Text itemDescription = null;
+    //[SerializeField] private TMP_Text itemName = null;
+    //[SerializeField] private TMP_Text itemDescription = null;
     [SerializeField] private TMP_Text itemAmount = null;
 
-    public void FillSlot(KeyValuePair<Item, int> pItem)
+    public void FillSlot(ItemStack pItem)
     {
-        item = pItem.Key;
+        item = pItem.item;
         itemImage.sprite = item.icon;
         itemImage.gameObject.SetActive(true);
-        itemName.text = item.name;
-        itemDescription.text = item.description;
-        itemAmount.text = pItem.Value.ToString();
+        //itemName.text = item.name;
+        //itemDescription.text = item.description;
+        itemAmount.text = pItem.quantity.ToString();
         itemAmount.gameObject.SetActive(true);
     }
 
@@ -29,8 +29,8 @@ public class InventoryItem : MonoBehaviour
         item = null;
         itemImage.sprite = null;
         itemImage.gameObject.SetActive(false);
-        itemName.text = null;
-        itemDescription.text = null;
+        //itemName.text = null;
+        //itemDescription.text = null;
         itemAmount.text = null;
         itemAmount.gameObject.SetActive(false);
     }
