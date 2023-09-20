@@ -26,8 +26,18 @@ public class Interactable : MonoBehaviour
         healthBarCanvas.gameObject.SetActive(value);
     }
 
+    Camera mainCamera = null;
+
+    private void Start()
+    {
+        mainCamera = Camera.main;
+    }
+
     private void Update()
     {
+        if(healthBarCanvas.gameObject.activeInHierarchy)
+            healthBarCanvas.transform.LookAt(mainCamera.transform.position);
+
         if (currentlyHitting && health > 0)
         {
             health -= Time.deltaTime * damage;
