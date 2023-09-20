@@ -8,16 +8,31 @@ public class Interactable : MonoBehaviour
     [SerializeField] private ItemController itemPrefab = null;
     [SerializeField] private int amountToDrop = 4;
     [SerializeField] private float health = 10f;
+    
+    public bool currentlyHitting = false;
+    private float damage = 0;
 
-    public void Hit(float damage)
+    public void Hit(float pDamage)
     {
-        health -= damage;
-        Harvest();
+        damage = pDamage;
+        currentlyHitting = !currentlyHitting;
+    }
+
+    private void Update()
+    {
+        if (currentlyHitting && health > 0)
+        {
+            health -= Time.deltaTime * damage;
+        }
+        else if (health <= 0)
+        {
+            Harvest();
+        }
     }
 
     private void Harvest()
     {
-        if(possibleDrops.Count != 0 && health <= 0)
+        if(possibleDrops.Count != 0)
         {
             for (int i = 0; i < amountToDrop; i++)
             {

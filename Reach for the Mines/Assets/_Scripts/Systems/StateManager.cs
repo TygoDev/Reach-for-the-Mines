@@ -25,7 +25,7 @@ public class StateManager : ScriptableObject
                 onGameStateChanged.Invoke(currentState);
                 break;
             case GameState.Menu:
-                onGameStateChanged?.Invoke(currentState);
+                onGameStateChanged.Invoke(currentState);
                 break;
         }
     }

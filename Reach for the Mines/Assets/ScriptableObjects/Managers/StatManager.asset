@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e5fd5f68f53414d8f3e4ac5037d746, type: 3}
   m_Name: StatManager
   m_EditorClassIdentifier: 
-  harvestStrength: 2
+  harvestStrength: 5

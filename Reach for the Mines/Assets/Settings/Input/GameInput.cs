@@ -206,7 +206,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""5f8ca01a-2e73-465f-84ba-72a3a46797bd"",
                     ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hit"",

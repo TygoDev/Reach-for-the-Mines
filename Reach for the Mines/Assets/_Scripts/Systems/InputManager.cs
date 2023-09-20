@@ -24,6 +24,8 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
 
     public StateManager stateManager;
 
+    private bool hitActionInProgress = false;
+
     private void OnEnable()
     {
         if (gameInput == null)
@@ -63,17 +65,27 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public void OnHit(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
+        {
+            hitActionInProgress = true;
             hitEvent.Invoke();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+            hitActionInProgress = false;
+
     }
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        moveEvent.Invoke(context.ReadValue<Vector2>());
+        if (!hitActionInProgress)
+            moveEvent.Invoke(context.ReadValue<Vector2>());
+        else
+            moveEvent.Invoke(new Vector2(0,0));
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        jumpEvent.Invoke();
+        if (!hitActionInProgress)
+            jumpEvent.Invoke();
     }
 
     public void OnSprint(InputAction.CallbackContext context)

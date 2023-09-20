@@ -40,6 +40,9 @@ public class InteractableDetection : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(INTERACTABLE))
+        {
+            interactable.currentlyHitting = false;
             interactable = null;
+        }
     }
 }
