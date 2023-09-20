@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items: []
-  slotLimit: 32
+  maxStackAmount: 50
+  maxSlots: 32
 --- !u!1 &6048232278638681304
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,3 +95,4 @@ MonoBehaviour:
   stateManager: {fileID: 11400000, guid: c1dda6cdf5dba4b41a4aae4ab8fbfd8e, type: 2}
   inventoryManager: {fileID: 6582636620017907556}
   inputManager: {fileID: 11400000, guid: 73e5dcc1a94bd6942bf7ebc6972c5789, type: 2}
+  statManager: {fileID: 11400000, guid: 0fd0dc7d0973dbc49840dc01cbb20823, type: 2}

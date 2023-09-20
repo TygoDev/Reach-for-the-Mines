@@ -13,6 +13,7 @@ public class Systems : MonoBehaviour
     public StateManager stateManager;
     public InventoryManager inventoryManager;
     public InputManager inputManager;
+    public StatManager statManager;
 
     private void Awake()
     {

@@ -2,29 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableProperties : MonoBehaviour
+public class Interactable : MonoBehaviour
 {
     [SerializeField] private List<Drop> possibleDrops = new List<Drop>();
     [SerializeField] private ItemController itemPrefab = null;
-    [SerializeField] private int amountToDrop;
+    [SerializeField] private int amountToDrop = 4;
+    [SerializeField] private float health = 10f;
 
-    private void Start()
+    public void Hit(float damage)
     {
-        Mined();
+        health -= damage;
+        Harvest();
     }
 
-    private void Mined()
+    private void Harvest()
     {
-        if(possibleDrops.Count != 0)
+        if(possibleDrops.Count != 0 && health <= 0)
         {
             for (int i = 0; i < amountToDrop; i++)
             {
                 itemPrefab.item = GetRandomItem();
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
+            Destroy(gameObject);
         }
-
-        Destroy(gameObject);
     }
 
     private Item GetRandomItem()

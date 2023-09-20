@@ -15,6 +15,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction sprintEvent = delegate { };
     public event UnityAction sprintCanceledEvent = delegate { };
     public event UnityAction openInventoryEvent = delegate { };
+    public event UnityAction hitEvent = delegate { };
 
     //menu
     public event UnityAction unPauseEvent = delegate { };
@@ -57,6 +58,12 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     {
         gameInput.Menu.Enable();
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void OnHit(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            hitEvent.Invoke();
     }
 
     public void OnMove(InputAction.CallbackContext context)
