@@ -34,13 +34,18 @@ public class InteractableDetection : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(INTERACTABLE))
+        {
             interactable = other.GetComponent<Interactable>();
+            interactable.SetHealthBarCanvas(true);
+        }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag(INTERACTABLE))
         {
+            interactable.SetHealthBarCanvas(false);
             interactable.currentlyHitting = false;
             interactable = null;
         }

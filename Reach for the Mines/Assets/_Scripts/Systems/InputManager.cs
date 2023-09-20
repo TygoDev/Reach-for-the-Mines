@@ -67,11 +67,11 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
         if (context.phase == InputActionPhase.Performed)
         {
             hitActionInProgress = true;
+            moveEvent.Invoke(new Vector2(0, 0));
             hitEvent.Invoke();
         }
         else if (context.phase == InputActionPhase.Canceled)
             hitActionInProgress = false;
-
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -79,7 +79,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
         if (!hitActionInProgress)
             moveEvent.Invoke(context.ReadValue<Vector2>());
         else
-            moveEvent.Invoke(new Vector2(0,0));
+            moveEvent.Invoke(new Vector2(0, 0));
     }
 
     public void OnJump(InputAction.CallbackContext context)

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Interactable : MonoBehaviour
     [SerializeField] private ItemController itemPrefab = null;
     [SerializeField] private int amountToDrop = 4;
     [SerializeField] private float health = 10f;
+    [SerializeField] private Canvas healthBarCanvas = null;
+    [SerializeField] private Slider healthSlider = null;
     
     public bool currentlyHitting = false;
     private float damage = 0;
@@ -18,11 +21,18 @@ public class Interactable : MonoBehaviour
         currentlyHitting = !currentlyHitting;
     }
 
+    public void SetHealthBarCanvas(bool value)
+    {
+        healthBarCanvas.gameObject.SetActive(value);
+    }
+
     private void Update()
     {
         if (currentlyHitting && health > 0)
         {
             health -= Time.deltaTime * damage;
+            healthSlider.value = health;
+
         }
         else if (health <= 0)
         {
