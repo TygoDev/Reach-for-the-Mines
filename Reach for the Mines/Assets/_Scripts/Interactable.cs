@@ -8,25 +8,14 @@ public class Interactable : MonoBehaviour
     [SerializeField] private List<Drop> possibleDrops = new List<Drop>();
     [SerializeField] private ItemController itemPrefab = null;
     [SerializeField] private int amountToDrop = 4;
-    [SerializeField] private float health = 10f;
-    [SerializeField] private Canvas healthBarCanvas = null;
     [SerializeField] private Slider healthSlider = null;
-    
+
+    public float health = 10f;
+    public Canvas healthBarCanvas = null;
     public bool currentlyHitting = false;
+
     private float damage = 0;
-
-    public void Hit(float pDamage)
-    {
-        damage = pDamage;
-        currentlyHitting = !currentlyHitting;
-    }
-
-    public void SetHealthBarCanvas(bool value)
-    {
-        healthBarCanvas.gameObject.SetActive(value);
-    }
-
-    Camera mainCamera = null;
+    private Camera mainCamera = null;
 
     private void Start()
     {
@@ -35,7 +24,7 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
-        if(healthBarCanvas.gameObject.activeInHierarchy)
+        if (healthBarCanvas.gameObject.activeInHierarchy)
             healthBarCanvas.transform.LookAt(mainCamera.transform.position);
 
         if (currentlyHitting && health > 0)
@@ -50,15 +39,28 @@ public class Interactable : MonoBehaviour
         }
     }
 
+    public void Hit(float pDamage)
+    {
+        damage = pDamage;
+        currentlyHitting = !currentlyHitting;
+    }
+
+    public void SetInteractable(bool value)
+    {
+        if (healthBarCanvas.gameObject.activeInHierarchy != value)
+            healthBarCanvas.gameObject.SetActive(value);
+    }
+
     private void Harvest()
     {
-        if(possibleDrops.Count != 0)
+        if (possibleDrops.Count != 0)
         {
             for (int i = 0; i < amountToDrop; i++)
             {
                 itemPrefab.item = GetRandomItem();
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
+
             Destroy(gameObject);
         }
     }
@@ -79,7 +81,7 @@ public class Interactable : MonoBehaviour
         {
             processedValue += drop.rarity;
 
-            if(randomWeightValue <= processedValue)
+            if (randomWeightValue <= processedValue)
             {
                 return drop.item;
             }
