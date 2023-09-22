@@ -36,6 +36,11 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
         }
 
         stateManager.onGameStateChanged += OnGameStateChanged;
+
+        if (stateManager.currentState == GameState.Gameplay)
+            EnableGameplayInput();
+        else
+            EnableMenuInput();
     }
 
     private void OnDisable()

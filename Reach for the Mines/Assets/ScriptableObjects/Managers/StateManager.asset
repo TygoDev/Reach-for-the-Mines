@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0ca245a78c76443bdf5f9a2d0c0b4f, type: 3}
   m_Name: StateManager
   m_EditorClassIdentifier: 
-  currentState: 0
+  currentState: 1
