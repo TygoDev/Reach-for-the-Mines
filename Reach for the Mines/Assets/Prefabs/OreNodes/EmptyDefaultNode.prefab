@@ -395,6 +395,7 @@ GameObject:
   - component: {fileID: 4002989009506928250}
   - component: {fileID: 3092084874139302165}
   - component: {fileID: 3932450923947927546}
+  - component: {fileID: 2320623349806021685}
   m_Layer: 0
   m_Name: EmptyDefaultNode
   m_TagString: Interactable
@@ -504,7 +505,20 @@ MonoBehaviour:
   possibleDrops: []
   itemPrefab: {fileID: 6711324209793826117, guid: 3d8f02a198b9ebc42ac0e151bc8e2d94, type: 3}
   amountToDrop: 0
+  healthSlider: {fileID: 1027967679379250909}
   health: 10
   healthBarCanvas: {fileID: 3295703327251641595}
-  healthSlider: {fileID: 1027967679379250909}
   currentlyHitting: 0
+--- !u!114 &2320623349806021685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5075974051467006968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0d669fdfdfac24cbdc5d50acdfeb52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpValue: 10
