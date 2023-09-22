@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
@@ -16,6 +17,8 @@ public class Interactable : MonoBehaviour
 
     private float damage = 0;
     private Camera mainCamera = null;
+
+    public event UnityAction InteractableDestroyed = delegate { };
 
     private void Start()
     {
@@ -61,6 +64,7 @@ public class Interactable : MonoBehaviour
                 Instantiate(itemPrefab, transform.position, Quaternion.identity);
             }
 
+            InteractableDestroyed.Invoke();
             Destroy(gameObject);
         }
     }
