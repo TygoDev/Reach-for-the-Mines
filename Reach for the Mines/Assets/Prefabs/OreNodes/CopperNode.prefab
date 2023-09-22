@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2320623349806021685, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: xpValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: amountToDrop
       value: 4
@@ -34,15 +38,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[1].rarity
-      value: 62
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[2].rarity
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5075974051467006968, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: m_Name
-      value: CopperNode Variant
+      value: CopperNode
       objectReference: {fileID: 0}
     - target: {fileID: 5237980573682938113, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: m_RootOrder

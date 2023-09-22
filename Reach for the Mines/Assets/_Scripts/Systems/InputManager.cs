@@ -33,7 +33,6 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
             gameInput = new GameInput();
             gameInput.Menu.SetCallbacks(this);
             gameInput.Gameplay.SetCallbacks(this);
-
         }
 
         stateManager.onGameStateChanged += OnGameStateChanged;
