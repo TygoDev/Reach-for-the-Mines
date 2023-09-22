@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "StatManager", menuName = "Custom/Stat Manager")]
 public class StatManager : ScriptableObject

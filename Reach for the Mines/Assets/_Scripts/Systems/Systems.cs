@@ -20,6 +20,7 @@ public class Systems : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            stateManager.UpdateGameState(GameState.Gameplay);
             DontDestroyOnLoad(gameObject);
         }
         else
