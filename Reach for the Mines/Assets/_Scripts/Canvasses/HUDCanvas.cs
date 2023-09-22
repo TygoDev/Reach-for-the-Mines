@@ -14,6 +14,11 @@ public class HUDCanvas : MonoBehaviour
     {
         systems = Systems.Instance;
         levelText.text = systems.statManager.level.ToString();
+        
+        if(systems.stateManager.GetGameState() == GameState.Gameplay)
+            GetComponent<Canvas>().enabled = true;
+        else
+            GetComponent<Canvas>().enabled = false;
 
         Subscribe();
     }

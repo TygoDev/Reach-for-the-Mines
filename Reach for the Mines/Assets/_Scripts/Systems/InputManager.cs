@@ -16,6 +16,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction sprintCanceledEvent = delegate { };
     public event UnityAction openInventoryEvent = delegate { };
     public event UnityAction hitEvent = delegate { };
+    public event UnityAction interactEvent = delegate { };
 
     //menu
     public event UnityAction unPauseEvent = delegate { };
@@ -37,7 +38,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
 
         stateManager.onGameStateChanged += OnGameStateChanged;
 
-        if (stateManager.currentState == GameState.Gameplay)
+        if (stateManager.GetGameState() == GameState.Gameplay)
             EnableGameplayInput();
         else
             EnableMenuInput();
@@ -130,6 +131,12 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public void OnMouseRotation(InputAction.CallbackContext context)
     {
         mouseRotateEvent.Invoke(context.ReadValue<Vector2>());
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            interactEvent.Invoke();
     }
 
     // EVENT LISTENERS

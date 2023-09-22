@@ -89,6 +89,15 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""198cb31d-e845-47cd-b3ef-7e433865d53d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -212,6 +221,17 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""action"": ""Hit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e64440d5-a11b-4e81-a2e0-d37397993c88"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -266,6 +286,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_Gameplay_Sprint = m_Gameplay.FindAction("Sprint", throwIfNotFound: true);
         m_Gameplay_OpenInventory = m_Gameplay.FindAction("OpenInventory", throwIfNotFound: true);
         m_Gameplay_Hit = m_Gameplay.FindAction("Hit", throwIfNotFound: true);
+        m_Gameplay_Interact = m_Gameplay.FindAction("Interact", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Unpause = m_Menu.FindAction("Unpause", throwIfNotFound: true);
@@ -337,6 +358,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Sprint;
     private readonly InputAction m_Gameplay_OpenInventory;
     private readonly InputAction m_Gameplay_Hit;
+    private readonly InputAction m_Gameplay_Interact;
     public struct GameplayActions
     {
         private @GameInput m_Wrapper;
@@ -348,6 +370,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_Gameplay_Sprint;
         public InputAction @OpenInventory => m_Wrapper.m_Gameplay_OpenInventory;
         public InputAction @Hit => m_Wrapper.m_Gameplay_Hit;
+        public InputAction @Interact => m_Wrapper.m_Gameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -378,6 +401,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Hit.started += instance.OnHit;
             @Hit.performed += instance.OnHit;
             @Hit.canceled += instance.OnHit;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -403,6 +429,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Hit.started -= instance.OnHit;
             @Hit.performed -= instance.OnHit;
             @Hit.canceled -= instance.OnHit;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -475,6 +504,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
         void OnHit(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

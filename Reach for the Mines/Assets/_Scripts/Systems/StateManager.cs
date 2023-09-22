@@ -7,12 +7,12 @@ using UnityEngine;
 public class StateManager : ScriptableObject
 {
 
-    public GameState currentState = GameState.Gameplay;
+    public GameState currentState { get; private set; }
     public event Action<GameState> onGameStateChanged = delegate { };
 
-    private void OnEnable()
+    public GameState GetGameState()
     {
-        onGameStateChanged.Invoke(currentState);
+        return currentState;
     }
 
     public void UpdateGameState(GameState state)

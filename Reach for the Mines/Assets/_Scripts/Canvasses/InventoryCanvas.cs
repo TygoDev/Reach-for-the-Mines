@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class InventoryCanvas : MonoBehaviour
 {
-    [SerializeField] private Image inventory = null;
     [SerializeField] private List<InventoryItem> inventoryItems = new List<InventoryItem>();
 
     private Systems systems = default;
@@ -32,13 +31,13 @@ public class InventoryCanvas : MonoBehaviour
 
     public void OnInventoryOpen()
     {
-        inventory.gameObject.SetActive(true);
+        GetComponent<Canvas>().enabled = true;
         PopulateInventory();
     }
 
     public void OnInventoryClose()
     {
-        inventory.gameObject.SetActive(false);
+        GetComponent<Canvas>().enabled = false;
     }
 
     private void PopulateInventory()
