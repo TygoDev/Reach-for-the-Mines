@@ -15,6 +15,7 @@ public class InventoryCanvas : MonoBehaviour
     {
         systems = Systems.Instance;
         Subscribe();
+        GetComponent<Canvas>().enabled = false;
     }
 
     private void Subscribe()
@@ -42,10 +43,11 @@ public class InventoryCanvas : MonoBehaviour
 
     private void PopulateInventory()
     {
-        for (int i = 0; i < systems.inventoryManager.items.Count; i++)
+        for (int i = 0; i < inventoryItems.Count; i++)
         {
             inventoryItems[i].ClearSlot();
-            inventoryItems[i].FillSlot(systems.inventoryManager.items.ElementAt(i));
+            if (systems.inventoryManager.items.Count > i)
+                inventoryItems[i].FillSlot(systems.inventoryManager.items.ElementAt(i));
         }
     }
 }

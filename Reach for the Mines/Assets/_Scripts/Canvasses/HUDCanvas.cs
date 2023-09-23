@@ -7,6 +7,7 @@ using System;
 public class HUDCanvas : MonoBehaviour
 {
     [SerializeField] private TMP_Text levelText = null;
+    [SerializeField] private TMP_Text goldText = null;
 
     private Systems systems = null;
 
@@ -36,6 +37,7 @@ public class HUDCanvas : MonoBehaviour
     private void Update()
     {
         levelText.text = systems.statManager.level.ToString();
+        goldText.text = "G: " + systems.statManager.goldAmount.ToString();
     }
 
     private void ToggleCanvas(GameState state)

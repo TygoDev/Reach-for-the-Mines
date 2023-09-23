@@ -7,31 +7,33 @@ using UnityEngine.UI;
 public class InventoryItem : MonoBehaviour
 {
     public Item item = null;
+    public ItemStack itemStack = null;
+    public bool empty = false;
 
     [SerializeField] private Image itemImage = null;
-    //[SerializeField] private TMP_Text itemName = null;
-    //[SerializeField] private TMP_Text itemDescription = null;
     [SerializeField] private TMP_Text itemAmount = null;
-
+    
     public void FillSlot(ItemStack pItem)
     {
+        empty = false;
+
         item = pItem.item;
         itemImage.sprite = item.icon;
         itemImage.gameObject.SetActive(true);
-        //itemName.text = item.name;
-        //itemDescription.text = item.description;
         itemAmount.text = pItem.quantity.ToString();
+        itemStack = pItem;
         itemAmount.gameObject.SetActive(true);
     }
 
     public void ClearSlot()
     {
+        empty = true;
+
         item = null;
         itemImage.sprite = null;
         itemImage.gameObject.SetActive(false);
-        //itemName.text = null;
-        //itemDescription.text = null;
         itemAmount.text = null;
+        itemStack = null;
         itemAmount.gameObject.SetActive(false);
     }
 }

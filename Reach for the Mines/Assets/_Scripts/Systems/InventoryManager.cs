@@ -28,6 +28,14 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Inventory full");
         }
     }
+
+    public void Remove(ItemStack itemStack)
+    {
+        if (items.Contains(itemStack))
+        {
+            items.Remove(itemStack);
+        }
+    }
 }
 
 [System.Serializable]
