@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/Personal Plot.unity
+    guid: f09f775a4d879d84f878494441a451ed
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: bbfaa2e5387e8cb449f81c0282c9c513, type: 2}

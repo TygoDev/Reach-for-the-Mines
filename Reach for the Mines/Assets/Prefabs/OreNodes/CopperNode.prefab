@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[0].item
@@ -33,16 +33,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 052c3a81603651f489fee27e798f602d, type: 2}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: possibleDrops.Array.data[3].item
+      value: 
+      objectReference: {fileID: 11400000, guid: 9aadc356d84def6408787747bf1ad374, type: 2}
+    - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[0].rarity
       value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[1].rarity
-      value: 64
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[2].rarity
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: possibleDrops.Array.data[3].rarity
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5075974051467006968, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: m_Name

@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 1
   name: Coal
   description: A resource that has a chance of dropping from ores.
-  value: 15
+  value: 3
   icon: {fileID: 21300000, guid: abcf535fcbe161142ad651238fd04907, type: 3}

@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 6
   name: Lead Bar
   description: A high value item gained from smelting lead ore.
-  value: 40
+  value: 15
   icon: {fileID: 21300000, guid: 4ba4bdcc0c59c5447953374ccb4583a4, type: 3}

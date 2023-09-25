@@ -15,5 +15,5 @@ MonoBehaviour:
   id: 2
   name: Copper Ore
   description: An ore which can be smelted into a bar.
-  value: 20
+  value: 5
   icon: {fileID: 21300000, guid: edd3509ed264fc24b9852a77d954ba2b, type: 3}
