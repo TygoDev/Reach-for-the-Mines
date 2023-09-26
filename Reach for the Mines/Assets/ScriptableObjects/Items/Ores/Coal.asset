@@ -17,3 +17,4 @@ MonoBehaviour:
   description: A resource that has a chance of dropping from ores.
   value: 3
   icon: {fileID: 21300000, guid: abcf535fcbe161142ad651238fd04907, type: 3}
+  itemType: 2

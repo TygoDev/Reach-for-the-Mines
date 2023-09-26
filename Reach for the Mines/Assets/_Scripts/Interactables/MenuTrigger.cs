@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class MenuTrigger : MonoBehaviour
 {
-    [SerializeField] private Canvas menuToTrigger = null;
+    private Canvas menuToTrigger = null;
+
+    private void Start()
+    {
+        menuToTrigger = GetComponentInChildren<Canvas>();
+    }
 
     public void ToogleMenu(bool value)
     {

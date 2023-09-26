@@ -8,7 +8,7 @@ public class InventoryItem : MonoBehaviour
 {
     public Item item = null;
     public ItemStack itemStack = null;
-    public bool empty = false;
+    public bool empty = true;
 
     [SerializeField] private Image itemImage = null;
     [SerializeField] private TMP_Text itemAmount = null;

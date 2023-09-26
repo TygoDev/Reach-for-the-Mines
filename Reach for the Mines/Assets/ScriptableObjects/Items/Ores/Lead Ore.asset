@@ -17,3 +17,4 @@ MonoBehaviour:
   description: An ore which can be smelted into a bar.
   value: 8
   icon: {fileID: 21300000, guid: 7ffa242f941af4843909df1e2c0be60c, type: 3}
+  itemType: 1

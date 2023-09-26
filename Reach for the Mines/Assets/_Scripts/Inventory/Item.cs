@@ -8,4 +8,14 @@ public class Item : ScriptableObject
     public string description;
     public int value;
     public Sprite icon;
+    public ItemType itemType;
+}
+
+public enum ItemType
+{
+    Default,
+    Smeltable,
+    Fuel,
+    Station,
+    Craftable
 }

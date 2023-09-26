@@ -15,5 +15,6 @@ MonoBehaviour:
   id: 8
   name: Bronze Bar
   description: A high value item gained from combining copper and iron bars.
-  value: 40
+  value: 100
   icon: {fileID: 21300000, guid: 09c3162ad769ff14fb5c4f67829fbaff, type: 3}
+  itemType: 0

@@ -15,5 +15,6 @@ MonoBehaviour:
   id: 7
   name: Iron Bar
   description: A high value item gained from smelting iron ore.
-  value: 20
+  value: 60
   icon: {fileID: 21300000, guid: e80c2418d327fe349b1c5408f6d34adb, type: 3}
+  itemType: 0

@@ -16,12 +16,16 @@ public class InventoryManager : MonoBehaviour
         if (existingItem != null && existingItem.quantity < maxStackAmount)
         {
             existingItem.quantity++;
+
+            if(worldItem!=null)
             Destroy(worldItem);
         }
         else if (items.Count < maxSlots)
         {
             items.Add(new ItemStack(item, 1));
-            Destroy(worldItem);
+
+            if (worldItem != null)
+                Destroy(worldItem);
         }
         else
         {
