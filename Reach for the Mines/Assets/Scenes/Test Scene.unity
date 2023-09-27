@@ -2018,7 +2018,7 @@ PrefabInstance:
       objectReference: {fileID: 1034355047}
     - target: {fileID: 4543629315131588473, guid: 2f550afdd2fbb6145afc80791b39bd70, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FuranceSlot
+      value: FurnaceSlot
       objectReference: {fileID: 0}
     - target: {fileID: 4543629315131588473, guid: 2f550afdd2fbb6145afc80791b39bd70, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -6696,7 +6696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4543629315131588473, guid: 2f550afdd2fbb6145afc80791b39bd70, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TakeOutput
+      value: TakeSlotContents
       objectReference: {fileID: 0}
     - target: {fileID: 4543629315131588473, guid: 2f550afdd2fbb6145afc80791b39bd70, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -21745,7 +21745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4543629315131588473, guid: 2f550afdd2fbb6145afc80791b39bd70, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: FuranceSlot
+      value: FurnaceSlot
       objectReference: {fileID: 0}
     - target: {fileID: 4543629315131588473, guid: 2f550afdd2fbb6145afc80791b39bd70, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

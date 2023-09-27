@@ -23,12 +23,13 @@ public class FurnaceCanvas : MonoBehaviour
     private void Start()
     {
         systems = Systems.Instance;
-        Subscribe();
-        GetComponent<Canvas>().enabled = false;
+
+        Initialize();
     }
 
-    private void Subscribe()
+    private void Initialize()
     {
+        GetComponent<Canvas>().enabled = false;
         systems.inputManager.unPauseEvent += OnInventoryClose;
         systems.stateManager.onGameStateChanged += OnGameStateChange;
     }
@@ -41,20 +42,12 @@ public class FurnaceCanvas : MonoBehaviour
 
     public void SwapMenu()
     {
-        if (furnaceMenu.gameObject.activeInHierarchy)
-        {
-            furnaceMenu.gameObject.SetActive(false);
-            inventoryMenu.gameObject.SetActive(true);
-            PopulateInventory();
-        }
-        else
-        {
-            furnaceMenu.gameObject.SetActive(true);
-            inventoryMenu.gameObject.SetActive(false);
-        }
+        PopulateInventory();
+        furnaceMenu.gameObject.SetActive(!furnaceMenu.gameObject.activeInHierarchy);
+        inventoryMenu.gameObject.SetActive(!inventoryMenu.gameObject.activeInHierarchy);
     }
 
-    public void FuranceSlot(InventoryItem inventoryItem)
+    public void FurnaceSlot(InventoryItem inventoryItem)
     {
         if (inventoryItem.empty)
         {
@@ -64,7 +57,7 @@ public class FurnaceCanvas : MonoBehaviour
         else
         {
             isProcessing = false;
-            TakeOutput(inventoryItem);
+            TakeSlotContents(inventoryItem);
         }
 
     }
@@ -103,50 +96,66 @@ public class FurnaceCanvas : MonoBehaviour
         {
             if (smeltable.itemInput == inputSlot.item)
             {
-                if (outputSlot.empty)
-                {
-                    outputSlot.FillSlot(new ItemStack(smeltable.itemOutput, 1));
-                }
-                else if (outputSlot.item == smeltable.itemOutput)
-                {
-                    ItemStack newStackOutput = outputSlot.itemStack;
-                    newStackOutput.quantity++;
-                    outputSlot.ClearSlot();
-                    outputSlot.FillSlot(newStackOutput);
-                }
-                else
-                {
+                if (!HandleOutputSlot(smeltable))
                     return;
-                }
-
-
-                ItemStack newStackInput = inputSlot.itemStack;
-                newStackInput.quantity -= 5;
-                inputSlot.ClearSlot();
-
-                if (newStackInput.quantity != 0)
-                    inputSlot.FillSlot(newStackInput);
-                
-
-                ItemStack newStackFuel = fuelSlot.itemStack;
-                newStackFuel.quantity--;
-                fuelSlot.ClearSlot();
-
-                if (newStackFuel.quantity != 0)
-                    fuelSlot.FillSlot(newStackFuel);                 
+                HandleInputSlot();
+                HandleFuelSlot();
+               
             }
         }
     }
 
-    public void TakeOutput(InventoryItem inventoryItem)
+    private bool HandleOutputSlot(Smeltable smeltable)
     {
-        if (!inventoryItem.empty)
+        if (outputSlot.empty)
+        {
+            outputSlot.FillSlot(new ItemStack(smeltable.itemOutput, 1));
+            return true;
+        }
+        else if (outputSlot.item == smeltable.itemOutput)
+        {
+            ItemStack newStackOutput = outputSlot.itemStack;
+            newStackOutput.quantity++;
+            outputSlot.ClearSlot();
+            outputSlot.FillSlot(newStackOutput);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void HandleInputSlot()
+    {
+        ItemStack newStackInput = inputSlot.itemStack;
+        newStackInput.quantity -= 5;
+        inputSlot.ClearSlot();
+
+        if (newStackInput.quantity != 0)
+            inputSlot.FillSlot(newStackInput);
+    }
+
+    private void HandleFuelSlot()
+    {
+        ItemStack newStackFuel = fuelSlot.itemStack;
+        newStackFuel.quantity--;
+        fuelSlot.ClearSlot();
+
+        if (newStackFuel.quantity != 0)
+            fuelSlot.FillSlot(newStackFuel);
+    }
+
+    public void TakeSlotContents(InventoryItem inventoryItem)
+    {
+        if (!inventoryItem.empty && !systems.inventoryManager.inventoryIsFull)
         {
             for (int i = 0; i < inventoryItem.itemStack.quantity; i++)
             {
                 systems.inventoryManager.Add(inventoryItem.itemStack.item, null);
             }
             inventoryItem.ClearSlot();
+
             PopulateInventory();
         }
     }
@@ -163,9 +172,7 @@ public class FurnaceCanvas : MonoBehaviour
 
     private IEnumerator Smelt()
     {
-        if (!inputSlot.empty && !fuelSlot.empty &&
-        inputSlot.itemStack.quantity >= 5 && fuelSlot.itemStack.quantity >= 1 &&
-        !isProcessing)
+        if(CanSmelt())
         {
             isProcessing = true;
             yield return new WaitForSeconds(2);
@@ -173,6 +180,13 @@ public class FurnaceCanvas : MonoBehaviour
             isProcessing = false;
             StartCoroutine(Smelt());
         }
+    }
+
+    private bool CanSmelt()
+    {
+        return !inputSlot.empty && !fuelSlot.empty &&
+        inputSlot.itemStack.quantity >= 5 && fuelSlot.itemStack.quantity >= 1 &&
+        !isProcessing;
     }
 
     // EVENT LISTENERS
