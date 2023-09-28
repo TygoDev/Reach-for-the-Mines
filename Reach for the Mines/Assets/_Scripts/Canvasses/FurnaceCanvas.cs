@@ -161,15 +161,10 @@ public class FurnaceCanvas : MonoBehaviour
                 }
             }
 
-            if(itemStack.quantity <= 0)
-            {
-                inventoryItem.ClearSlot();
-            }
-            else
-            {
-                inventoryItem.ClearSlot();
+            inventoryItem.ClearSlot();
+
+            if (itemStack.quantity > 0)
                 inventoryItem.FillSlot(itemStack);
-            }
 
             PopulateInventory();
         }
