@@ -100,7 +100,7 @@ public class FurnaceCanvas : MonoBehaviour
                     return;
                 HandleInputSlot();
                 HandleFuelSlot();
-               
+
             }
         }
     }
@@ -148,13 +148,27 @@ public class FurnaceCanvas : MonoBehaviour
 
     public void TakeSlotContents(InventoryItem inventoryItem)
     {
-        if (!inventoryItem.empty && !systems.inventoryManager.inventoryIsFull)
+        if (!inventoryItem.empty)
         {
             for (int i = 0; i < inventoryItem.itemStack.quantity; i++)
             {
-                systems.inventoryManager.Add(inventoryItem.itemStack.item, null);
+                if (systems.inventoryManager.CanAdd(inventoryItem.itemStack.item))
+                {
+                    systems.inventoryManager.Add(inventoryItem.itemStack.item, null);
+                    inventoryItem.itemStack.quantity--;
+                }
             }
-            inventoryItem.ClearSlot();
+
+            if(inventoryItem.itemStack.quantity <= 0)
+            {
+                inventoryItem.ClearSlot();
+            }
+            else
+            {
+                ItemStack newStack = inventoryItem.itemStack;
+                inventoryItem.ClearSlot();
+                inventoryItem.FillSlot(newStack);
+            }
 
             PopulateInventory();
         }
@@ -172,10 +186,10 @@ public class FurnaceCanvas : MonoBehaviour
 
     private IEnumerator Smelt()
     {
-        if(CanSmelt())
+        if (CanSmelt())
         {
             isProcessing = true;
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(8);
             Process();
             isProcessing = false;
             StartCoroutine(Smelt());

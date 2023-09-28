@@ -5,13 +5,15 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public List<ItemStack> items = new List<ItemStack>();
-    public bool inventoryIsFull = false;
 
     [SerializeField] private int maxStackAmount = 50;
     [SerializeField] private int maxSlots = 32;
 
     public void Add(Item item, GameObject worldItem)
     {
+        if(!CanAdd(item))
+            return;
+
         ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
 
         if (existingItem != null && existingItem.quantity < maxStackAmount)
@@ -28,10 +30,23 @@ public class InventoryManager : MonoBehaviour
             if (worldItem != null)
                 Destroy(worldItem);
         }
+    }
+
+    public bool CanAdd(Item item)
+    {
+        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+
+        if (existingItem != null && existingItem.quantity < maxStackAmount)
+        {
+            return true;
+        }
+        else if (items.Count < maxSlots)
+        {
+            return true;
+        }
         else
         {
-            inventoryIsFull = true;
-            Debug.Log("Inventory full");
+            return false;
         }
     }
 
@@ -39,7 +54,6 @@ public class InventoryManager : MonoBehaviour
     {
         if (items.Contains(itemStack))
         {
-            inventoryIsFull = false;
             items.Remove(itemStack);
         }
     }
