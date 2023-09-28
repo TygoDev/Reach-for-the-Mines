@@ -23,20 +23,11 @@ public class FurnaceCanvas : MonoBehaviour
     private void Start()
     {
         systems = Systems.Instance;
-
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        GetComponent<Canvas>().enabled = false;
-        systems.inputManager.unPauseEvent += OnInventoryClose;
         systems.stateManager.onGameStateChanged += OnGameStateChange;
     }
 
     private void OnDisable()
     {
-        systems.inputManager.unPauseEvent -= OnInventoryClose;
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
 
@@ -199,13 +190,8 @@ public class FurnaceCanvas : MonoBehaviour
         !isProcessing;
     }
 
+
     // EVENT LISTENERS
-
-    public void OnInventoryClose()
-    {
-        GetComponent<Canvas>().enabled = false;
-    }
-
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)

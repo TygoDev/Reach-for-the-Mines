@@ -18,37 +18,29 @@ public class ShopCanvas : MonoBehaviour
     private void Start()
     {
         systems = Systems.Instance;
-        Subscribe();
-        GetComponent<Canvas>().enabled = false;
+        Initialize();
     }
 
-    private void Subscribe()
+    private void Initialize()
     {
-        systems.inputManager.unPauseEvent += OnInventoryClose;
         systems.stateManager.onGameStateChanged += OnGameStateChange;
     }
 
     private void OnDisable()
     {
-        systems.inputManager.unPauseEvent -= OnInventoryClose;
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
 
     public void SwapMenu()
     {
         if (purchasablesMenu.gameObject.activeInHierarchy)
-        {
-            purchasablesMenu.gameObject.SetActive(false);
-            sellMenu.gameObject.SetActive(true);
-            PopulateInventory();
             swapButtonText.text = "Buy";
-        }
         else
-        {
-            purchasablesMenu.gameObject.SetActive(true);
-            sellMenu.gameObject.SetActive(false);
             swapButtonText.text = "Sell";
-        }
+
+        purchasablesMenu.gameObject.SetActive(!purchasablesMenu.gameObject.activeInHierarchy);
+        sellMenu.gameObject.SetActive(!sellMenu.gameObject.activeInHierarchy);
+        PopulateInventory();
     }
 
     public void SellButton(InventoryItem inventoryItem)
@@ -75,14 +67,9 @@ public class ShopCanvas : MonoBehaviour
 
     // EVENT LISTENERS
 
-    public void OnInventoryClose()
-    {
-        GetComponent<Canvas>().enabled = false;
-    }
-
     public void OnGameStateChange(GameState state)
     {
-        if(state == GameState.Menu && GetComponent<Canvas>().enabled == true)
+        if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)
         {
             purchasablesMenu.gameObject.SetActive(true);
             sellMenu.gameObject.SetActive(false);
