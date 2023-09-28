@@ -150,24 +150,25 @@ public class FurnaceCanvas : MonoBehaviour
     {
         if (!inventoryItem.empty)
         {
+            ItemStack itemStack = new ItemStack(inventoryItem.itemStack.item,inventoryItem.itemStack.quantity);
+
             for (int i = 0; i < inventoryItem.itemStack.quantity; i++)
             {
                 if (systems.inventoryManager.CanAdd(inventoryItem.itemStack.item))
                 {
                     systems.inventoryManager.Add(inventoryItem.itemStack.item, null);
-                    inventoryItem.itemStack.quantity--;
+                    itemStack.quantity--;
                 }
             }
 
-            if(inventoryItem.itemStack.quantity <= 0)
+            if(itemStack.quantity <= 0)
             {
                 inventoryItem.ClearSlot();
             }
             else
             {
-                ItemStack newStack = inventoryItem.itemStack;
                 inventoryItem.ClearSlot();
-                inventoryItem.FillSlot(newStack);
+                inventoryItem.FillSlot(itemStack);
             }
 
             PopulateInventory();
@@ -189,7 +190,7 @@ public class FurnaceCanvas : MonoBehaviour
         if (CanSmelt())
         {
             isProcessing = true;
-            yield return new WaitForSeconds(8);
+            yield return new WaitForSeconds(.5f);
             Process();
             isProcessing = false;
             StartCoroutine(Smelt());
