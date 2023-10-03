@@ -61,7 +61,7 @@ public class FurnaceCanvas : MonoBehaviour
             {
                 SwapMenu();
                 inputSlot.FillSlot(inventoryItem.itemStack);
-                systems.inventoryManager.Remove(inventoryItem.itemStack);
+                systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
                 PopulateInventory();
                 slotToFill = null;
                 StartCoroutine(Smelt());
@@ -70,7 +70,7 @@ public class FurnaceCanvas : MonoBehaviour
             {
                 SwapMenu();
                 fuelSlot.FillSlot(inventoryItem.itemStack);
-                systems.inventoryManager.Remove(inventoryItem.itemStack);
+                systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
                 PopulateInventory();
                 slotToFill = null;
                 StartCoroutine(Smelt());

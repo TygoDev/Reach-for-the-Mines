@@ -49,7 +49,7 @@ public class ShopCanvas : MonoBehaviour
         {
             int goldToAdd = inventoryItem.itemStack.quantity * inventoryItem.itemStack.item.value;
             systems.statManager.goldAmount += goldToAdd;
-            systems.inventoryManager.Remove(inventoryItem.itemStack);
+            systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
             PopulateInventory();
         }
     }

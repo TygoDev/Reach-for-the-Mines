@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             (forwardDirection * oldMovementInput.z * movementSpeed) +
             (transform.right * oldMovementInput.x * movementSpeed);
         }
+
         rigidBody.MovePosition(newPosition);
     }
 
@@ -113,14 +114,14 @@ public class PlayerMovement : MonoBehaviour
         if (movementInput != Vector3.zero)
             transform.rotation = Quaternion.Euler(0, followTarget.transform.eulerAngles.y, 0);
     }
-
+    private bool grounded = false;
     private bool IsGrounded()
     {
         Vector3 raycastOrigin = groundedCheck.transform.position;
         Vector3 raycastDirection = Vector3.down;
         float raycastDistance = 0.1f;
-
-        if (Physics.Raycast(raycastOrigin, raycastDirection, raycastDistance))
+        grounded = Physics.Raycast(raycastOrigin, raycastDirection, raycastDistance);
+        if (grounded)
             return true;
         else
             return false;
@@ -155,5 +156,11 @@ public class PlayerMovement : MonoBehaviour
     private void OnSprintCanceled()
     {
         movementSpeed = defaultSpeed;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = grounded ? Color.green : Color.red;
+        Gizmos.DrawWireSphere(transform.position, 2.0f);
     }
 }

@@ -16,6 +16,5 @@ public enum ItemType
     Default,
     Smeltable,
     Fuel,
-    Station,
-    Craftable
+    Station
 }

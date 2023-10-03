@@ -9,6 +9,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private int maxStackAmount = 50;
     [SerializeField] private int maxSlots = 32;
 
+    public List<Craftable> unlockedRecipes = new List<Craftable>();
+
     public void Add(Item item, GameObject worldItem)
     {
         if(!CanAdd(item))
@@ -50,7 +52,31 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void Remove(ItemStack itemStack)
+    public void Remove(Item item)
+    {
+        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+
+        if (existingItem != null && existingItem.quantity > 0)
+        {
+            existingItem.quantity--;
+        }
+    }
+
+    public bool CanRemove(Item item)
+    {
+        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+
+        if (existingItem != null && existingItem.quantity > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void RemoveStack(ItemStack itemStack)
     {
         if (items.Contains(itemStack))
         {
@@ -69,5 +95,18 @@ public class ItemStack
     {
         this.item = item;
         this.quantity = quantity;
+    }
+}
+
+[System.Serializable]
+public class Craftable
+{
+    public List<ItemStack> recipe;
+    public Item result;
+
+    public Craftable(List<ItemStack> recipe, Item result)
+    {
+        this.recipe = recipe;
+        this.result = result;
     }
 }
