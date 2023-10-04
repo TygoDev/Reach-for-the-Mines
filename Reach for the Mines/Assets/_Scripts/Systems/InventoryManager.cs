@@ -11,7 +11,7 @@ public class InventoryManager : MonoBehaviour
 
     public List<Craftable> unlockedRecipes = new List<Craftable>();
 
-    public void Add(Item item, GameObject worldItem)
+    public void Add(Item item, GameObject worldItem = null)
     {
         if(!CanAdd(item))
             return;
@@ -54,17 +54,20 @@ public class InventoryManager : MonoBehaviour
 
     public void Remove(Item item)
     {
-        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = items.Find(i => i.item == item);
 
         if (existingItem != null && existingItem.quantity > 0)
         {
             existingItem.quantity--;
         }
+
+        if(existingItem.quantity == 0)
+            RemoveStack(existingItem);
     }
 
     public bool CanRemove(Item item)
     {
-        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = items.Find(i => i.item == item);
 
         if (existingItem != null && existingItem.quantity > 0)
         {

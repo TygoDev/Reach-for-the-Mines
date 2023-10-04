@@ -35,16 +35,44 @@ public class CraftingBenchCanvas : MonoBehaviour
         if (selectedCraftable == null)
             return;
 
+        List<ItemStack> tempList = new List<ItemStack>();
+
         foreach (ItemStack stack in selectedCraftable.recipe)
         {
+            ItemStack tempStack = new ItemStack(stack.item,0);
+
             for (int i = 0; i < stack.quantity; i++)
             {
-                if (!systems.inventoryManager.CanRemove(stack.item))
-                    return;
-            }
-        }
+                if (systems.inventoryManager.CanRemove(stack.item))
+                {
+                    systems.inventoryManager.Remove(stack.item);
+                    tempStack.quantity++;
+                    Debug.Log(tempStack.quantity);
+                }
+                else
+                {
+                    if(tempList.Count > 0)
+                    {
+                        foreach (var item in tempList)
+                        {
+                            for (int k = 0; k < item.quantity; k++)
+                            {
+                                systems.inventoryManager.Add(item.item);
+                            }
+                        }
+                    }
 
-        systems.inventoryManager.Add(selectedCraftable.result, null);
+                    for (int j = 0; j < tempStack.quantity; j++)
+                    {
+                        systems.inventoryManager.Add(tempStack.item);
+                    }
+                    return;
+                }           
+            }
+            tempList.Add(tempStack);
+        }
+        Debug.Log("Crafting");
+        systems.inventoryManager.Add(selectedCraftable.result);
     }
 
     private void SelectRecipeToCraft(CraftingItem recipeButton)
