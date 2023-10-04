@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using System;
 
 public class CraftingBenchCanvas : MonoBehaviour
 {
@@ -47,32 +48,41 @@ public class CraftingBenchCanvas : MonoBehaviour
                 {
                     systems.inventoryManager.Remove(stack.item);
                     tempStack.quantity++;
-                    Debug.Log(tempStack.quantity);
                 }
                 else
                 {
-                    if(tempList.Count > 0)
-                    {
-                        foreach (var item in tempList)
-                        {
-                            for (int k = 0; k < item.quantity; k++)
-                            {
-                                systems.inventoryManager.Add(item.item);
-                            }
-                        }
-                    }
-
-                    for (int j = 0; j < tempStack.quantity; j++)
-                    {
-                        systems.inventoryManager.Add(tempStack.item);
-                    }
+                    RestoreCraftingItemsAfterFail(tempList,tempStack);
                     return;
                 }           
             }
+
             tempList.Add(tempStack);
         }
-        Debug.Log("Crafting");
+
         systems.inventoryManager.Add(selectedCraftable.result);
+    }
+
+    private void RestoreCraftingItemsAfterFail(List<ItemStack> tempList, ItemStack tempStack)
+    {
+        // old stored item recovery
+        if (tempList.Count > 0)
+        {
+
+            foreach (ItemStack tempListItemStack in tempList)
+            {
+
+                for (int k = 0; k < tempListItemStack.quantity; k++)
+                {
+                    systems.inventoryManager.Add(tempListItemStack.item);
+                }
+            }
+        }
+
+        //recover current loop's removed items
+        for (int j = 0; j < tempStack.quantity; j++)
+        {
+            systems.inventoryManager.Add(tempStack.item);
+        }
     }
 
     private void SelectRecipeToCraft(CraftingItem recipeButton)
