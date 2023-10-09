@@ -176,7 +176,7 @@ public class FurnaceCanvas : MonoBehaviour
         if (CanSmelt())
         {
             isProcessing = true;
-            yield return new WaitForSeconds(.5f);
+            yield return new WaitForSeconds(5f);
             Process();
             isProcessing = false;
             StartCoroutine(Smelt());

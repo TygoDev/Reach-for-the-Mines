@@ -12,7 +12,8 @@ public class InventoryItem : MonoBehaviour
 
     [SerializeField] private Image itemImage = null;
     [SerializeField] private TMP_Text itemAmount = null;
-    
+    [SerializeField] private Button itemButton = null;
+
     public void FillSlot(ItemStack pItem)
     {
         empty = false;
@@ -36,4 +37,6 @@ public class InventoryItem : MonoBehaviour
         itemStack = null;
         itemAmount.gameObject.SetActive(false);
     }
+
+    public Button InventoryItemButton => itemButton;
 }

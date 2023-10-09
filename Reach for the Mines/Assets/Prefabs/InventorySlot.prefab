@@ -155,6 +155,7 @@ MonoBehaviour:
   empty: 0
   itemImage: {fileID: 6275988521245428145}
   itemAmount: {fileID: 3496790597143864822}
+  itemButton: {fileID: 4543629315131588473}
 --- !u!1 &4694135141699438461
 GameObject:
   m_ObjectHideFlags: 0
