@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 5243468879189335010}
   - component: {fileID: 4309409734578619733}
   - component: {fileID: 5661958269799174922}
+  - component: {fileID: 579851592199169063}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -249,6 +250,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91f823747031e0e499b35ee60d8b070f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedCraftable:
+    recipe: []
+    result: {fileID: 0}
+--- !u!114 &579851592199169063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2746851751885628793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4be252172b3afe4b9b45315f1282a07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   recipeButtons: []
@@ -502,7 +518,7 @@ Transform:
   m_Children:
   - {fileID: 6318333448659344288}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1204365469753030689
 MeshFilter:
@@ -781,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9298875012b14c84587243b66f14eeef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  craftingBenchCanvas: {fileID: 5661958269799174922}
+  craftingBenchUI: {fileID: 0}
   craftingItem: {fileID: 1553914003814485330, guid: ca813cb9e422eeb4396514520e8b17f4, type: 3}
 --- !u!1 &5710057348518621199
 GameObject:

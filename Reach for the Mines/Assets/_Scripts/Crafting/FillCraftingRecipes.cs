@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FillCraftingRecipes : MonoBehaviour
 {
-    [SerializeField] private CraftingBenchCanvas craftingBenchCanvas = null;
+    [SerializeField] private CraftingBenchUI craftingBenchUI = null;
     [SerializeField] private CraftingItem craftingItem = null;
 
     private Systems systems = null;
@@ -18,10 +18,10 @@ public class FillCraftingRecipes : MonoBehaviour
         {
             CraftingItem newButton = Instantiate(craftingItem, transform);
             newButton.FillSlot(craftable);
-            craftingBenchCanvas.recipeButtons.Add(newButton);
+            craftingBenchUI.recipeButtons.Add(newButton);
         }
 
-        craftingBenchCanvas.SetClickEvents();
+        craftingBenchUI.SetClickEvents();
     }
 
 

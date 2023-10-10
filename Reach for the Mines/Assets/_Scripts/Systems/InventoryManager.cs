@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Utils;
 
 public class InventoryManager : MonoBehaviour
 {
     public List<ItemStack> items = new List<ItemStack>();
-
     [SerializeField] private int maxStackAmount = 50;
     [SerializeField] private int maxSlots = 32;
 
