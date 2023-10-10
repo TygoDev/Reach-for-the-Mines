@@ -70,7 +70,7 @@ public class StorageCanvas : MonoBehaviour
     {
         for (int i = 0; i < chestInventoryItems.Count; i++)
         {
-            inventoryItems[i].ClearSlot();
+            chestInventoryItems[i].ClearSlot();
             if (chestItems.Count > i)
                 chestInventoryItems[i].FillSlot(chestItems[i]);
         }
