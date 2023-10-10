@@ -24,19 +24,30 @@ public class StorageCanvas : MonoBehaviour
     private void Start()
     {
         systems = Systems.Instance;
+        Subscribe();
 
-        PopulateInventory();
-        PopulateChest();
+        PopulateInventory(inventoryItems, systems.inventoryManager.items);
+        PopulateInventory(chestInventoryItems, chestItems);
 
         foreach (InventoryItem item in chestInventoryItems)
         {
-            item.InventoryItemButton.onClick.AddListener(delegate { TakeSlotContents(item); });
+            item.InventoryItemButton.onClick.AddListener(delegate { TransferSlotContents(item, systems.inventoryManager.items, chestItems); });
         }
 
         foreach (InventoryItem item in inventoryItems)
         {
-            item.InventoryItemButton.onClick.AddListener(delegate { InsertSlotContents(item); });
+            item.InventoryItemButton.onClick.AddListener(delegate { TransferSlotContents(item, chestItems, systems.inventoryManager.items); });
         }
+    }
+
+    private void Subscribe()
+    {
+        systems.stateManager.onGameStateChanged += OnGameStateChange;
+    }
+
+    private void OnDisable()
+    {
+        systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
 
     public void SwapMenu()
@@ -46,128 +57,82 @@ public class StorageCanvas : MonoBehaviour
 
         if (storageInventory.gameObject.activeInHierarchy)
         {
-            PopulateChest();
+            PopulateInventory(chestInventoryItems, chestItems);
             swapButtonText.text = "Inventory";
         }
         else
         {
-            PopulateInventory();
+            PopulateInventory(inventoryItems, systems.inventoryManager.items);
             swapButtonText.text = "Storage";
         }
     }
 
-    private void PopulateInventory()
+    private void PopulateInventory(List<InventoryItem> pInvItems, List<ItemStack> pItems)
     {
-        for (int i = 0; i < inventoryItems.Count; i++)
+        for (int i = 0; i < pInvItems.Count; i++)
         {
-            inventoryItems[i].ClearSlot();
-            if (systems.inventoryManager.items.Count > i)
-                inventoryItems[i].FillSlot(systems.inventoryManager.items.ElementAt(i));
+            pInvItems[i].ClearSlot();
+            if (pItems.Count > i)
+                pInvItems[i].FillSlot(pItems.ElementAt(i));
         }
     }
 
-    private void PopulateChest()
+    public void TransferSlotContents(InventoryItem pInvItem, List<ItemStack> pTargetInv, List<ItemStack> pInvToTakeFrom)
     {
-        for (int i = 0; i < chestInventoryItems.Count; i++)
+        if (!pInvItem.empty)
         {
-            chestInventoryItems[i].ClearSlot();
-            if (chestItems.Count > i)
-                chestInventoryItems[i].FillSlot(chestItems[i]);
-        }
-    }
+            ItemStack tempItemStack = new ItemStack(pInvItem.itemStack.item, pInvItem.itemStack.quantity);
+            ItemStack existingItemStack = pInvToTakeFrom.Find(i => i.item == pInvItem.item);
 
-    public void TakeSlotContents(InventoryItem inventoryItem)
-    {
-        if (!inventoryItem.empty)
-        {
-            ItemStack itemStack = new ItemStack(inventoryItem.itemStack.item, inventoryItem.itemStack.quantity);
-            ItemStack existingItem = chestItems.Find(i => i.item == inventoryItem.itemStack.item);
-
-            for (int i = 0; i < inventoryItem.itemStack.quantity; i++)
+            for (int i = 0; i < pInvItem.itemStack.quantity; i++)
             {
-                if (systems.inventoryManager.CanAdd(inventoryItem.itemStack.item))
+                if(CanAdd(pInvItem.itemStack.item, pTargetInv))
                 {
-                    systems.inventoryManager.Add(inventoryItem.itemStack.item, null);
-                    itemStack.quantity--;
+                    Add(pInvItem.itemStack.item, pTargetInv);
+                    tempItemStack.quantity--;
                 }
             }
 
-            existingItem.quantity = itemStack.quantity;
+            existingItemStack.quantity = tempItemStack.quantity;
 
-            inventoryItem.ClearSlot();
+            pInvItem.ClearSlot();
 
-            if (itemStack.quantity > 0)
-                inventoryItem.FillSlot(itemStack);
+            if (tempItemStack.quantity > 0)
+                pInvItem.FillSlot(tempItemStack);
             else
-                chestItems.Remove(existingItem);
+                pInvToTakeFrom.Remove(existingItemStack);
 
-            PopulateChest();
-            PopulateInventory();
+            PopulateInventory(chestInventoryItems, chestItems);
+            PopulateInventory(inventoryItems, systems.inventoryManager.items);
         }
     }
 
-    public void InsertSlotContents(InventoryItem inventoryItem)
+    public void Add(Item item, List<ItemStack> targetInventory)
     {
-        if (!inventoryItem.empty)
-        {
-            ItemStack itemStack = new ItemStack(inventoryItem.itemStack.item, inventoryItem.itemStack.quantity);
-            ItemStack existingItem = systems.inventoryManager.items.Find(i => i.item == inventoryItem.itemStack.item);
-
-            for (int i = 0; i < inventoryItem.itemStack.quantity; i++)
-            {
-                if (CanAdd(inventoryItem.itemStack.item))
-                {
-                    Add(inventoryItem.itemStack.item, null);
-                    itemStack.quantity--;
-                }
-            }
-
-            existingItem.quantity = itemStack.quantity;
-
-            inventoryItem.ClearSlot();
-
-            if (itemStack.quantity > 0)
-                inventoryItem.FillSlot(itemStack);
-            else
-                systems.inventoryManager.items.Remove(existingItem);
-
-            PopulateChest();
-            PopulateInventory();
-        }
-    }
-
-    public void Add(Item item, GameObject worldItem = null)
-    {
-        if (!CanAdd(item))
+        if (!CanAdd(item, targetInventory))
             return;
 
-        ItemStack existingItem = chestItems.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = targetInventory.Find(i => i.item == item && i.quantity < maxStackAmount);
 
         if (existingItem != null && existingItem.quantity < maxStackAmount)
         {
             existingItem.quantity++;
-
-            if (worldItem != null)
-                Destroy(worldItem);
         }
-        else if (chestItems.Count < maxSlots)
+        else if (targetInventory.Count < maxSlots)
         {
-            chestItems.Add(new ItemStack(item, 1));
-
-            if (worldItem != null)
-                Destroy(worldItem);
+            targetInventory.Add(new ItemStack(item, 1));
         }
     }
 
-    public bool CanAdd(Item item)
+    public bool CanAdd(Item item, List<ItemStack> targetItemList)
     {
-        ItemStack existingItem = chestItems.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = targetItemList.Find(i => i.item == item && i.quantity < maxStackAmount);
 
         if (existingItem != null && existingItem.quantity < maxStackAmount)
         {
             return true;
         }
-        else if (chestItems.Count < maxSlots)
+        else if (targetItemList.Count < maxSlots)
         {
             return true;
         }
@@ -209,6 +174,20 @@ public class StorageCanvas : MonoBehaviour
         if (chestItems.Contains(itemStack))
         {
             chestItems.Remove(itemStack);
+        }
+    }
+
+    //LISTENERS
+
+    public void OnGameStateChange(GameState state)
+    {
+        if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)
+        {
+            PopulateInventory(chestInventoryItems, chestItems);
+            PopulateInventory(inventoryItems, systems.inventoryManager.items);
+            storageInventory.gameObject.SetActive(true);
+            playerInventory.gameObject.SetActive(false);
+            swapButtonText.text = "Inventory";
         }
     }
 }
