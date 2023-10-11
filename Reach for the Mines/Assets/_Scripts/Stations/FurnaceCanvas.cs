@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using Utils;
 
 public class FurnaceCanvas : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class FurnaceCanvas : MonoBehaviour
     [SerializeField] private InventoryItem fuelSlot = null;
     [SerializeField] private InventoryItem inputSlot = null;
     [SerializeField] private InventoryItem outputSlot = null;
+
+    [SerializeField] private int minInputSlotAmount = 5;
+    [SerializeField] private int minFuelSlotAmount = 1;
+
     [SerializeField] private Image furnaceMenu = null;
     [SerializeField] private Image inventoryMenu = null;
 
@@ -55,26 +60,26 @@ public class FurnaceCanvas : MonoBehaviour
 
     public void FillSlot(InventoryItem inventoryItem)
     {
-        if (!inventoryItem.empty && slotToFill.empty)
+        if (inventoryItem.empty && !slotToFill.empty)
+            return;
+
+        if (inventoryItem.item.itemType == ItemType.Smeltable && slotToFill == inputSlot)
         {
-            if (inventoryItem.item.itemType == ItemType.Smeltable && slotToFill == inputSlot)
-            {
-                SwapMenu();
-                inputSlot.FillSlot(inventoryItem.itemStack);
-                systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
-                PopulateInventory();
-                slotToFill = null;
-                StartCoroutine(Smelt());
-            }
-            else if (inventoryItem.item.itemType == ItemType.Fuel && slotToFill == fuelSlot)
-            {
-                SwapMenu();
-                fuelSlot.FillSlot(inventoryItem.itemStack);
-                systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
-                PopulateInventory();
-                slotToFill = null;
-                StartCoroutine(Smelt());
-            }
+            SwapMenu();
+            inputSlot.FillSlot(inventoryItem.itemStack);
+            systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
+            PopulateInventory();
+            slotToFill = null;
+            StartCoroutine(Smelt());
+        }
+        else if (inventoryItem.item.itemType == ItemType.Fuel && slotToFill == fuelSlot)
+        {
+            SwapMenu();
+            fuelSlot.FillSlot(inventoryItem.itemStack);
+            systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
+            PopulateInventory();
+            slotToFill = null;
+            StartCoroutine(Smelt());
         }
     }
 
@@ -85,7 +90,7 @@ public class FurnaceCanvas : MonoBehaviour
 
         foreach (Smeltable smeltable in smeltables)
         {
-            if (smeltable.itemInput == inputSlot.item)
+            if (smeltable.One == inputSlot.item)
             {
                 if (!HandleOutputSlot(smeltable))
                     return;
@@ -100,13 +105,13 @@ public class FurnaceCanvas : MonoBehaviour
     {
         if (outputSlot.empty)
         {
-            outputSlot.FillSlot(new ItemStack(smeltable.itemOutput, 1));
+            outputSlot.FillSlot(new ItemStack(smeltable.Two, 1));
             return true;
         }
-        else if (outputSlot.item == smeltable.itemOutput)
+        else if (outputSlot.item == smeltable.Two)
         {
             ItemStack newStackOutput = outputSlot.itemStack;
-            newStackOutput.quantity++;
+            newStackOutput.Two++;
             outputSlot.ClearSlot();
             outputSlot.FillSlot(newStackOutput);
             return true;
@@ -120,45 +125,45 @@ public class FurnaceCanvas : MonoBehaviour
     private void HandleInputSlot()
     {
         ItemStack newStackInput = inputSlot.itemStack;
-        newStackInput.quantity -= 5;
+        newStackInput.Two -= 5;
         inputSlot.ClearSlot();
 
-        if (newStackInput.quantity != 0)
+        if (newStackInput.Two != 0)
             inputSlot.FillSlot(newStackInput);
     }
 
     private void HandleFuelSlot()
     {
         ItemStack newStackFuel = fuelSlot.itemStack;
-        newStackFuel.quantity--;
+        newStackFuel.Two--;
         fuelSlot.ClearSlot();
 
-        if (newStackFuel.quantity != 0)
+        if (newStackFuel.Two != 0)
             fuelSlot.FillSlot(newStackFuel);
     }
 
     public void TakeSlotContents(InventoryItem inventoryItem)
     {
-        if (!inventoryItem.empty)
-        {
-            ItemStack itemStack = new ItemStack(inventoryItem.itemStack.item,inventoryItem.itemStack.quantity);
+        if (inventoryItem.empty)
+            return;
 
-            for (int i = 0; i < inventoryItem.itemStack.quantity; i++)
+            ItemStack itemStack = new ItemStack(inventoryItem.itemStack.One, inventoryItem.itemStack.Two);
+
+            for (int i = 0; i < inventoryItem.itemStack.Two; i++)
             {
-                if (systems.inventoryManager.CanAdd(inventoryItem.itemStack.item))
+                if (systems.inventoryManager.CanAdd(inventoryItem.itemStack.One))
                 {
-                    systems.inventoryManager.Add(inventoryItem.itemStack.item, null);
-                    itemStack.quantity--;
+                    systems.inventoryManager.Add(inventoryItem.itemStack.One, null);
+                    itemStack.Two--;
                 }
             }
 
             inventoryItem.ClearSlot();
 
-            if (itemStack.quantity > 0)
+            if (itemStack.Two > 0)
                 inventoryItem.FillSlot(itemStack);
 
             PopulateInventory();
-        }
     }
 
     private void PopulateInventory()
@@ -186,7 +191,7 @@ public class FurnaceCanvas : MonoBehaviour
     private bool CanSmelt()
     {
         return !inputSlot.empty && !fuelSlot.empty &&
-        inputSlot.itemStack.quantity >= 5 && fuelSlot.itemStack.quantity >= 1 &&
+        inputSlot.itemStack.Two >= minInputSlotAmount && fuelSlot.itemStack.Two >= minFuelSlotAmount &&
         !isProcessing;
     }
 
@@ -199,18 +204,6 @@ public class FurnaceCanvas : MonoBehaviour
             furnaceMenu.gameObject.SetActive(true);
             inventoryMenu.gameObject.SetActive(false);
         }
-    }
-}
-
-[System.Serializable]
-public class Smeltable
-{
-    public Item itemInput;
-    public Item itemOutput;
-    public Smeltable(Item pitemInput, Item pitemOutput)
-    {
-        this.itemInput = pitemInput;
-        this.itemOutput = pitemOutput;
     }
 }
 

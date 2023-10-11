@@ -15,8 +15,8 @@ public class CraftingItem : MonoBehaviour
     public void FillSlot(Craftable pItem)
     {
         craftable = pItem;
-        itemImage.sprite = pItem.result.icon;
-        itemName.text = pItem.result.name;
+        itemImage.sprite = pItem.Two.icon;
+        itemName.text = pItem.Two.name;
     }
 
     public Button CraftingItemButton => button;

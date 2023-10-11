@@ -18,10 +18,10 @@ public class InventoryItem : MonoBehaviour
     {
         empty = false;
 
-        item = pItem.item;
+        item = pItem.One;
         itemImage.sprite = item.icon;
         itemImage.gameObject.SetActive(true);
-        itemAmount.text = pItem.quantity.ToString();
+        itemAmount.text = pItem.Two.ToString();
         itemStack = pItem;
         itemAmount.gameObject.SetActive(true);
     }

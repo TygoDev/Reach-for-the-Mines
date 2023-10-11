@@ -48,7 +48,7 @@ public class Interactable : MonoBehaviour
         currentlyHitting = !currentlyHitting;
     }
 
-    public void SetInteractable(bool value)
+    public void SetHealthbar(bool value)
     {
         if (healthBarCanvas.gameObject.activeInHierarchy != value)
             healthBarCanvas.gameObject.SetActive(value);
@@ -74,7 +74,7 @@ public class Interactable : MonoBehaviour
         int totalWeight = 0;
         foreach (Drop drop in possibleDrops)
         {
-            totalWeight += drop.rarity;
+            totalWeight += drop.Two;
         }
 
         int randomWeightValue = Random.Range(1, totalWeight + 1);
@@ -83,27 +83,14 @@ public class Interactable : MonoBehaviour
 
         foreach (Drop drop in possibleDrops)
         {
-            processedValue += drop.rarity;
+            processedValue += drop.Two;
 
             if (randomWeightValue <= processedValue)
             {
-                return drop.item;
+                return drop.One;
             }
         }
 
         return null;
-    }
-}
-
-[System.Serializable]
-public class Drop
-{
-    public Item item;
-    public int rarity;
-
-    public Drop(Item item, int rarity)
-    {
-        this.item = item;
-        this.rarity = rarity;
     }
 }

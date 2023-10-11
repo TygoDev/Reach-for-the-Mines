@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
@@ -6,21 +7,23 @@ using Utils;
 public class InventoryManager : MonoBehaviour
 {
     public List<ItemStack> items = new List<ItemStack>();
+    public List<Craftable> unlockedRecipes = new List<Craftable>();
+
     [SerializeField] private int maxStackAmount = 50;
     [SerializeField] private int maxSlots = 32;
 
-    public List<Craftable> unlockedRecipes = new List<Craftable>();
+
 
     public void Add(Item item, GameObject worldItem = null)
     {
         if(!CanAdd(item))
             return;
 
-        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = items.Find(i => i.One == item && i.Two < maxStackAmount);
 
-        if (existingItem != null && existingItem.quantity < maxStackAmount)
+        if (existingItem != null && existingItem.Two < maxStackAmount)
         {
-            existingItem.quantity++;
+            existingItem.Two++;
 
             if (worldItem != null)
                 Destroy(worldItem);
@@ -36,9 +39,9 @@ public class InventoryManager : MonoBehaviour
 
     public bool CanAdd(Item item)
     {
-        ItemStack existingItem = items.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = items.Find(i => i.One == item && i.Two < maxStackAmount);
 
-        if (existingItem != null && existingItem.quantity < maxStackAmount)
+        if (existingItem != null && existingItem.Two < maxStackAmount)
         {
             return true;
         }
@@ -54,22 +57,22 @@ public class InventoryManager : MonoBehaviour
 
     public void Remove(Item item)
     {
-        ItemStack existingItem = items.Find(i => i.item == item);
+        ItemStack existingItem = items.Find(i => i.One == item);
 
-        if (existingItem != null && existingItem.quantity > 0)
+        if (existingItem != null && existingItem.Two > 0)
         {
-            existingItem.quantity--;
+            existingItem.Two--;
         }
 
-        if(existingItem.quantity == 0)
+        if(existingItem.Two == 0)
             RemoveStack(existingItem);
     }
 
     public bool CanRemove(Item item)
     {
-        ItemStack existingItem = items.Find(i => i.item == item);
+        ItemStack existingItem = items.Find(i => i.One == item);
 
-        if (existingItem != null && existingItem.quantity > 0)
+        if (existingItem != null && existingItem.Two > 0)
         {
             return true;
         }
@@ -85,31 +88,5 @@ public class InventoryManager : MonoBehaviour
         {
             items.Remove(itemStack);
         }
-    }
-}
-
-[System.Serializable]
-public class ItemStack
-{
-    public Item item;
-    public int quantity;
-
-    public ItemStack(Item item, int quantity)
-    {
-        this.item = item;
-        this.quantity = quantity;
-    }
-}
-
-[System.Serializable]
-public class Craftable
-{
-    public List<ItemStack> recipe;
-    public Item result;
-
-    public Craftable(List<ItemStack> recipe, Item result)
-    {
-        this.recipe = recipe;
-        this.result = result;
     }
 }

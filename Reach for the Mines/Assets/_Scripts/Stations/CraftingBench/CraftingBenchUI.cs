@@ -31,13 +31,13 @@ public class CraftingBenchUI : MonoBehaviour
     {
         craftingBenchCanvas.selectedCraftable = recipeButton.craftable;
 
-        itemName.text = craftingBenchCanvas.selectedCraftable.result.name;
-        itemDescription.text = craftingBenchCanvas.selectedCraftable.result.description;
+        itemName.text = craftingBenchCanvas.selectedCraftable.Two.name;
+        itemDescription.text = craftingBenchCanvas.selectedCraftable.Two.description;
         itemRecipe.text = "Recipe:\n";
 
-        foreach (ItemStack itemStack in craftingBenchCanvas.selectedCraftable.recipe)
+        foreach (ItemStack itemStack in craftingBenchCanvas.selectedCraftable.One)
         {
-            itemRecipe.text += $"{itemStack.item.name} - {itemStack.quantity}\n";
+            itemRecipe.text += $"{itemStack.One.name} - {itemStack.Two}\n";
         }
     }
 }

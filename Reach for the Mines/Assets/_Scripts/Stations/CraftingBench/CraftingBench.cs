@@ -24,16 +24,16 @@ public class CraftingBench : MonoBehaviour
 
         List<ItemStack> tempList = new List<ItemStack>();
 
-        foreach (ItemStack stack in selectedCraftable.recipe)
+        foreach (ItemStack stack in selectedCraftable.One)
         {
-            ItemStack tempStack = new ItemStack(stack.item,0);
+            ItemStack tempStack = new ItemStack(stack.One,0);
 
-            for (int i = 0; i < stack.quantity; i++)
+            for (int i = 0; i < stack.Two; i++)
             {
-                if (systems.inventoryManager.CanRemove(stack.item))
+                if (systems.inventoryManager.CanRemove(stack.One))
                 {
-                    systems.inventoryManager.Remove(stack.item);
-                    tempStack.quantity++;
+                    systems.inventoryManager.Remove(stack.One);
+                    tempStack.Two++;
                 }
                 else
                 {
@@ -43,7 +43,7 @@ public class CraftingBench : MonoBehaviour
             }
             tempList.Add(tempStack);
         }
-        systems.inventoryManager.Add(selectedCraftable.result);
+        systems.inventoryManager.Add(selectedCraftable.Two);
     }
 
     private void RestoreCraftingItemsAfterFail(List<ItemStack> tempList, ItemStack tempStack)
@@ -53,16 +53,16 @@ public class CraftingBench : MonoBehaviour
         {
             foreach (ItemStack tempListItemStack in tempList)
             {
-                for (int k = 0; k < tempListItemStack.quantity; k++)
+                for (int k = 0; k < tempListItemStack.Two; k++)
                 {
-                    systems.inventoryManager.Add(tempListItemStack.item);
+                    systems.inventoryManager.Add(tempListItemStack.One);
                 }
             }
         }
 
-        for (int j = 0; j < tempStack.quantity; j++)
+        for (int j = 0; j < tempStack.Two; j++)
         {
-            systems.inventoryManager.Add(tempStack.item);
+            systems.inventoryManager.Add(tempStack.One);
         }
     }
 }

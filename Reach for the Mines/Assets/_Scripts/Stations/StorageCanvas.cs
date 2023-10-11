@@ -81,23 +81,23 @@ public class StorageCanvas : MonoBehaviour
     {
         if (!pInvItem.empty)
         {
-            ItemStack tempItemStack = new ItemStack(pInvItem.itemStack.item, pInvItem.itemStack.quantity);
-            ItemStack existingItemStack = pInvToTakeFrom.Find(i => i.item == pInvItem.item);
+            ItemStack tempItemStack = new ItemStack(pInvItem.itemStack.One, pInvItem.itemStack.Two);
+            ItemStack existingItemStack = pInvToTakeFrom.Find(i => i.One == pInvItem.item);
 
-            for (int i = 0; i < pInvItem.itemStack.quantity; i++)
+            for (int i = 0; i < pInvItem.itemStack.Two; i++)
             {
-                if(CanAdd(pInvItem.itemStack.item, pTargetInv))
+                if(CanAdd(pInvItem.itemStack.One, pTargetInv))
                 {
-                    Add(pInvItem.itemStack.item, pTargetInv);
-                    tempItemStack.quantity--;
+                    Add(pInvItem.itemStack.One, pTargetInv);
+                    tempItemStack.Two--;
                 }
             }
 
-            existingItemStack.quantity = tempItemStack.quantity;
+            existingItemStack.Two = tempItemStack.Two;
 
             pInvItem.ClearSlot();
 
-            if (tempItemStack.quantity > 0)
+            if (tempItemStack.Two > 0)
                 pInvItem.FillSlot(tempItemStack);
             else
                 pInvToTakeFrom.Remove(existingItemStack);
@@ -112,11 +112,11 @@ public class StorageCanvas : MonoBehaviour
         if (!CanAdd(item, targetInventory))
             return;
 
-        ItemStack existingItem = targetInventory.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = targetInventory.Find(i => i.One == item && i.Two < maxStackAmount);
 
-        if (existingItem != null && existingItem.quantity < maxStackAmount)
+        if (existingItem != null && existingItem.Two < maxStackAmount)
         {
-            existingItem.quantity++;
+            existingItem.Two++;
         }
         else if (targetInventory.Count < maxSlots)
         {
@@ -126,9 +126,9 @@ public class StorageCanvas : MonoBehaviour
 
     public bool CanAdd(Item item, List<ItemStack> targetItemList)
     {
-        ItemStack existingItem = targetItemList.Find(i => i.item == item && i.quantity < maxStackAmount);
+        ItemStack existingItem = targetItemList.Find(i => i.One == item && i.Two < maxStackAmount);
 
-        if (existingItem != null && existingItem.quantity < maxStackAmount)
+        if (existingItem != null && existingItem.Two < maxStackAmount)
         {
             return true;
         }
@@ -144,22 +144,22 @@ public class StorageCanvas : MonoBehaviour
 
     public void Remove(Item item)
     {
-        ItemStack existingItem = chestItems.Find(i => i.item == item);
+        ItemStack existingItem = chestItems.Find(i => i.One == item);
 
-        if (existingItem != null && existingItem.quantity > 0)
+        if (existingItem != null && existingItem.Two > 0)
         {
-            existingItem.quantity--;
+            existingItem.Two--;
         }
 
-        if (existingItem.quantity == 0)
+        if (existingItem.Two == 0)
             RemoveStack(existingItem);
     }
 
     public bool CanRemove(Item item)
     {
-        ItemStack existingItem = chestItems.Find(i => i.item == item);
+        ItemStack existingItem = chestItems.Find(i => i.One == item);
 
-        if (existingItem != null && existingItem.quantity > 0)
+        if (existingItem != null && existingItem.Two > 0)
         {
             return true;
         }

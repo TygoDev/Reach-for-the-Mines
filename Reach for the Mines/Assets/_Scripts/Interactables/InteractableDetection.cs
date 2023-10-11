@@ -61,7 +61,7 @@ public class InteractableDetection : MonoBehaviour
         interactables.Add(other.GetComponent<Interactable>());
         foreach (Interactable item in interactables)
         {
-            item.SetInteractable(true);
+            item.SetHealthbar(true);
         }
 
         activeInteractable = interactables[interactables.Count - 1];
@@ -69,32 +69,29 @@ public class InteractableDetection : MonoBehaviour
 
     private void UnSetInteractable(Collider other)
     {
-        if (interactables.Contains(other.GetComponent<Interactable>()))
+        Interactable interactable = other.GetComponent<Interactable>();
+
+        if (interactables.Contains(interactable))
         {
-            interactables.Remove(other.GetComponent<Interactable>());
-            other.GetComponent<Interactable>().SetInteractable(false);
+            interactables.Remove(interactable);
+            interactable.SetHealthbar(false);
 
             if (interactables.Count > 0)
                 activeInteractable = interactables[interactables.Count - 1];
         }
 
-        if (other.GetComponent<Interactable>() == activeInteractable)
+        if (interactable == activeInteractable)
         {
-            activeInteractable.SetInteractable(false);
+            activeInteractable.SetHealthbar(false);
             activeInteractable = null;
         }
-    }
-
-    private void SetMenuTrigger(Collider other)
-    {
-        menuTrigger = other.GetComponent<MenuTrigger>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(MENUTRIGGER))
         {
-            SetMenuTrigger(other);
+            menuTrigger = other.GetComponent<MenuTrigger>();
         }
 
         if (other.CompareTag(INTERACTABLE))
@@ -105,6 +102,10 @@ public class InteractableDetection : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.CompareTag(MENUTRIGGER))
+        {
+            menuTrigger = null;
+        }
 
         if (other.CompareTag(INTERACTABLE))
         {

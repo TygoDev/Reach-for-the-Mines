@@ -21,7 +21,7 @@ public class MenuTrigger : MonoBehaviour
 
     public void ToogleMenu(bool value)
     {
-        menuToTrigger.GetComponent<Canvas>().enabled = value;
+        menuToTrigger.enabled = value;
     }
 
 
