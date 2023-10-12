@@ -521,4 +521,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0d669fdfdfac24cbdc5d50acdfeb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactable: {fileID: 3932450923947927546}
   xpValue: 0

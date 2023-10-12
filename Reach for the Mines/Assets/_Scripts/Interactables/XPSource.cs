@@ -6,15 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(Interactable))]
 public class XPSource : MonoBehaviour
 {
-    private Systems systems = null;
-    private Interactable interactable = null;
-
+    [SerializeField] private Interactable interactable = null;
     [SerializeField] private float xpValue = 0;
+
+    private Systems systems = null;
 
     private void Start()
     {
         systems = Systems.Instance;
-        interactable = GetComponent<Interactable>();
 
         Subscribe();
     }
@@ -28,9 +27,11 @@ public class XPSource : MonoBehaviour
     {
         interactable.InteractableDestroyed -= AddXP;
     }
+
     private void AddXP()
     {
         systems.statManager.XPAmount += xpValue;
         systems.statManager.level = (int)(0.25f * Mathf.Sqrt(systems.statManager.XPAmount));
+        systems.xpGainedEvent.Invoke();
     }
 }

@@ -3,11 +3,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Utils;
+using UnityEngine.Events;
 
 public class InventoryManager : MonoBehaviour
 {
     public List<ItemStack> items = new List<ItemStack>();
     public List<Craftable> unlockedRecipes = new List<Craftable>();
+    public event UnityAction itemPickedUpEvent = delegate { };
 
     [SerializeField] private int maxStackAmount = 50;
     [SerializeField] private int maxSlots = 32;
@@ -35,6 +37,8 @@ public class InventoryManager : MonoBehaviour
             if (worldItem != null)
                 Destroy(worldItem);
         }
+
+        itemPickedUpEvent.Invoke();
     }
 
     public bool CanAdd(Item item)

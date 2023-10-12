@@ -6,19 +6,18 @@ using UnityEngine.UI;
 
 public class Interactable : MonoBehaviour
 {
+    public float health = 10f;
+    public Canvas healthBarCanvas = null;
+    public bool currentlyHitting = false;
+    public event UnityAction InteractableDestroyed = delegate { };
+
     [SerializeField] private List<Drop> possibleDrops = new List<Drop>();
     [SerializeField] private ItemController itemPrefab = null;
     [SerializeField] private int amountToDrop = 4;
     [SerializeField] private Slider healthSlider = null;
 
-    public float health = 10f;
-    public Canvas healthBarCanvas = null;
-    public bool currentlyHitting = false;
-
     private float damage = 0;
     private Camera mainCamera = null;
-
-    public event UnityAction InteractableDestroyed = delegate { };
 
     private void Start()
     {

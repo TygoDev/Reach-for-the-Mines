@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
@@ -14,6 +15,9 @@ public class Systems : MonoBehaviour
     public InventoryManager inventoryManager;
     public InputManager inputManager;
     public StatManager statManager;
+
+    public UnityAction xpGainedEvent = delegate { };
+    public UnityAction itemSoldEvent = delegate { };
 
     private void Awake()
     {

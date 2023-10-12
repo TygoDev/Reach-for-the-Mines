@@ -49,6 +49,7 @@ public class ShopCanvas : MonoBehaviour
         {
             int goldToAdd = inventoryItem.itemStack.Two * inventoryItem.itemStack.One.value;
             systems.statManager.goldAmount += goldToAdd;
+            systems.itemSoldEvent.Invoke();
             systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
             PopulateInventory();
         }

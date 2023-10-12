@@ -14,7 +14,9 @@ public class HUDCanvas : MonoBehaviour
     void Start()
     {
         systems = Systems.Instance;
-        levelText.text = systems.statManager.level.ToString();
+
+        UpdateGoldValue();
+        UpdateLevelValue();
         
         if(systems.stateManager.GetGameState() == GameState.Gameplay)
             GetComponent<Canvas>().enabled = true;
@@ -27,17 +29,25 @@ public class HUDCanvas : MonoBehaviour
     private void Subscribe()
     {
         systems.stateManager.onGameStateChanged += ToggleCanvas;
+        systems.xpGainedEvent += UpdateLevelValue;
+        systems.itemSoldEvent += UpdateGoldValue;
     }
 
     private void OnDisable()
     {
         systems.stateManager.onGameStateChanged -= ToggleCanvas;
+        systems.xpGainedEvent -= UpdateLevelValue;
+        systems.itemSoldEvent -= UpdateGoldValue;
     }
 
-    private void Update()
+    private void UpdateGoldValue()
+    {
+        goldText.text = "G: " + systems.statManager.goldAmount.ToString();
+    }
+
+    private void UpdateLevelValue()
     {
         levelText.text = systems.statManager.level.ToString();
-        goldText.text = "G: " + systems.statManager.goldAmount.ToString();
     }
 
     private void ToggleCanvas(GameState state)
