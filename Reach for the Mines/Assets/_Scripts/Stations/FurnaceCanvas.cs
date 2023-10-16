@@ -9,7 +9,7 @@ using Utils;
 public class FurnaceCanvas : MonoBehaviour
 {
     [SerializeField] private List<Smeltable> smeltables = new List<Smeltable>();
-    [SerializeField] private List<InventoryItem> inventoryItems = new List<InventoryItem>();
+    [SerializeField] private StationInventory playerInventory = null;
 
     [SerializeField] private InventoryItem fuelSlot = null;
     [SerializeField] private InventoryItem inputSlot = null;
@@ -29,6 +29,13 @@ public class FurnaceCanvas : MonoBehaviour
     {
         systems = Systems.Instance;
         systems.stateManager.onGameStateChanged += OnGameStateChange;
+
+        playerInventory.itemStacks = systems.inventoryManager.items;
+
+        foreach (InventoryItem item in playerInventory.inventoryItems)
+        {
+            item.InventoryItemButton.onClick.AddListener(delegate { FillSlot(item); });
+        }
     }
 
     private void OnDisable()
@@ -38,7 +45,7 @@ public class FurnaceCanvas : MonoBehaviour
 
     public void SwapMenu()
     {
-        PopulateInventory();
+        playerInventory.PopulateInventory();
         furnaceMenu.gameObject.SetActive(!furnaceMenu.gameObject.activeInHierarchy);
         inventoryMenu.gameObject.SetActive(!inventoryMenu.gameObject.activeInHierarchy);
     }
@@ -68,7 +75,7 @@ public class FurnaceCanvas : MonoBehaviour
             SwapMenu();
             inputSlot.FillSlot(inventoryItem.itemStack);
             systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
-            PopulateInventory();
+            playerInventory.PopulateInventory();
             slotToFill = null;
             StartCoroutine(Smelt());
         }
@@ -77,7 +84,7 @@ public class FurnaceCanvas : MonoBehaviour
             SwapMenu();
             fuelSlot.FillSlot(inventoryItem.itemStack);
             systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
-            PopulateInventory();
+            playerInventory.PopulateInventory();
             slotToFill = null;
             StartCoroutine(Smelt());
         }
@@ -163,17 +170,7 @@ public class FurnaceCanvas : MonoBehaviour
             if (itemStack.Two > 0)
                 inventoryItem.FillSlot(itemStack);
 
-            PopulateInventory();
-    }
-
-    private void PopulateInventory()
-    {
-        for (int i = 0; i < inventoryItems.Count; i++)
-        {
-            inventoryItems[i].ClearSlot();
-            if (systems.inventoryManager.items.Count > i)
-                inventoryItems[i].FillSlot(systems.inventoryManager.items.ElementAt(i));
-        }
+        playerInventory.PopulateInventory();
     }
 
     private IEnumerator Smelt()

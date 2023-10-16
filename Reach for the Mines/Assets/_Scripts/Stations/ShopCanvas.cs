@@ -7,7 +7,7 @@ using System.Linq;
 
 public class ShopCanvas : MonoBehaviour
 {
-    [SerializeField] private List<InventoryItem> inventoryItems = new List<InventoryItem>();
+    [SerializeField] private StationInventory playerInventory = null;
 
     [SerializeField] private Image purchasablesMenu = null;
     [SerializeField] private Image sellMenu = null;
@@ -18,12 +18,20 @@ public class ShopCanvas : MonoBehaviour
     private void Start()
     {
         systems = Systems.Instance;
+
         Initialize();
     }
 
     private void Initialize()
     {
         systems.stateManager.onGameStateChanged += OnGameStateChange;
+
+        playerInventory.itemStacks = systems.inventoryManager.items;
+
+        foreach (InventoryItem item in playerInventory.inventoryItems)
+        {
+            item.InventoryItemButton.onClick.AddListener(delegate { SellButton(item); });
+        }
     }
 
     private void OnDisable()
@@ -31,16 +39,28 @@ public class ShopCanvas : MonoBehaviour
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
 
+    private void SetMenuWhenOpened()
+    {
+        purchasablesMenu.gameObject.SetActive(true);
+        sellMenu.gameObject.SetActive(false);
+        swapButtonText.text = "Sell";
+    }
+
     public void SwapMenu()
     {
-        if (purchasablesMenu.gameObject.activeInHierarchy)
-            swapButtonText.text = "Buy";
-        else
-            swapButtonText.text = "Sell";
-
         purchasablesMenu.gameObject.SetActive(!purchasablesMenu.gameObject.activeInHierarchy);
         sellMenu.gameObject.SetActive(!sellMenu.gameObject.activeInHierarchy);
-        PopulateInventory();
+
+        if (purchasablesMenu.gameObject.activeInHierarchy)
+        {
+            playerInventory.PopulateInventory();
+            swapButtonText.text = "Buy";
+        }
+        else
+        {
+            swapButtonText.text = "Sell";
+        }
+
     }
 
     public void SellButton(InventoryItem inventoryItem)
@@ -51,30 +71,17 @@ public class ShopCanvas : MonoBehaviour
             systems.statManager.goldAmount += goldToAdd;
             systems.itemSoldEvent.Invoke();
             systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
-            PopulateInventory();
+            playerInventory.PopulateInventory();
         }
     }
 
-    private void PopulateInventory()
-    {
-        for (int i = 0; i < inventoryItems.Count; i++)
-        {
-            inventoryItems[i].ClearSlot();
-            if (systems.inventoryManager.items.Count > i)
-                inventoryItems[i].FillSlot(systems.inventoryManager.items.ElementAt(i));
-        }
-    }
-
-
-    // EVENT LISTENERS
+    // -------------- EVENT LISTENERS -------------- 
 
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)
         {
-            purchasablesMenu.gameObject.SetActive(true);
-            sellMenu.gameObject.SetActive(false);
-            swapButtonText.text = "Sell";
+            SetMenuWhenOpened();
         }
     }
 }
