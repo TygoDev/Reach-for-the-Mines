@@ -11,6 +11,7 @@ public class CraftingItem : MonoBehaviour
     [SerializeField] private Image itemImage = null;
     [SerializeField] private TMP_Text itemName = null;
     [SerializeField] private TMP_Text itemDescription = null;
+    [SerializeField] private TMP_Text cost = null;
     [SerializeField] private Button button;
 
     public void FillSlot(Craftable pItem)
@@ -21,6 +22,9 @@ public class CraftingItem : MonoBehaviour
 
         if(itemDescription!=null)
         itemDescription.text = pItem.Two.description;
+
+        if (cost != null)
+            cost.text = $"Cost: G:{pItem.Two.purchasePrice}";
     }
 
     public Button CraftingItemButton => button;
