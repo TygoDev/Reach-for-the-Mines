@@ -193,7 +193,7 @@ public class FurnaceCanvas : MonoBehaviour
     }
 
 
-    // EVENT LISTENERS
+    // -------------- EVENT LISTENERS -------------- 
     public void OnGameStateChange(GameState state)
     {
         if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)

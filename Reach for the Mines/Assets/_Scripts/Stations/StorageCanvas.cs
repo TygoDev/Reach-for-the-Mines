@@ -100,7 +100,7 @@ public class StorageCanvas : MonoBehaviour
         }
     }
 
-    //LISTENERS
+    // -------------- EVENT LISTENERS -------------- 
 
     public void OnGameStateChange(GameState state)
     {

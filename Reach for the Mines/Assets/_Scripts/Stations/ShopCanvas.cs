@@ -8,11 +8,12 @@ using System.Linq;
 public class ShopCanvas : MonoBehaviour
 {
     [SerializeField] private StationInventory playerInventory = null;
-
+    [SerializeField] private CraftingItem craftingItem = null;
     [SerializeField] private Image purchasablesMenu = null;
     [SerializeField] private Image sellMenu = null;
     [SerializeField] private TMP_Text swapButtonText = null;
 
+    private List<CraftingItem> buyableRecipes = new List<CraftingItem>();
     private Systems systems = default;
 
     private void Start()
@@ -39,11 +40,33 @@ public class ShopCanvas : MonoBehaviour
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
 
+    private void SetPurchasables()
+    {
+        foreach (var item in buyableRecipes)
+        {
+            Destroy(item.gameObject);
+        }
+        buyableRecipes.Clear();
+
+        foreach (Craftable craftable in systems.inventoryManager.lockedRecipes)
+        {
+            CraftingItem newButton = Instantiate(craftingItem, purchasablesMenu.transform);
+            buyableRecipes.Add(newButton);
+            newButton.FillSlot(craftable);
+        }
+
+        foreach (CraftingItem item in buyableRecipes)
+        {
+            item.CraftingItemButton.onClick.AddListener(delegate { BuyRecipeButton(item); });
+        }
+    }
+
     private void SetMenuWhenOpened()
     {
         purchasablesMenu.gameObject.SetActive(true);
         sellMenu.gameObject.SetActive(false);
         swapButtonText.text = "Sell";
+        SetPurchasables();
     }
 
     public void SwapMenu()
@@ -53,14 +76,30 @@ public class ShopCanvas : MonoBehaviour
 
         if (purchasablesMenu.gameObject.activeInHierarchy)
         {
-            playerInventory.PopulateInventory();
+            SetPurchasables();
             swapButtonText.text = "Buy";
         }
         else
         {
+            playerInventory.PopulateInventory();
             swapButtonText.text = "Sell";
         }
 
+        SetPurchasables();
+
+    }
+
+    private void BuyRecipeButton(CraftingItem item)
+    {
+        if(!systems.inventoryManager.unlockedRecipes.Contains(item.craftable) &&
+            systems.inventoryManager.lockedRecipes.Contains(item.craftable) &&
+                systems.statManager.goldAmount >= item.craftable.Two.purchasePrice)
+        {
+            systems.statManager.goldAmount -= item.craftable.Two.purchasePrice;
+            systems.inventoryManager.lockedRecipes.Remove(item.craftable);
+            systems.inventoryManager.unlockedRecipes.Add(item.craftable);
+            SetPurchasables();
+        }
     }
 
     public void SellButton(InventoryItem inventoryItem)

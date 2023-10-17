@@ -16,5 +16,6 @@ MonoBehaviour:
   name: Furnace
   description: Uses fuel to process smeltable resources.
   value: 10
+  purchasePrice: 200
   icon: {fileID: 21300000, guid: 805fe912186467b42a19ea2ef0fdf6b7, type: 3}
   itemType: 3

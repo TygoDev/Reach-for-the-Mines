@@ -9,6 +9,7 @@ public class InventoryManager : MonoBehaviour
 {
     public List<ItemStack> items = new List<ItemStack>();
     public List<Craftable> unlockedRecipes = new List<Craftable>();
+    public List<Craftable> lockedRecipes = new List<Craftable>();
     public event UnityAction itemPickedUpEvent = delegate { };
 
     [SerializeField] private int maxStackAmount = 50;
