@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FillCraftingRecipes : MonoBehaviour
+public class FillPickaxeRecipes : MonoBehaviour
 {
-    [SerializeField] private CraftingBenchUI craftingBenchUI = null;
+    [SerializeField] private AnvilUI anvilUI = null;
     [SerializeField] private CraftingItem craftingItem = null;
 
     private Systems systems = null;
@@ -26,28 +26,28 @@ public class FillCraftingRecipes : MonoBehaviour
     {
         foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
         {
-            if (craftable.Two.itemType != ItemType.Pickaxe)
+            if(craftable.Two.itemType == ItemType.Pickaxe)
             {
                 CraftingItem newButton = Instantiate(craftingItem, transform);
                 newButton.FillSlot(craftable);
-                craftingBenchUI.recipeButtons.Add(newButton);
+                anvilUI.recipeButtons.Add(newButton);
             }
         }
 
-        craftingBenchUI.SetClickEvents();
+        anvilUI.SetClickEvents();
     }
 
     // -------------- EVENT LISTENERS -------------- 
 
     private void OnGameStateChanged(GameState state)
     {
-        if(state == GameState.Menu && craftingBenchUI.GetComponent<Canvas>().enabled)
+        if (state == GameState.Menu && anvilUI.GetComponent<Canvas>().enabled)
         {
-            foreach (var item in craftingBenchUI.recipeButtons)
+            foreach (var item in anvilUI.recipeButtons)
             {
                 Destroy(item.gameObject);
             }
-            craftingBenchUI.recipeButtons.Clear();
+            anvilUI.recipeButtons.Clear();
             InitializeRecipes();
         }
     }

@@ -13,6 +13,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: health
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932450923947927546, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: amountToDrop
       value: 4
       objectReference: {fileID: 0}

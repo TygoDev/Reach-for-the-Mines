@@ -6,8 +6,8 @@ using TMPro;
 using System.Linq;
 using System;
 
-[RequireComponent(typeof(CraftingBenchUI))]
-public class CraftingBench : MonoBehaviour
+[RequireComponent(typeof(AnvilUI))]
+public class Anvil : MonoBehaviour
 {
     public Craftable selectedCraftable = null;
     private Systems systems = null;
@@ -20,6 +20,9 @@ public class CraftingBench : MonoBehaviour
     public void Craft()
     {
         if (selectedCraftable.Two == null)
+            return;
+
+        if (systems.inventoryManager.currentPickaxe.id + 1 != selectedCraftable.Two.id)
             return;
 
         List<ItemStack> tempList = new List<ItemStack>();
@@ -43,7 +46,8 @@ public class CraftingBench : MonoBehaviour
             }
             tempList.Add(tempStack);
         }
-        systems.inventoryManager.Add(selectedCraftable.Two);
+        systems.statManager.harvestStrength = selectedCraftable.Two.value;
+        systems.inventoryManager.currentPickaxe = selectedCraftable.Two;
     }
 
     private void RestoreCraftingItemsAfterFail(List<ItemStack> tempList, ItemStack tempStack)

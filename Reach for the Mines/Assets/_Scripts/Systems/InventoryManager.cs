@@ -12,10 +12,19 @@ public class InventoryManager : MonoBehaviour
     public List<Craftable> lockedRecipes = new List<Craftable>();
     public event UnityAction itemPickedUpEvent = delegate { };
 
+    public Item currentPickaxe = null;
+
     [SerializeField] private int maxStackAmount = 50;
     [SerializeField] private int maxSlots = 32;
 
+    private Systems systems = null;
 
+
+    private void Start()
+    {
+        systems = Systems.Instance;
+        systems.statManager.harvestStrength = currentPickaxe.value;
+    }
 
     public void Add(Item item, GameObject worldItem = null)
     {

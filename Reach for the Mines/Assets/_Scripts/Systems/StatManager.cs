@@ -6,6 +6,6 @@ public class StatManager : ScriptableObject
 {
     public float harvestStrength = 5;
     public int level = 0;
-    public int goldAmount = 0;
+    public float goldAmount = 0;
     public float XPAmount = 0;
 }

@@ -22,6 +22,8 @@ public class Interactable : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        healthSlider.maxValue = health;
+        healthSlider.value = health;
     }
 
     private void Update()
@@ -50,7 +52,9 @@ public class Interactable : MonoBehaviour
     public void SetHealthbar(bool value)
     {
         if (healthBarCanvas.gameObject.activeInHierarchy != value)
+        {
             healthBarCanvas.gameObject.SetActive(value);
+        }
     }
 
     private void Harvest()

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class CraftingBenchUI : MonoBehaviour
+[RequireComponent(typeof(Anvil))]
+public class AnvilUI : MonoBehaviour
 {
     public List<CraftingItem> recipeButtons = new List<CraftingItem>();
 
@@ -11,11 +12,11 @@ public class CraftingBenchUI : MonoBehaviour
     [SerializeField] private TMP_Text itemDescription = null;
     [SerializeField] private TMP_Text itemRecipe = null;
 
-    private CraftingBench craftingBench = null;
+    private Anvil anvil = null;
 
     private void Start()
     {
-        craftingBench = GetComponent<CraftingBench>();
+        anvil = GetComponent<Anvil>();
     }
 
     public void SetClickEvents()
@@ -28,13 +29,13 @@ public class CraftingBenchUI : MonoBehaviour
 
     private void SelectRecipeToCraft(CraftingItem recipeButton)
     {
-        craftingBench.selectedCraftable = recipeButton.craftable;
+        anvil.selectedCraftable = recipeButton.craftable;
 
-        itemName.text = craftingBench.selectedCraftable.Two.name;
-        itemDescription.text = craftingBench.selectedCraftable.Two.description;
+        itemName.text = anvil.selectedCraftable.Two.name;
+        itemDescription.text = anvil.selectedCraftable.Two.description;
         itemRecipe.text = "Recipe:\n";
 
-        foreach (ItemStack itemStack in craftingBench.selectedCraftable.One)
+        foreach (ItemStack itemStack in anvil.selectedCraftable.One)
         {
             itemRecipe.text += $"{itemStack.One.name} - {itemStack.Two}\n";
         }

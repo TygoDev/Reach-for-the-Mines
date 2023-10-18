@@ -6,7 +6,7 @@ public class Item : ScriptableObject
     public int id;
     public new string name;
     public string description;
-    public int value;
+    public float value;
     public int purchasePrice;
     public Sprite icon;
     public ItemType itemType;
@@ -17,5 +17,6 @@ public enum ItemType
     Default,
     Smeltable,
     Fuel,
-    Station
+    Station,
+    Pickaxe
 }
