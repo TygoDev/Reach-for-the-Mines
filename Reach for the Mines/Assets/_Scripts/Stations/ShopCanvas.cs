@@ -99,6 +99,7 @@ public class ShopCanvas : MonoBehaviour
             systems.inventoryManager.lockedRecipes.Remove(item.craftable);
             systems.inventoryManager.unlockedRecipes.Add(item.craftable);
             SetPurchasables();
+            systems.updateCurrencyEvent.Invoke();
         }
     }
 
@@ -108,7 +109,7 @@ public class ShopCanvas : MonoBehaviour
         {
             float goldToAdd = inventoryItem.itemStack.Two * inventoryItem.itemStack.One.value;
             systems.statManager.goldAmount += goldToAdd;
-            systems.itemSoldEvent.Invoke();
+            systems.updateCurrencyEvent.Invoke();
             systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
             playerInventory.PopulateInventory();
         }

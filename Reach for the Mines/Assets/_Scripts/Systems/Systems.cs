@@ -17,7 +17,7 @@ public class Systems : MonoBehaviour
     public StatManager statManager;
 
     public UnityAction xpGainedEvent = delegate { };
-    public UnityAction itemSoldEvent = delegate { };
+    public UnityAction updateCurrencyEvent = delegate { };
 
     private void Awake()
     {

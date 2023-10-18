@@ -30,14 +30,14 @@ public class HUDCanvas : MonoBehaviour
     {
         systems.stateManager.onGameStateChanged += ToggleCanvas;
         systems.xpGainedEvent += UpdateLevelValue;
-        systems.itemSoldEvent += UpdateGoldValue;
+        systems.updateCurrencyEvent += UpdateGoldValue;
     }
 
     private void OnDisable()
     {
         systems.stateManager.onGameStateChanged -= ToggleCanvas;
         systems.xpGainedEvent -= UpdateLevelValue;
-        systems.itemSoldEvent -= UpdateGoldValue;
+        systems.updateCurrencyEvent -= UpdateGoldValue;
     }
 
     private void UpdateGoldValue()
