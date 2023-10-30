@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: possibleDrops.Array.data[2].rarity
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 4002989009506928250, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 599f576cd2ac7bd4dbd84fbd519edaeb, type: 2}
     - target: {fileID: 5075974051467006968, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: m_Name
       value: StoneNode
