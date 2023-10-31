@@ -15,5 +15,7 @@ MonoBehaviour:
   id: 12
   name: Emerald
   description: A rare gem that has a chance of dropping from iron ore.
-  value: 110
+  value: 300
+  purchasePrice: 0
   icon: {fileID: 21300000, guid: 0bcd470e911af7540938708fe90f3b0b, type: 3}
+  itemType: 0

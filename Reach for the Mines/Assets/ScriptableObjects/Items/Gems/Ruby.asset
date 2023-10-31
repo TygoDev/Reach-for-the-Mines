@@ -15,5 +15,7 @@ MonoBehaviour:
   id: 10
   name: Ruby
   description: A rare gem that has a chance of dropping from copper ore.
-  value: 90
+  value: 200
+  purchasePrice: 0
   icon: {fileID: 21300000, guid: f89d65b3e0db2f7499c0f9dbbee62cf9, type: 3}
+  itemType: 0
