@@ -12,4 +12,10 @@ public class SpawnRandomOreNode : MonoBehaviour
 
         Instantiate(oreNodes[random], transform);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position, new Vector3(1,1,1));
+    }
 }
