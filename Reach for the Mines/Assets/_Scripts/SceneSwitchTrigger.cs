@@ -2,19 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class SceneSwitchTrigger : MonoBehaviour
 {
     [SerializeField] private string sceneToLoad = "";
+    [SerializeField] private Button confirmButton = null;
+    [SerializeField] private TMP_Text confirmMenuText = null;
+    [SerializeField] private bool switchInstantly = true;
+    [SerializeField] private MenuTrigger menuTrigger = null;
+    [SerializeField] private float cost = 0;
+    [SerializeField] private string textToSay = null;
 
     private const string PLAYER = "Player";
-    
+    private Systems systems = null;
+
+    private void Start()
+    {
+        systems = Systems.Instance;
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(PLAYER))
+        if (other.CompareTag(PLAYER) && switchInstantly)
+        {
+            LoadScene();
+        }
+        else if (other.CompareTag(PLAYER))
+        {
+            confirmMenuText.text = textToSay;
+            menuTrigger.ToogleMenu(true);
+            confirmButton.onClick.AddListener(LoadScene);
+
+        }
+    }
+
+    private void LoadScene()
+    {
+        if(systems.statManager.goldAmount >= cost)
+        {
+            systems.statManager.goldAmount -= cost;
+            systems.stateManager.UpdateGameState(GameState.Gameplay);
             SceneManager.LoadScene(sceneToLoad);
-
-
+        }
     }
 }

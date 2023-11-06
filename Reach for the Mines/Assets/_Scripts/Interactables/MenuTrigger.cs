@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MenuTrigger : MonoBehaviour
 {
-    private Canvas menuToTrigger = null;
+    [SerializeField] private Canvas menuToTrigger = null;
     private Systems systems = default;
 
     private void Start()
@@ -14,13 +14,20 @@ public class MenuTrigger : MonoBehaviour
     }
     private void Initialize()
     {
-        menuToTrigger = GetComponentInChildren<Canvas>();
+        if(menuToTrigger == null)
+            menuToTrigger = GetComponentInChildren<Canvas>();
+
         menuToTrigger.enabled = false;
         systems.inputManager.unPauseEvent += OnInventoryClose;
     }
 
     public void ToogleMenu(bool value)
     {
+        if (value)
+            systems.stateManager.UpdateGameState(GameState.Menu);
+        else
+            systems.stateManager.UpdateGameState(GameState.Gameplay);
+
         menuToTrigger.enabled = value;
     }
 

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   harvestStrength: 5
   level: 0
-  goldAmount: 0
+  goldAmount: 98000
   XPAmount: 0
