@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 543ca0d683e28d945b5ee4fa9464ec2c, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -5416,9 +5416,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: Hub World
   confirmButton: {fileID: 0}
+  confirmMenuText: {fileID: 0}
   switchInstantly: 1
   menuTrigger: {fileID: 0}
   cost: 0
+  textToSay: 
 --- !u!65 &1019716023
 BoxCollider:
   m_ObjectHideFlags: 0
