@@ -5482,6 +5482,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 499789158}
   cost: 3000
   textToSay: Enter for G:3000?
+  spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!65 &499789160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6480,7 +6481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 605915876}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115.84, y: 4.15, z: 319.93}
+  m_LocalPosition: {x: 0, y: 4.15, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11663,6 +11664,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 0}
   cost: 0
   textToSay: 
+  spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!65 &1069375862
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14767,6 +14769,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 1441845171}
   cost: 2000
   textToSay: Enter for G:2000?
+  spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!65 &1441845173
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20808,7 +20811,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924629008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 115.84, y: 1, z: 326.93}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22009,7 +22012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2063692549}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 115.84, y: 4.15, z: 319.93}
+  m_LocalPosition: {x: 0, y: 4.15, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -22152,6 +22155,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 2066992468}
   cost: 1000
   textToSay: Enter for G:1000?
+  spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!1001 &2076489392
 PrefabInstance:
   m_ObjectHideFlags: 0
