@@ -7,7 +7,6 @@ using System;
 
 public class ConfirmMenuCanvas : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text = null;
     [SerializeField] private Button cancel = null;
     [SerializeField] private Canvas canvas = null;
 

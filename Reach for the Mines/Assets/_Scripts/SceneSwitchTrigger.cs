@@ -14,6 +14,7 @@ public class SceneSwitchTrigger : MonoBehaviour
     [SerializeField] private MenuTrigger menuTrigger = null;
     [SerializeField] private float cost = 0;
     [SerializeField] private string textToSay = null;
+    [SerializeField] private Vector3 spawnpoint = new Vector3(0, 1, 0);
 
     private const string PLAYER = "Player";
     private Systems systems = null;
@@ -44,6 +45,7 @@ public class SceneSwitchTrigger : MonoBehaviour
         if(systems.statManager.goldAmount >= cost)
         {
             systems.statManager.goldAmount -= cost;
+            systems.spawnpoint = spawnpoint;
             systems.stateManager.UpdateGameState(GameState.Gameplay);
             SceneManager.LoadScene(sceneToLoad);
         }

@@ -23,6 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         systems = Systems.Instance;
+        transform.position = systems.spawnpoint;
+        systems.spawnpoint = new Vector3(0, 1, 0);
         Subscribe();
     }
 

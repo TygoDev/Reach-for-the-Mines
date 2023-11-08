@@ -7,12 +7,15 @@ public class CaveManager : MonoBehaviour
 {
 
     [SerializeField] private float timeInCave = 5;
+    [SerializeField] private Vector3 spawnpoint = new Vector3(0,1,0);
 
+    private Systems systems;
     private Timer caveTime = null;
 
 
     void Start()
     {
+        systems = Systems.Instance;
         caveTime = new Timer(timeInCave);
 
         caveTime.OnTimerEnd += TimerEnd;
@@ -30,6 +33,8 @@ public class CaveManager : MonoBehaviour
 
     void TimerEnd()
     {
+        systems.spawnpoint = spawnpoint;
+
         SceneManager.LoadScene("Hub World");
     }
 }

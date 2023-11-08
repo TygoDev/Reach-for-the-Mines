@@ -18,6 +18,7 @@ public class Systems : MonoBehaviour
 
     public UnityAction xpGainedEvent = delegate { };
     public UnityAction updateCurrencyEvent = delegate { };
+    public Vector3 spawnpoint = new Vector3(0,1,0);
 
     private void Awake()
     {

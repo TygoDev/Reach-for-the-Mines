@@ -13687,6 +13687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInCave: 300
+  spawnpoint: {x: -335.57, y: 1, z: 454}
 --- !u!4 &551639750
 Transform:
   m_ObjectHideFlags: 0
@@ -27772,6 +27773,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 0}
   cost: 0
   textToSay: 
+  spawnpoint: {x: -335.57, y: 1, z: 454}
 --- !u!65 &1069375862
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41407,7 +41409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa79c82042f7a46a0842e23f5199fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 824150039}
   cancel: {fileID: 843602804}
   canvas: {fileID: 1547702033}
 --- !u!114 &1547702035
