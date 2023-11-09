@@ -1421,7 +1421,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29fa79c82042f7a46a0842e23f5199fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 626088546}
   cancel: {fileID: 644336889}
   canvas: {fileID: 345282513}
 --- !u!114 &345282515
@@ -5421,6 +5420,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 0}
   cost: 0
   textToSay: 
+  spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!65 &1019716023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8887,6 +8887,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4075064222471719567, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: spawnpoint.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5729504423126208328, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8934,6 +8938,26 @@ PrefabInstance:
     - target: {fileID: 6048232278638681304, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_Name
       value: Systems
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.data[0].one
+      value: 
+      objectReference: {fileID: 11400000, guid: 4f03d6998e29d0d4cb8d42c7c3722648, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.data[0].two
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.data[1].one
+      value: 
+      objectReference: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.data[1].two
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

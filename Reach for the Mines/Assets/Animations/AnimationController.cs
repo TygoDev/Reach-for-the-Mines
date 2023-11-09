@@ -6,16 +6,19 @@ using UnityEngine.InputSystem;
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private string animationClipName = " ";
+
     private Animator animator = null;
-    private bool isPlaying = false;
     private Systems systems = null;
+    private bool isPlaying = false;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
         systems = Systems.Instance;
-        
+
         Subscribe();
+
+        isPlaying = PlayerPrefs.GetInt("IsHitting", 0) == 1;
     }
 
     private void Subscribe()
@@ -31,11 +34,13 @@ public class AnimationController : MonoBehaviour
     private void Play()
     {
         isPlaying = !isPlaying;
+
+        PlayerPrefs.SetInt("IsHitting", isPlaying ? 1 : 0);
+        PlayerPrefs.Save();
     }
 
     void Update()
     {
-        // Check if playAnimation has changed
         if (!isPlaying)
         {
             animator.Play(animationClipName, 0, 0f);

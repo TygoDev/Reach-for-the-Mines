@@ -29,6 +29,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
 
     private void OnEnable()
     {
+
         if (gameInput == null)
         {
             gameInput = new GameInput();
