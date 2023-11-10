@@ -9484,6 +9484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1979211518}
   - component: {fileID: 1979211519}
+  - component: {fileID: 1979211520}
   m_Layer: 0
   m_Name: Stations
   m_TagString: Untagged
@@ -9513,13 +9514,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979211517}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b23724ea1bd412840869072a96745f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedStation: {fileID: 4116083206729148495, guid: 04bf076bf92582f4bbc53ff80d2f9c3d, type: 3}
+  stations:
+  - {fileID: 3297698270320742317, guid: 88fa7f1f38cb47547aedc43a114d8e7c, type: 3}
+  - {fileID: 4116083206729148495, guid: 04bf076bf92582f4bbc53ff80d2f9c3d, type: 3}
+  currentItem: {fileID: 0}
+  selectedStation: {fileID: 0}
   cooldownTime: 0.25
+--- !u!114 &1979211520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1979211517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c5e2e2b5c2f280468490290a3736bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1979505370
 GameObject:
   m_ObjectHideFlags: 0

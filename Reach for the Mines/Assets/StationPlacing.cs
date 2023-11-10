@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StationPlacing : MonoBehaviour
 {
+    public List<GameObject> stations = new List<GameObject>();
+    public Item currentItem;
     public GameObject selectedStation;
     private GameObject currentStationInstance;
     private Vector3 currentStationCenter;
@@ -41,6 +43,16 @@ public class StationPlacing : MonoBehaviour
         systems.inputManager.unPauseEvent -= Disable;
     }
 
+    public void Enable(Item pSelectedStation)
+    {
+        currentItem = pSelectedStation;
+        foreach (GameObject item in stations)
+        {
+            if (item.name == pSelectedStation.name)
+                selectedStation = item;
+        }
+    }
+
     void Disable()
     {
         DestroyStation();
@@ -59,6 +71,8 @@ public class StationPlacing : MonoBehaviour
             currentBuildingArea = null;
             currentStationInstance = null;
             canPlaceStation = true;
+            systems.inventoryManager.Remove(currentItem);
+            currentItem = null;
 
             enabled = false;
         }

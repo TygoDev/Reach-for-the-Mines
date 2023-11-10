@@ -68,6 +68,12 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public void UnPause()
+    {
+        unPauseEvent.Invoke();
+        Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
+    }
+
     public void OnHit(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)

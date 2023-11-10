@@ -14,6 +14,13 @@ public class InventoryItem : MonoBehaviour
     [SerializeField] private TMP_Text itemAmount = null;
     [SerializeField] private Button itemButton = null;
 
+    private Systems systems = null;
+
+    private void Start()
+    {
+        systems = Systems.Instance;
+    }
+
     public void FillSlot(ItemStack pItem)
     {
         empty = false;
@@ -24,6 +31,12 @@ public class InventoryItem : MonoBehaviour
         itemAmount.text = pItem.Two.ToString();
         itemStack = pItem;
         itemAmount.gameObject.SetActive(true);
+
+        if (item.itemType == ItemType.Station)
+        {
+            itemButton.onClick.RemoveAllListeners();
+            itemButton.onClick.AddListener(SetStationClick);
+        }
     }
 
     public void ClearSlot()
@@ -36,6 +49,12 @@ public class InventoryItem : MonoBehaviour
         itemAmount.text = null;
         itemStack = null;
         itemAmount.gameObject.SetActive(false);
+    }
+
+    public void SetStationClick()
+    {
+        systems.inputManager.UnPause();
+        systems.stationClickedEvent.Invoke(item);
     }
 
     public Button InventoryItemButton => itemButton;
