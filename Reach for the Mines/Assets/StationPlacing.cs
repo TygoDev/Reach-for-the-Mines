@@ -6,20 +6,73 @@ public class StationPlacing : MonoBehaviour
 {
     public GameObject selectedStation;
     private GameObject currentStationInstance;
+    private Vector3 currentStationCenter;
     private BuildingArea currentBuildingArea;
     private bool canPlaceStation = true;
-    public float cooldownTime = 0.25f; // Adjust as needed
+    public float cooldownTime = 0.25f;
+
+    private Systems systems = null;
+
+    private void Start()
+    {
+        systems = Systems.Instance;
+
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        systems.inputManager.hitEvent += Place;
+        systems.inputManager.unPauseEvent += Disable;
+    }
+
+    private void OnEnable()
+    {
+        if (systems != null)
+        {
+            systems.inputManager.hitEvent += Place;
+            systems.inputManager.unPauseEvent += Disable;
+        }
+    }
+
+    private void OnDisable()
+    {
+        systems.inputManager.hitEvent -= Place;
+        systems.inputManager.unPauseEvent -= Disable;
+    }
+
+    void Disable()
+    {
+        DestroyStation();
+        canPlaceStation = true;
+
+        enabled = false;
+    }
+
+    void Place()
+    {
+        if (currentStationInstance != null && currentBuildingArea != null)
+        {
+            currentStationInstance.transform.position = new Vector3(currentStationCenter.x, 0.5f, currentStationCenter.z);
+            currentBuildingArea.occupied = true;
+
+            currentBuildingArea = null;
+            currentStationInstance = null;
+            canPlaceStation = true;
+
+            enabled = false;
+        }
+    }
 
     void Update()
     {
         if (!canPlaceStation)
         {
-            // If cooldown is active, reduce the cooldown time
             cooldownTime -= Time.deltaTime;
             if (cooldownTime <= 0f)
             {
                 canPlaceStation = true;
-                cooldownTime = 0.25f; // Reset the cooldown time
+                cooldownTime = 0.25f;
             }
         }
 
@@ -37,42 +90,39 @@ public class StationPlacing : MonoBehaviour
                 if (!hitBuildingArea.occupied && canPlaceStation)
                 {
                     Vector3 centerOfBuildingArea = hit.collider.bounds.center;
+                    currentStationCenter = centerOfBuildingArea;
 
-                    // Instantiate the station if it doesn't exist or if the building area changes
                     if (currentStationInstance == null || currentBuildingArea != hitBuildingArea)
                     {
-                        DestroyStation(); // Destroy the previous station if any
+                        DestroyStation();
                         currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0.5f, centerOfBuildingArea.z), Quaternion.identity, transform);
                         currentBuildingArea = hitBuildingArea;
                         currentBuildingArea.occupied = true;
 
-                        canPlaceStation = false; // Set cooldown
+                        canPlaceStation = false;
                     }
                 }
             }
             else
             {
-                // If the ray doesn't hit the building area, destroy the instantiated station
                 DestroyStation();
             }
         }
         else
         {
-            // If the ray doesn't hit anything, destroy the instantiated station
             DestroyStation();
         }
     }
 
-    // Function to destroy the instantiated station
     private void DestroyStation()
     {
         if (currentStationInstance != null)
         {
-            currentBuildingArea.occupied = false; // Set occupied to false before destroying
+            currentBuildingArea.occupied = false;
             Destroy(currentStationInstance);
             currentStationInstance = null;
             currentBuildingArea = null;
-            canPlaceStation = false; // Set cooldown
+            canPlaceStation = false;
         }
     }
 }
