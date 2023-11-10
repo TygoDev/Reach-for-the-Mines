@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - MenuTrigger
+  - BuildingArea
   layers:
   - Default
   - TransparentFX
