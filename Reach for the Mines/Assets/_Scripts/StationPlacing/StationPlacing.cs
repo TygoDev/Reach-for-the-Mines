@@ -11,6 +11,7 @@ public class StationPlacing : MonoBehaviour
     private Vector3 currentStationCenter;
     private BuildingArea currentBuildingArea;
     private bool canPlaceStation = true;
+    private bool placingEnabled = false;
     public float cooldownTime = 0.25f;
 
     private Systems systems = null;
@@ -45,6 +46,7 @@ public class StationPlacing : MonoBehaviour
 
     public void Enable(Item pSelectedStation)
     {
+        placingEnabled = true;
         currentItem = pSelectedStation;
         foreach (GameObject item in stations)
         {
@@ -57,13 +59,13 @@ public class StationPlacing : MonoBehaviour
     {
         DestroyStation();
         canPlaceStation = true;
-
-        enabled = false;
+        selectedStation = null;
+        placingEnabled = false;
     }
 
     void Place()
     {
-        if (currentStationInstance != null && currentBuildingArea != null)
+        if (currentStationInstance != null && currentBuildingArea != null && placingEnabled)
         {
             currentStationInstance.transform.position = new Vector3(currentStationCenter.x, 0.5f, currentStationCenter.z);
             currentBuildingArea.occupied = true;
@@ -74,57 +76,60 @@ public class StationPlacing : MonoBehaviour
             systems.inventoryManager.Remove(currentItem);
             currentItem = null;
 
-            enabled = false;
+            Disable();
         }
     }
 
     void Update()
     {
-        if (!canPlaceStation)
+        if (placingEnabled)
         {
-            cooldownTime -= Time.deltaTime;
-            if (cooldownTime <= 0f)
+            if (!canPlaceStation)
             {
-                canPlaceStation = true;
-                cooldownTime = 0.25f;
-            }
-        }
-
-        Vector3 cameraPosition = Camera.main.transform.position;
-        Vector3 cameraForward = Camera.main.transform.forward;
-
-        Ray ray = new Ray(cameraPosition, cameraForward);
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit))
-        {
-            if (hit.collider.CompareTag("BuildingArea"))
-            {
-                BuildingArea hitBuildingArea = hit.collider.gameObject.GetComponent<BuildingArea>();
-                if (!hitBuildingArea.occupied && canPlaceStation)
+                cooldownTime -= Time.deltaTime;
+                if (cooldownTime <= 0f)
                 {
-                    Vector3 centerOfBuildingArea = hit.collider.bounds.center;
-                    currentStationCenter = centerOfBuildingArea;
+                    canPlaceStation = true;
+                    cooldownTime = 0.25f;
+                }
+            }
 
-                    if (currentStationInstance == null || currentBuildingArea != hitBuildingArea)
+            Vector3 cameraPosition = Camera.main.transform.position;
+            Vector3 cameraForward = Camera.main.transform.forward;
+
+            Ray ray = new Ray(cameraPosition, cameraForward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider.CompareTag("BuildingArea"))
+                {
+                    BuildingArea hitBuildingArea = hit.collider.gameObject.GetComponent<BuildingArea>();
+                    if (!hitBuildingArea.occupied && canPlaceStation)
                     {
-                        DestroyStation();
-                        currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0.5f, centerOfBuildingArea.z), Quaternion.identity, transform);
-                        currentBuildingArea = hitBuildingArea;
-                        currentBuildingArea.occupied = true;
+                        Vector3 centerOfBuildingArea = hit.collider.bounds.center;
+                        currentStationCenter = centerOfBuildingArea;
 
-                        canPlaceStation = false;
+                        if (currentStationInstance == null || currentBuildingArea != hitBuildingArea)
+                        {
+                            DestroyStation();
+                            currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0.5f, centerOfBuildingArea.z), Quaternion.identity, transform);
+                            currentBuildingArea = hitBuildingArea;
+                            currentBuildingArea.occupied = true;
+
+                            canPlaceStation = false;
+                        }
                     }
+                }
+                else
+                {
+                    DestroyStation();
                 }
             }
             else
             {
                 DestroyStation();
             }
-        }
-        else
-        {
-            DestroyStation();
         }
     }
 

@@ -5,12 +5,11 @@ using UnityEngine;
 public class StationPlacingListener : MonoBehaviour
 {
     private Systems systems = null;
-    private StationPlacing stationPlacing = null;
+    [SerializeField] private StationPlacing stationPlacing = null;
 
 
     private void Start()
     {
-        stationPlacing = GetComponent<StationPlacing>();
         systems = Systems.Instance;
 
         Subscribe();
@@ -23,7 +22,6 @@ public class StationPlacingListener : MonoBehaviour
 
     void EnableStationPlacing(Item item)
     {
-        stationPlacing.enabled = true;
         stationPlacing.Enable(item);
     }
 }

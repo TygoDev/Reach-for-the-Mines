@@ -22,7 +22,7 @@ public class StorageCanvas : MonoBehaviour
         Initialize();
     }
 
-    private void Initialize()
+    public void Initialize()
     {
         systems.stateManager.onGameStateChanged += OnGameStateChange;
 

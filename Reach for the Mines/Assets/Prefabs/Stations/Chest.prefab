@@ -369,7 +369,7 @@ Transform:
   m_Children:
   - {fileID: 2352234783345207004}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7570536294430560548
 MeshFilter:
@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076fc0ce895d13742bebe14681c0c06d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuToTrigger: {fileID: 0}
+  menuToTrigger: {fileID: 2586360315470964089}
 --- !u!1 &5847025730529222798
 GameObject:
   m_ObjectHideFlags: 0

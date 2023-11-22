@@ -12,12 +12,19 @@ public class MenuTrigger : MonoBehaviour
         systems = Systems.Instance;
         Initialize();
     }
+
+    private void OnEnable()
+    {
+        Initialize();
+    }
+
     private void Initialize()
     {
         if(menuToTrigger == null)
             menuToTrigger = GetComponentInChildren<Canvas>();
 
         menuToTrigger.enabled = false;
+
         systems.inputManager.unPauseEvent += OnInventoryClose;
     }
 
