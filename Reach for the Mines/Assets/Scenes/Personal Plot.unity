@@ -9645,7 +9645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: items.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: items.Array.data[0].one
@@ -9666,9 +9666,17 @@ PrefabInstance:
     - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: items.Array.data[2].one
       value: 
-      objectReference: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
+      objectReference: {fileID: 11400000, guid: 36dca13c861968345a67f284d3ee6a93, type: 2}
     - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: items.Array.data[2].two
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.data[3].one
+      value: 
+      objectReference: {fileID: 11400000, guid: a0f3a3a5e496da64080a8e1991a8966f, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.data[3].two
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10018,6 +10026,8 @@ MonoBehaviour:
   stations:
   - {fileID: 3297698270320742317, guid: 88fa7f1f38cb47547aedc43a114d8e7c, type: 3}
   - {fileID: 4116083206729148495, guid: 04bf076bf92582f4bbc53ff80d2f9c3d, type: 3}
+  - {fileID: 4598448291702100976, guid: 57cad58cf57bda64fb80e8513554141a, type: 3}
+  - {fileID: 4587521624686652426, guid: 4d4dee8dd1a211b418d07c6e368d64ec, type: 3}
   currentItem: {fileID: 0}
   selectedStation: {fileID: 0}
   cooldownTime: 0.25

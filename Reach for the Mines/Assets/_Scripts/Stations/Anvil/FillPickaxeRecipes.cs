@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FillPickaxeRecipes : MonoBehaviour
 {
     [SerializeField] private AnvilUI anvilUI = null;
-    [SerializeField] private CraftingItem craftingItem = null;
+    [SerializeField] private PurchasableItem craftingItem = null;
 
     private Systems systems = null;
 
@@ -28,8 +28,8 @@ public class FillPickaxeRecipes : MonoBehaviour
         {
             if(craftable.Two.itemType == ItemType.Pickaxe)
             {
-                CraftingItem newButton = Instantiate(craftingItem, transform);
-                newButton.FillSlot(craftable);
+                PurchasableItem newButton = Instantiate(craftingItem, transform);
+                newButton.FillSlot(craftable, null);
                 anvilUI.recipeButtons.Add(newButton);
             }
         }

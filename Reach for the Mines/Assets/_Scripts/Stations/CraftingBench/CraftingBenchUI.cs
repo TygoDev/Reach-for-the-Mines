@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CraftingBenchUI : MonoBehaviour
 {
-    public List<CraftingItem> recipeButtons = new List<CraftingItem>();
+    public List<PurchasableItem> recipeButtons = new List<PurchasableItem>();
 
     [SerializeField] private TMP_Text itemName = null;
     [SerializeField] private TMP_Text itemDescription = null;
@@ -20,13 +20,13 @@ public class CraftingBenchUI : MonoBehaviour
 
     public void SetClickEvents()
     {
-        foreach (CraftingItem recipeButton in recipeButtons)
+        foreach (PurchasableItem recipeButton in recipeButtons)
         {
             recipeButton.CraftingItemButton.onClick.AddListener(delegate { SelectRecipeToCraft(recipeButton); });
         }
     }
 
-    private void SelectRecipeToCraft(CraftingItem recipeButton)
+    private void SelectRecipeToCraft(PurchasableItem recipeButton)
     {
         craftingBench.selectedCraftable = recipeButton.craftable;
 

@@ -4,17 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class ShopCanvas : MonoBehaviour
 {
     [SerializeField] private StationInventory playerInventory = null;
-    [SerializeField] private CraftingItem craftingItem = null;
+    [SerializeField] private PurchasableItem craftingItem = null;
     [SerializeField] private Image purchasablesMenu = null;
     [SerializeField] private Image sellMenu = null;
     [SerializeField] private TMP_Text swapButtonText = null;
+    [SerializeField] private List<Item> buyableItems = new List<Item>();
 
-    private List<CraftingItem> buyableRecipes = new List<CraftingItem>();
+    private List<PurchasableItem> buyables = new List<PurchasableItem>();
     private Systems systems = default;
+    private bool setToRecipes = true;
 
     private void Start()
     {
@@ -40,24 +43,45 @@ public class ShopCanvas : MonoBehaviour
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
 
-    private void SetPurchasables()
+    private void SetRecipes()
     {
-        foreach (var item in buyableRecipes)
+        foreach (var item in buyables)
         {
             Destroy(item.gameObject);
         }
-        buyableRecipes.Clear();
+        buyables.Clear();
 
         foreach (Craftable craftable in systems.inventoryManager.lockedRecipes)
         {
-            CraftingItem newButton = Instantiate(craftingItem, purchasablesMenu.transform);
-            buyableRecipes.Add(newButton);
-            newButton.FillSlot(craftable);
+            PurchasableItem newButton = Instantiate(craftingItem, purchasablesMenu.transform);
+            buyables.Add(newButton);
+            newButton.FillSlot(craftable, null);
         }
 
-        foreach (CraftingItem item in buyableRecipes)
+        foreach (PurchasableItem item in buyables)
         {
             item.CraftingItemButton.onClick.AddListener(delegate { BuyRecipeButton(item); });
+        }
+    }
+
+    private void SetPurchasables()
+    {
+        foreach (var item in buyables)
+        {
+            Destroy(item.gameObject);
+        }
+        buyables.Clear();
+
+        foreach (Item item in buyableItems)
+        {
+            PurchasableItem newButton = Instantiate(craftingItem, purchasablesMenu.transform);
+            buyables.Add(newButton);
+            newButton.FillSlot(null, item);
+        }
+
+        foreach (PurchasableItem item in buyables)
+        {
+            item.CraftingItemButton.onClick.AddListener(delegate { BuyItemButton(item); });
         }
     }
 
@@ -66,7 +90,11 @@ public class ShopCanvas : MonoBehaviour
         purchasablesMenu.gameObject.SetActive(true);
         sellMenu.gameObject.SetActive(false);
         swapButtonText.text = "Sell";
-        SetPurchasables();
+
+        if (setToRecipes)
+            SetRecipes();
+        else
+            SetPurchasables();
     }
 
     public void SwapMenu()
@@ -76,7 +104,11 @@ public class ShopCanvas : MonoBehaviour
 
         if (purchasablesMenu.gameObject.activeInHierarchy)
         {
-            SetPurchasables();
+            if (setToRecipes)
+                SetRecipes();
+            else
+                SetPurchasables();
+
             swapButtonText.text = "Buy";
         }
         else
@@ -85,11 +117,23 @@ public class ShopCanvas : MonoBehaviour
             swapButtonText.text = "Sell";
         }
 
-        SetPurchasables();
-
+        if (setToRecipes)
+            SetRecipes();
+        else
+            SetPurchasables();
     }
 
-    private void BuyRecipeButton(CraftingItem item)
+    public void SwapBuyableItems(bool value)
+    {
+        setToRecipes = value;
+
+        if (setToRecipes)
+            SetRecipes();
+        else
+            SetPurchasables();
+    }
+
+    private void BuyRecipeButton(PurchasableItem item)
     {
         if(!systems.inventoryManager.unlockedRecipes.Contains(item.craftable) &&
             systems.inventoryManager.lockedRecipes.Contains(item.craftable) &&
@@ -98,8 +142,17 @@ public class ShopCanvas : MonoBehaviour
             systems.statManager.goldAmount -= item.craftable.Two.purchasePrice;
             systems.inventoryManager.lockedRecipes.Remove(item.craftable);
             systems.inventoryManager.unlockedRecipes.Add(item.craftable);
-            SetPurchasables();
+            SetRecipes();
             systems.updateCurrencyEvent.Invoke();
+        }
+    }
+
+    private void BuyItemButton(PurchasableItem item)
+    {
+        if (systems.inventoryManager.CanAdd(item.item) && systems.statManager.goldAmount >= item.item.purchasePrice)
+        {
+            systems.inventoryManager.Add(item.item);
+            systems.statManager.goldAmount -= item.item.purchasePrice;
         }
     }
 

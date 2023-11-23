@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FillCraftingRecipes : MonoBehaviour
 {
     [SerializeField] private CraftingBenchUI craftingBenchUI = null;
-    [SerializeField] private CraftingItem craftingItem = null;
+    [SerializeField] private PurchasableItem craftingItem = null;
 
     private Systems systems = null;
 
@@ -28,8 +28,8 @@ public class FillCraftingRecipes : MonoBehaviour
         {
             if (craftable.Two.itemType != ItemType.Pickaxe)
             {
-                CraftingItem newButton = Instantiate(craftingItem, transform);
-                newButton.FillSlot(craftable);
+                PurchasableItem newButton = Instantiate(craftingItem, transform);
+                newButton.FillSlot(craftable,null);
                 craftingBenchUI.recipeButtons.Add(newButton);
             }
         }
