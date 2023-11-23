@@ -25,6 +25,7 @@ public class MenuTrigger : MonoBehaviour
 
         menuToTrigger.enabled = false;
 
+        if(systems!=null)
         systems.inputManager.unPauseEvent += OnInventoryClose;
     }
 

@@ -497,6 +497,7 @@ GameObject:
   - component: {fileID: 3148371427086847726}
   - component: {fileID: 3257859821244338995}
   - component: {fileID: 2793391361641861427}
+  - component: {fileID: 1775873536528881291}
   m_Layer: 0
   m_Name: Crafting Bench
   m_TagString: MenuTrigger
@@ -604,6 +605,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menuToTrigger: {fileID: 3295168246257746165}
+--- !u!54 &1775873536528881291
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598448291702100976}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4667701053655655729
 GameObject:
   m_ObjectHideFlags: 0
