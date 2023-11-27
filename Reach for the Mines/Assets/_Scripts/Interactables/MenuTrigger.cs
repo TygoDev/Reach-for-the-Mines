@@ -31,10 +31,6 @@ public class MenuTrigger : MonoBehaviour
 
     public void ToogleMenu(bool value)
     {
-        if (value)
-            systems.stateManager.UpdateGameState(GameState.Menu);
-        else
-            systems.stateManager.UpdateGameState(GameState.Gameplay);
 
         menuToTrigger.enabled = value;
     }

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 using Utils;
+using System;
 
 public class FurnaceCanvas : MonoBehaviour
 {
@@ -27,6 +28,16 @@ public class FurnaceCanvas : MonoBehaviour
 
     private void Start()
     {
+        //Initialize();
+    }
+
+    private void OnEnable()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
         systems = Systems.Instance;
         systems.stateManager.onGameStateChanged += OnGameStateChange;
 
@@ -39,6 +50,11 @@ public class FurnaceCanvas : MonoBehaviour
     }
 
     private void OnDisable()
+    {
+        systems.stateManager.onGameStateChanged -= OnGameStateChange;
+    }
+
+    private void OnDestroy()
     {
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
     }
@@ -67,6 +83,9 @@ public class FurnaceCanvas : MonoBehaviour
 
     public void FillSlot(InventoryItem inventoryItem)
     {
+        if (inventoryItem.empty)
+            return;
+
         if (inventoryItem.empty && !slotToFill.empty)
             return;
 
@@ -101,6 +120,7 @@ public class FurnaceCanvas : MonoBehaviour
             {
                 if (!HandleOutputSlot(smeltable))
                     return;
+
                 HandleInputSlot();
                 HandleFuelSlot();
 
@@ -196,11 +216,9 @@ public class FurnaceCanvas : MonoBehaviour
     // -------------- EVENT LISTENERS -------------- 
     public void OnGameStateChange(GameState state)
     {
-        if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)
-        {
+        Debug.Log("Sem");
             furnaceMenu.gameObject.SetActive(true);
             inventoryMenu.gameObject.SetActive(false);
-        }
     }
 }
 

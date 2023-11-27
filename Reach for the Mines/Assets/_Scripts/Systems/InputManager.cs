@@ -71,7 +71,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public void UnPause()
     {
         unPauseEvent.Invoke();
-        Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
+        stateManager.UpdateGameState(GameState.Gameplay);
     }
 
     public void OnHit(InputAction.CallbackContext context)
@@ -143,7 +143,10 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
+        {
+            stateManager.UpdateGameState(GameState.Menu);
             interactEvent.Invoke();
+        }
     }
 
     // EVENT LISTENERS

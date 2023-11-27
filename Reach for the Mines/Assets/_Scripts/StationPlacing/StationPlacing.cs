@@ -68,7 +68,6 @@ public class StationPlacing : MonoBehaviour
         if (currentStationInstance != null && currentBuildingArea != null && placingEnabled)
         {
             currentStationInstance.transform.position = new Vector3(currentStationCenter.x, 0.5f, currentStationCenter.z);
-            currentBuildingArea.occupied = true;
 
             currentBuildingArea = null;
             currentStationInstance = null;
@@ -140,6 +139,7 @@ public class StationPlacing : MonoBehaviour
         {
             Destroy(currentStationInstance);
             currentStationInstance = null;
+            currentBuildingArea.occupied = false;
             currentBuildingArea = null;
             canPlaceStation = false;
         }
