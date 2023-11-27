@@ -216,7 +216,6 @@ public class FurnaceCanvas : MonoBehaviour
     // -------------- EVENT LISTENERS -------------- 
     public void OnGameStateChange(GameState state)
     {
-        Debug.Log("Sem");
             furnaceMenu.gameObject.SetActive(true);
             inventoryMenu.gameObject.SetActive(false);
     }

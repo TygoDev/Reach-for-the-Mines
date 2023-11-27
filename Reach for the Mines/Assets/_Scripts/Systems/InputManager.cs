@@ -144,7 +144,6 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            stateManager.UpdateGameState(GameState.Menu);
             interactEvent.Invoke();
         }
     }
