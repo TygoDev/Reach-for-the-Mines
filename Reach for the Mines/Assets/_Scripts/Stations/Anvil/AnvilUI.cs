@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(Anvil))]
 public class AnvilUI : MonoBehaviour
 {
     public List<PurchasableItem> recipeButtons = new List<PurchasableItem>();

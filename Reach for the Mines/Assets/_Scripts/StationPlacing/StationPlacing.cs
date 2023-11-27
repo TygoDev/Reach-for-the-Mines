@@ -110,13 +110,13 @@ public class StationPlacing : MonoBehaviour
                         Vector3 centerOfBuildingArea = hit.collider.bounds.center;
                         currentStationCenter = centerOfBuildingArea;
 
+                        // Check if the currentStationInstance needs to be re-initialized
                         if (currentStationInstance == null || currentBuildingArea != hitBuildingArea)
                         {
                             DestroyStation();
-                            currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0.5f, centerOfBuildingArea.z), Quaternion.identity, transform);
                             currentBuildingArea = hitBuildingArea;
-                            currentBuildingArea.occupied = true;
-
+                            // Instantiate the new station and assign it to currentStationInstance
+                            currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0.5f, centerOfBuildingArea.z), Quaternion.identity, transform);
                             canPlaceStation = false;
                         }
                     }
@@ -133,11 +133,11 @@ public class StationPlacing : MonoBehaviour
         }
     }
 
+
     private void DestroyStation()
     {
         if (currentStationInstance != null)
         {
-            currentBuildingArea.occupied = false;
             Destroy(currentStationInstance);
             currentStationInstance = null;
             currentBuildingArea = null;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,12 +13,34 @@ public class FillPickaxeRecipes : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+
+    }
+
+    private void OnEnable()
+    {
+        Initialize();
+    }
+
+    private void Initialize()
+    {
+        anvilUI = GetComponentInParent<AnvilUI>();
         systems = Systems.Instance;
-        systems.stateManager.onGameStateChanged += OnGameStateChanged;
         InitializeRecipes();
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        systems.stateManager.onGameStateChanged += OnGameStateChanged;
     }
 
     private void OnDisable()
+    {
+        systems.stateManager.onGameStateChanged -= OnGameStateChanged;
+    }
+
+    private void OnDestroy()
     {
         systems.stateManager.onGameStateChanged -= OnGameStateChanged;
     }
@@ -26,7 +49,7 @@ public class FillPickaxeRecipes : MonoBehaviour
     {
         foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
         {
-            if(craftable.Two.itemType == ItemType.Pickaxe)
+            if (craftable.Two.itemType == ItemType.Pickaxe)
             {
                 PurchasableItem newButton = Instantiate(craftingItem, transform);
                 newButton.FillSlot(craftable, null);
@@ -41,6 +64,9 @@ public class FillPickaxeRecipes : MonoBehaviour
 
     private void OnGameStateChanged(GameState state)
     {
+        if (anvilUI == null)
+            anvilUI = GetComponentInParent<AnvilUI>();
+
         if (state == GameState.Menu && anvilUI.GetComponent<Canvas>().enabled)
         {
             foreach (var item in anvilUI.recipeButtons)
