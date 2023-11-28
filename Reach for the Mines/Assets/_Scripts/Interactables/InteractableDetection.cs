@@ -37,7 +37,6 @@ public class InteractableDetection : MonoBehaviour
         if(menuTrigger != null)
         {
             menuTrigger.ToogleMenu(true);
-            systems.stateManager.UpdateGameState(GameState.Menu);
         }
     }
 
