@@ -36,6 +36,8 @@ public class ShopCanvas : MonoBehaviour
         {
             item.InventoryItemButton.onClick.AddListener(delegate { SellButton(item); });
         }
+
+        SetRecipes();
     }
 
     private void OnDisable()
@@ -109,12 +111,12 @@ public class ShopCanvas : MonoBehaviour
             else
                 SetPurchasables();
 
-            swapButtonText.text = "Buy";
+            swapButtonText.text = "Sell";
         }
         else
         {
             playerInventory.PopulateInventory();
-            swapButtonText.text = "Sell";
+            swapButtonText.text = "Buy";
         }
 
         if (setToRecipes)
@@ -153,6 +155,7 @@ public class ShopCanvas : MonoBehaviour
         {
             systems.inventoryManager.Add(item.item);
             systems.statManager.goldAmount -= item.item.purchasePrice;
+            systems.updateCurrencyEvent.Invoke();
         }
     }
 
