@@ -7,6 +7,7 @@ using TMPro;
 
 public class StorageCanvas : MonoBehaviour
 {
+    [SerializeField] private Item stationItem = null;
     [SerializeField] private StationInventory playerInventory = null;
     [SerializeField] private StationInventory storageInventory = null;
 
@@ -20,6 +21,13 @@ public class StorageCanvas : MonoBehaviour
     {
         systems = Systems.Instance;
         Initialize();
+    }
+
+    public void PickUpStation()
+    {
+        Destroy(transform.parent.gameObject);
+        Systems.Instance.inventoryManager.Add(stationItem);
+        Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
     }
 
     public void Initialize()

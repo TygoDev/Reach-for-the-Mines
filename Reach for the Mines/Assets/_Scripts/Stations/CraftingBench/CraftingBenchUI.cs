@@ -7,6 +7,7 @@ public class CraftingBenchUI : MonoBehaviour
 {
     public List<PurchasableItem> recipeButtons = new List<PurchasableItem>();
 
+    [SerializeField] private Item stationItem = null;
     [SerializeField] private TMP_Text itemName = null;
     [SerializeField] private TMP_Text itemDescription = null;
     [SerializeField] private TMP_Text itemRecipe = null;
@@ -16,6 +17,13 @@ public class CraftingBenchUI : MonoBehaviour
     private void Start()
     {
         craftingBench = GetComponent<CraftingBench>();
+    }
+
+    public void PickUpStation()
+    {
+        Destroy(transform.parent.gameObject);
+        Systems.Instance.inventoryManager.Add(stationItem);
+        Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
     }
 
     public void SetClickEvents()

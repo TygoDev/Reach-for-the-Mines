@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AnvilUI : MonoBehaviour
 {
     public List<PurchasableItem> recipeButtons = new List<PurchasableItem>();
 
+    [SerializeField] private Item stationItem = null;
     [SerializeField] private TMP_Text itemName = null;
     [SerializeField] private TMP_Text itemDescription = null;
     [SerializeField] private TMP_Text itemRecipe = null;
@@ -24,6 +26,13 @@ public class AnvilUI : MonoBehaviour
         {
             recipeButton.CraftingItemButton.onClick.AddListener(delegate { SelectRecipeToCraft(recipeButton); });
         }
+    }
+    
+    public void PickUpStation()
+    {
+        Destroy(transform.parent.gameObject);
+        Systems.Instance.inventoryManager.Add(stationItem);
+        Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
     }
 
     private void SelectRecipeToCraft(PurchasableItem recipeButton)

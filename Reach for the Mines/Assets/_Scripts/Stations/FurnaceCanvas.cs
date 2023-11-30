@@ -9,6 +9,7 @@ using System;
 
 public class FurnaceCanvas : MonoBehaviour
 {
+    [SerializeField] private Item stationItem = null;
     [SerializeField] private List<Smeltable> smeltables = new List<Smeltable>();
     [SerializeField] private StationInventory playerInventory = null;
 
@@ -25,6 +26,7 @@ public class FurnaceCanvas : MonoBehaviour
     private Systems systems = default;
     private InventoryItem slotToFill = null;
     private bool isProcessing = false;
+
 
     private void Start()
     {
@@ -64,6 +66,13 @@ public class FurnaceCanvas : MonoBehaviour
         playerInventory.PopulateInventory();
         furnaceMenu.gameObject.SetActive(!furnaceMenu.gameObject.activeInHierarchy);
         inventoryMenu.gameObject.SetActive(!inventoryMenu.gameObject.activeInHierarchy);
+    }
+
+    public void PickUpStation()
+    {
+        Destroy(transform.parent.gameObject);
+        Systems.Instance.inventoryManager.Add(stationItem);
+        Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
     }
 
     public void FurnaceSlot(InventoryItem inventoryItem)
