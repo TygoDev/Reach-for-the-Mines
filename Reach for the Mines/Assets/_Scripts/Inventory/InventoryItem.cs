@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class InventoryItem : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class InventoryItem : MonoBehaviour
 
         if (item.itemType == ItemType.Station)
         {
-            itemButton.onClick.RemoveAllListeners();
+            //itemButton.onClick.RemoveAllListeners();
             itemButton.onClick.AddListener(SetStationClick);
         }
     }
@@ -53,8 +54,11 @@ public class InventoryItem : MonoBehaviour
 
     public void SetStationClick()
     {
-        systems.inputManager.UnPause();
-        systems.stationClickedEvent.Invoke(item);
+        if(transform.parent.name == "InventoryBackground" && SceneManager.GetActiveScene().name == "Personal Plot")
+        {
+            systems.inputManager.UnPause();
+            systems.stationClickedEvent.Invoke(item);
+        }
     }
 
     public Button InventoryItemButton => itemButton;
