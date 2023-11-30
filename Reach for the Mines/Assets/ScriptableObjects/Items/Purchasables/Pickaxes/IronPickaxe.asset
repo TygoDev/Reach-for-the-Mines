@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Iron Pickaxe
   description: An upgraded version of the lead pickaxe!
   value: 12.5
-  purchasePrice: 3000
+  purchasePrice: 1500
   icon: {fileID: 21300000, guid: 8cf35b017e18fd74192dc496dd78c590, type: 3}
   itemType: 4

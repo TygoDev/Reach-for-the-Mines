@@ -23,12 +23,20 @@ public class AnimationController : MonoBehaviour
 
     private void Subscribe()
     {
+        systems.stateManager.onGameStateChanged += ResetAnimation;
         systems.inputManager.hitEvent += Play;
     }
 
     private void OnDisable()
     {
+        systems.stateManager.onGameStateChanged -= ResetAnimation;
         systems.inputManager.hitEvent -= Play;
+    }
+
+    private void ResetAnimation(GameState state)
+    {
+        if(state==GameState.Menu)
+        isPlaying = false;
     }
 
     private void Play()

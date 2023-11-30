@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Crafting Bench
   description: Used to craft items.
   value: 10
-  purchasePrice: 200
+  purchasePrice: 100
   icon: {fileID: 21300000, guid: 458a50a3a3eb1404c8070ebba5ba9193, type: 3}
   itemType: 3

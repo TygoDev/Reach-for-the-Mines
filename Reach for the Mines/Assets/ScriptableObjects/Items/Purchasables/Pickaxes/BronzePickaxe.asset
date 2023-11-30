@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Bronze Pickaxe
   description: An upgraded version of the iron pickaxe!
   value: 15
-  purchasePrice: 5000
+  purchasePrice: 2500
   icon: {fileID: 21300000, guid: 2c027ec0555c650419d439f41130383b, type: 3}
   itemType: 4

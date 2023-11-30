@@ -5480,8 +5480,8 @@ MonoBehaviour:
   confirmMenuText: {fileID: 1481148048}
   switchInstantly: 0
   menuTrigger: {fileID: 499789158}
-  cost: 3000
-  textToSay: Enter for G:3000?
+  cost: 1500
+  textToSay: Enter for G:1500?
   spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!65 &499789160
 BoxCollider:
@@ -14767,8 +14767,8 @@ MonoBehaviour:
   confirmMenuText: {fileID: 1481148048}
   switchInstantly: 0
   menuTrigger: {fileID: 1441845171}
-  cost: 2000
-  textToSay: Enter for G:2000?
+  cost: 1000
+  textToSay: Enter for G:1000?
   spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!65 &1441845173
 BoxCollider:
@@ -15958,6 +15958,14 @@ PrefabInstance:
     - target: {fileID: 3447605644917464891, guid: dda4986e8c8a35b4b92a83dd82be577e, type: 3}
       propertyPath: m_Name
       value: Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5677918640791685363, guid: dda4986e8c8a35b4b92a83dd82be577e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127968190695254972, guid: dda4986e8c8a35b4b92a83dd82be577e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8471625174622752098, guid: dda4986e8c8a35b4b92a83dd82be577e, type: 3}
       propertyPath: m_RootOrder
@@ -22181,8 +22189,8 @@ MonoBehaviour:
   confirmMenuText: {fileID: 1481148048}
   switchInstantly: 0
   menuTrigger: {fileID: 2066992468}
-  cost: 1000
-  textToSay: Enter for G:1000?
+  cost: 500
+  textToSay: Enter for G:500?
   spawnpoint: {x: 0, y: 1, z: 0}
 --- !u!1001 &2076489392
 PrefabInstance:

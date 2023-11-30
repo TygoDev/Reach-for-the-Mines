@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Copper Pickaxe
   description: An upgraded version of the standard pickaxe!
   value: 7.5
-  purchasePrice: 1000
+  purchasePrice: 500
   icon: {fileID: 21300000, guid: 2c027ec0555c650419d439f41130383b, type: 3}
   itemType: 4

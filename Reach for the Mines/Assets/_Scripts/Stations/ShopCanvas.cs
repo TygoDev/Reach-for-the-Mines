@@ -13,6 +13,7 @@ public class ShopCanvas : MonoBehaviour
     [SerializeField] private Image purchasablesMenu = null;
     [SerializeField] private Image sellMenu = null;
     [SerializeField] private TMP_Text swapButtonText = null;
+    [SerializeField] private TMP_Text currencyText = null;
     [SerializeField] private List<Item> buyableItems = new List<Item>();
 
     private List<PurchasableItem> buyables = new List<PurchasableItem>();
@@ -29,6 +30,7 @@ public class ShopCanvas : MonoBehaviour
     private void Initialize()
     {
         systems.stateManager.onGameStateChanged += OnGameStateChange;
+        systems.updateCurrencyEvent += SetCurrency;
 
         playerInventory.itemStacks = systems.inventoryManager.items;
 
@@ -37,12 +39,19 @@ public class ShopCanvas : MonoBehaviour
             item.InventoryItemButton.onClick.AddListener(delegate { SellButton(item); });
         }
 
+        SetCurrency();
         SetRecipes();
     }
 
     private void OnDisable()
     {
         systems.stateManager.onGameStateChanged -= OnGameStateChange;
+        systems.updateCurrencyEvent -= SetCurrency;
+    }
+
+    private void SetCurrency()
+    {
+        currencyText.text = $"G: {systems.statManager.goldAmount}";
     }
 
     private void SetRecipes()

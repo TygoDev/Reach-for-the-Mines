@@ -16,6 +16,6 @@ MonoBehaviour:
   name: Chest
   description: Used to store your items.
   value: 10
-  purchasePrice: 200
+  purchasePrice: 100
   icon: {fileID: 21300000, guid: a35157310478e414a9a6ed21c3282ea6, type: 3}
   itemType: 3
