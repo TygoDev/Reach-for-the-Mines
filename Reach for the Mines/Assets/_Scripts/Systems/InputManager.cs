@@ -12,6 +12,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction<Vector2> moveEvent = delegate { };
     public event UnityAction<Vector2> mouseRotateEvent = delegate { };
     public event UnityAction jumpEvent = delegate { };
+    public event UnityAction enterEvent = delegate { };
     public event UnityAction sprintEvent = delegate { };
     public event UnityAction sprintCanceledEvent = delegate { };
     public event UnityAction openInventoryEvent = delegate { };
@@ -86,6 +87,12 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
             hitActionInProgress = false;
     }
 
+    public void OnEnter(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            enterEvent.Invoke();
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         if (!hitActionInProgress)
@@ -96,7 +103,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (!hitActionInProgress)
+        if (!hitActionInProgress && context.phase == InputActionPhase.Performed)
             jumpEvent.Invoke();
     }
 

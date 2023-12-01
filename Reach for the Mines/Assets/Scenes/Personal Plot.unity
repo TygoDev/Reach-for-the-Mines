@@ -8678,9 +8678,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4075064222471719567, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: spawnpoint.y
-      value: 1
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.size
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[7]
+      value: This is the town, here you can acces the shop. Where you can sell your
+        items and purchase new recipes or items!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[8]
+      value: Around the town are rocks you can mine
       objectReference: {fileID: 0}
     - target: {fileID: 5729504423126208328, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_RootOrder
@@ -8729,86 +8738,6 @@ PrefabInstance:
     - target: {fileID: 6048232278638681304, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_Name
       value: Systems
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[0].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 4f03d6998e29d0d4cb8d42c7c3722648, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[0].two
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[1].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 36dca13c861968345a67f284d3ee6a93, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[1].two
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[2].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[2].two
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[3].one
-      value: 
-      objectReference: {fileID: 11400000, guid: a0f3a3a5e496da64080a8e1991a8966f, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[3].two
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[4].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 6fe8bbc6cd50ab94eaa9496a5b7888e3, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[4].two
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[5].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 9aadc356d84def6408787747bf1ad374, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: items.Array.data[5].two
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.data[0].two
-      value: 
-      objectReference: {fileID: 11400000, guid: c5d5d3b39d2723f47b422199fb24acef, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.data[0].one.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.data[0].one.Array.data[0].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 91c9635d0e461184380905d05f30d031, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.data[0].one.Array.data[0].two
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.data[0].one.Array.data[1].one
-      value: 
-      objectReference: {fileID: 11400000, guid: 880121b21ec568b46a2336c507718055, type: 2}
-    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: unlockedRecipes.Array.data[0].one.Array.data[1].two
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9931,6 +9860,10 @@ PrefabInstance:
     - target: {fileID: 5842359249082793195, guid: 6a6eaa633f5790c49a03400e76ab8c97, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8735426221401620821, guid: 6a6eaa633f5790c49a03400e76ab8c97, type: 3}
+      propertyPath: m_Mass
+      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

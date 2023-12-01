@@ -20,6 +20,7 @@ public class Systems : MonoBehaviour
     public UnityAction updateCurrencyEvent = delegate { };
     public UnityAction<Item> stationClickedEvent = delegate { };
     public Vector3 spawnpoint = new Vector3(0,1,0);
+    public bool tutorialComplete = false;
 
     private void Awake()
     {
