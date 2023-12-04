@@ -8680,16 +8680,91 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.size
-      value: 9
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[7]
-      value: This is the town, here you can acces the shop. Where you can sell your
-        items and purchase new recipes or items!
+      value: This is the town, here you can acces the shop as well as the different
+        types of mines.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[8]
-      value: Around the town are rocks you can mine
+      value: Around the town are rocks you can mine by holding down the LEFT mouse
+        button when you are close enough.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[9]
+      value: Mine some resources and sell them at the shop at the center of town,
+        open the shop by pressing E when you're close enough.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[10]
+      value: Mine and sell enough resources to reach 500 gold, then locate the copper
+        mine and pay the toll for entry.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[11]
+      value: Inside the mine you will have a limited amount of time to gather as
+        many resources as possible.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[12]
+      value: Continue after you have finished mining...
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[13]
+      value: Head to the store and obtain the furnace, anvil and copper pickaxe recipes
+        and buy the crafting bench item.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[14]
+      value: Head back to your personal plot.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[15]
+      value: Place the crafting table by accessing your inventory by pressing I and
+        clicking on the station. This is how you place all stations.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[16]
+      value: Acces the crafting table by pressing E when you're close enough, and
+        craft the furnace.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[17]
+      value: If you do not have enough recourse head to town and gather some more.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[18]
+      value: Now place the furnace and use it to smelt some copper into at least
+        3 copper bars. If you do not have enough go gather more.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[19]
+      value: Craft an anvil using the crafting table and place it down.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[20]
+      value: Gather enough recources to upgrade your standard pickaxe to a copper
+        pickaxe.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[21]
+      value: And that's pretty much it for now! Gather recources, upgrade your pickaxe,
+        repeat!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[22]
+      value: You can upgrade up to a bronze pickaxe, and other mines are accesible
+        in the center of town. But they are more expensive!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[23]
+      value: Good luck obtaining that bronze pickaxe!
+      objectReference: {fileID: 0}
+    - target: {fileID: 3312900556801792223, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5729504423126208328, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_RootOrder

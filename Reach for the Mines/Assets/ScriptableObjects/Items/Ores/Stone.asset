@@ -15,5 +15,7 @@ MonoBehaviour:
   id: 0
   name: Stone
   description: Just stone.
-  value: 1
+  value: 3
+  purchasePrice: 0
   icon: {fileID: 21300000, guid: fb08bdb0d5f6f874ca959bacc01fbb96, type: 3}
+  itemType: 0
