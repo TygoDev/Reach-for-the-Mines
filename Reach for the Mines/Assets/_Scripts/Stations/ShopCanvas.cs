@@ -184,9 +184,6 @@ public class ShopCanvas : MonoBehaviour
 
     public void OnGameStateChange(GameState state)
     {
-        if (state == GameState.Menu && GetComponent<Canvas>().enabled == true)
-        {
-            SetMenuWhenOpened();
-        }
+        SetMenuWhenOpened();
     }
 }

@@ -8814,6 +8814,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Systems
       objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[0].two
+      value: 
+      objectReference: {fileID: 11400000, guid: c5d5d3b39d2723f47b422199fb24acef, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[1].two
+      value: 
+      objectReference: {fileID: 11400000, guid: db0b6fd73a4fd6742a6010a3a42f5d30, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[0].one.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[1].one.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[0].one.Array.data[0].one
+      value: 
+      objectReference: {fileID: 11400000, guid: 7506c0c982f2ec949b134352c8ce9308, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[0].one.Array.data[0].two
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[1].one.Array.data[0].one
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a6e63970d09d12479ed39aa6beb1b3d, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: unlockedRecipes.Array.data[1].one.Array.data[0].two
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
