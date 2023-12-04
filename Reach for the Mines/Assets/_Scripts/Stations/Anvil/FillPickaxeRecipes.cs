@@ -17,11 +17,6 @@ public class FillPickaxeRecipes : MonoBehaviour
 
     }
 
-    private void OnEnable()
-    {
-        Initialize();
-    }
-
     private void Initialize()
     {
         anvilUI = GetComponentInParent<AnvilUI>();
