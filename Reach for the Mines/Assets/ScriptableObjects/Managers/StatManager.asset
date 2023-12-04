@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StatManager
   m_EditorClassIdentifier: 
   harvestStrength: 5
-  level: 7
-  goldAmount: 750
-  XPAmount: 885
+  level: 0
+  goldAmount: 0
+  XPAmount: 0

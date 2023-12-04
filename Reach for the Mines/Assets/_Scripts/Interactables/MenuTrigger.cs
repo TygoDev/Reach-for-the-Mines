@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -5,7 +6,10 @@ using UnityEngine;
 
 public class MenuTrigger : MonoBehaviour
 {
+    public event Action OnDestroyed;
+
     [SerializeField] private Canvas menuToTrigger = null;
+
     private Systems systems = default;
 
     private void Start()
@@ -45,6 +49,11 @@ public class MenuTrigger : MonoBehaviour
     private void OnDisable()
     {
         systems.inputManager.unPauseEvent -= OnInventoryClose;
+    }
+
+    private void OnDestroy()
+    {
+        OnDestroyed?.Invoke();
     }
 
     // EVENT LISTENERS
