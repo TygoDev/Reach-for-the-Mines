@@ -15,6 +15,7 @@ MonoBehaviour:
   id: 5
   name: Copper Bar
   description: A high value item gained from smelting copper ore.
-  value: 40
+  value: 60
+  purchasePrice: 0
   icon: {fileID: 21300000, guid: e1deaea5d931b5644856702282a2ac9f, type: 3}
   itemType: 0

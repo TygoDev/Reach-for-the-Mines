@@ -7017,7 +7017,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInCave: 180
-  spawnpoint: {x: 115.84, y: 1, z: 326}
+  spawnpoint: {x: 56, y: 1, z: 152}
   timerText: {fileID: 1326879617}
 --- !u!4 &551639750
 Transform:
@@ -13286,7 +13286,7 @@ MonoBehaviour:
   menuTrigger: {fileID: 0}
   cost: 0
   textToSay: 
-  spawnpoint: {x: 115.84, y: 1, z: 326}
+  spawnpoint: {x: 56, y: 1, z: 152}
 --- !u!65 &1069375862
 BoxCollider:
   m_ObjectHideFlags: 0
