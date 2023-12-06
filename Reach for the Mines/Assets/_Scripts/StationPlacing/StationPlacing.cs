@@ -67,7 +67,7 @@ public class StationPlacing : MonoBehaviour
     {
         if (currentStationInstance != null && currentBuildingArea != null && placingEnabled)
         {
-            currentStationInstance.transform.position = new Vector3(currentStationCenter.x, 0.5f, currentStationCenter.z);
+            currentStationInstance.transform.position = new Vector3(currentStationCenter.x, 0, currentStationCenter.z);
 
             currentBuildingArea = null;
             currentStationInstance = null;
@@ -115,7 +115,7 @@ public class StationPlacing : MonoBehaviour
                             DestroyStation();
                             currentBuildingArea = hitBuildingArea;
                             // Instantiate the new station and assign it to currentStationInstance
-                            currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0.5f, centerOfBuildingArea.z), Quaternion.identity, transform);
+                            currentStationInstance = Instantiate(selectedStation, new Vector3(centerOfBuildingArea.x, 0, centerOfBuildingArea.z), Quaternion.identity, transform);
                             canPlaceStation = false;
                         }
                     }
