@@ -5725,6 +5725,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1105528228}
   - component: {fileID: 1105528229}
+  - component: {fileID: 1105528230}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -5809,6 +5810,29 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &1105528230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105528227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &1119694080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9915,6 +9939,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuildableArea
       objectReference: {fileID: 0}
+    - target: {fileID: 8468389020313706181, guid: 07bf769a105b6c540afbbf53d8362afa, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9975,10 +10003,6 @@ PrefabInstance:
     - target: {fileID: 5842359249082793195, guid: 6a6eaa633f5790c49a03400e76ab8c97, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8735426221401620821, guid: 6a6eaa633f5790c49a03400e76ab8c97, type: 3}
-      propertyPath: m_Mass
-      value: 25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
