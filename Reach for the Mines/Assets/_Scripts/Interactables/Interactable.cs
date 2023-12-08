@@ -12,7 +12,8 @@ public class Interactable : MonoBehaviour
     public event UnityAction InteractableDestroyed = delegate { };
 
     [SerializeField] private List<Drop> possibleDrops = new List<Drop>();
-    [SerializeField] private ItemController itemPrefab = null;
+    [SerializeField] private GameObject itemPrefab = null;
+    [SerializeField] private List<GameObject> itemPrefabModels = new List<GameObject>();
     [SerializeField] private int amountToDrop = 4;
     [SerializeField] private Slider healthSlider = null;
 
@@ -63,8 +64,27 @@ public class Interactable : MonoBehaviour
         {
             for (int i = 0; i < amountToDrop; i++)
             {
-                itemPrefab.item = GetRandomItem();
-                Instantiate(itemPrefab, transform.position, Quaternion.identity);
+                Item randomItem = GetRandomItem();
+
+                foreach (GameObject dropPrefab in itemPrefabModels)
+                {
+                    if(randomItem.name == dropPrefab.name)
+                    {
+                        itemPrefab = dropPrefab;
+                        itemPrefab.GetComponent<ItemController>().item = randomItem;
+                        break;
+                    }
+                }
+
+                Vector3 randomPosition = new Vector3(
+                    Random.Range(transform.position.x - 1, transform.position.x + 1),
+                    0.5f,
+                    Random.Range(transform.position.z - 1, transform.position.z + 1)
+                );
+
+                Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
+
+                Instantiate(itemPrefab, randomPosition, randomRotation);
             }
 
             InteractableDestroyed.Invoke();

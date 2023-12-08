@@ -25690,6 +25690,10 @@ PrefabInstance:
       propertyPath: spawnpoint.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4075064222471719567, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialComplete
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5729504423126208328, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_RootOrder
       value: 9
