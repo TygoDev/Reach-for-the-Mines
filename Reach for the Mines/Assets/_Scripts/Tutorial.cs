@@ -38,6 +38,9 @@ public class Tutorial : MonoBehaviour
 
     private void Unsubscribe()
     {
+        if (systems == null)
+            return;
+
         systems.inputManager.enterEvent -= FirstAdvancement;
         systems.inputManager.mouseRotateEvent -= MouseMoved;
         systems.inputManager.moveEvent -= CharacterMoved;
