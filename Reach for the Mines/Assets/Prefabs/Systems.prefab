@@ -180,13 +180,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - one: {fileID: 11400000, guid: 4f03d6998e29d0d4cb8d42c7c3722648, type: 2}
+  - one: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
     two: 1
   - one: {fileID: 11400000, guid: 36dca13c861968345a67f284d3ee6a93, type: 2}
     two: 1
-  - one: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
-    two: 1
   - one: {fileID: 11400000, guid: a0f3a3a5e496da64080a8e1991a8966f, type: 2}
+    two: 1
+  - one: {fileID: 11400000, guid: 4f03d6998e29d0d4cb8d42c7c3722648, type: 2}
     two: 1
   unlockedRecipes: []
   lockedRecipes:
@@ -218,6 +218,12 @@ MonoBehaviour:
     - one: {fileID: 11400000, guid: ef98ef1f0cf099b4eb06281a372d5b6f, type: 2}
       two: 17
     two: {fileID: 11400000, guid: 8d28dab4150c81841855924dc46860f3, type: 2}
+  - one:
+    - one: {fileID: 11400000, guid: 7506c0c982f2ec949b134352c8ce9308, type: 2}
+      two: 1
+    - one: {fileID: 11400000, guid: 4a6e63970d09d12479ed39aa6beb1b3d, type: 2}
+      two: 1
+    two: {fileID: 11400000, guid: ef98ef1f0cf099b4eb06281a372d5b6f, type: 2}
   currentPickaxe: {fileID: 11400000, guid: b897e08aace18d642b524e174ca512f2, type: 2}
   maxStackAmount: 50
   maxSlots: 32
@@ -738,13 +744,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52de180d930cc914ea03ac1dc88cdf1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tutorialText: {fileID: 3312900556801792223}
+  pressEnterText: {fileID: 8045480006181418514}
   tutorialLines:
   - Welcome to Reach for the Mines!
-  - This is your personal plot where you can manage all your resources.
-  - Use the MOUSE to look around.
-  - Use the WASD keys to move your character.
-  - Press and hold the SHIFT key while moving to sprint.
-  - Jump by pressing the SPACEBAR.
-  - Exit your personal plot to head to the town!
-  tutorialText: {fileID: 3312900556801792223}
-  tutorialIndex: 0
+  - Move your MOUSE to look around.
+  - Use the W A S and D keys to move your character.
+  - Use the SHIFT button while moving to sprint.
+  - Press the SPACEBAR to jump.

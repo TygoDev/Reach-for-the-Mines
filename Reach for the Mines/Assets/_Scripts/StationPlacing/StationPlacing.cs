@@ -33,8 +33,7 @@ public class StationPlacing : MonoBehaviour
     {
         if (systems != null)
         {
-            systems.inputManager.hitEvent += Place;
-            systems.inputManager.unPauseEvent += Disable;
+            Subscribe();
         }
     }
 

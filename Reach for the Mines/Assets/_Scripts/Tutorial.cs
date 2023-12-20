@@ -1,15 +1,15 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Collections.Generic;
+using System.Collections;
 
 public class Tutorial : MonoBehaviour
 {
-    [SerializeField] private List<string> tutorialLines = new List<string>();
     [SerializeField] private TMP_Text tutorialText = null;
+    [SerializeField] private TMP_Text pressEnterText = null;
+    [SerializeField] private List<string> tutorialLines = new List<string>();
 
-    public int tutorialIndex = 0;
+    private int tutorialIndex = 0;
     private Systems systems = null;
 
     private void Start()
@@ -17,35 +17,100 @@ public class Tutorial : MonoBehaviour
         systems = Systems.Instance;
 
         if (systems.tutorialComplete)
+        {
             Destroy(gameObject);
+            return;
+        }
 
         Initialize();
     }
 
     private void Initialize()
     {
-        tutorialText.text = tutorialLines[tutorialIndex];
-        tutorialIndex++;
-        systems.inputManager.enterEvent += NextTutorial;
+        UpdateTutorialText();
+        Subscribe();
+    }
+
+    private void Subscribe()
+    {
+        systems.inputManager.enterEvent += FirstAdvancement;
+    }
+
+    private void Unsubscribe()
+    {
+        systems.inputManager.enterEvent -= FirstAdvancement;
+        systems.inputManager.mouseRotateEvent -= MouseMoved;
+        systems.inputManager.moveEvent -= CharacterMoved;
+        systems.inputManager.sprintCanceledEvent -= CharacterSprinted;
+        systems.inputManager.jumpEvent -= CharacterJumped;
     }
 
     private void OnDisable()
     {
-        if(systems!=null)
-        systems.inputManager.enterEvent -= NextTutorial;
+        Unsubscribe();
     }
+
+    #region Event Listeners
+    private void FirstAdvancement()
+    {
+        NextTutorial();
+        TogglePressEnterText(false);
+
+        Unsubscribe();
+        systems.inputManager.mouseRotateEvent += MouseMoved;
+    }
+
+    private void MouseMoved(Vector2 x)
+    {
+        NextTutorial();
+        Unsubscribe();
+
+        systems.inputManager.moveEvent += CharacterMoved;
+    }
+
+    private void CharacterMoved(Vector2 x)
+    {
+        NextTutorial();
+        Unsubscribe();
+
+        systems.inputManager.sprintCanceledEvent += CharacterSprinted;
+    }
+
+    private void CharacterSprinted()
+    {
+        NextTutorial();
+        Unsubscribe();
+
+        systems.inputManager.jumpEvent += CharacterJumped;
+    }
+
+    private void CharacterJumped()
+    {
+        NextTutorial();
+        Unsubscribe();
+    }
+    #endregion
 
     private void NextTutorial()
     {
-        if (tutorialIndex < tutorialLines.Count)
+        if (tutorialIndex + 1 < tutorialLines.Count)
         {
-            tutorialText.text = tutorialLines[tutorialIndex];
             tutorialIndex++;
+            UpdateTutorialText();
         }
         else
         {
-            systems.tutorialComplete = true;
             Destroy(gameObject);
         }
+    }
+
+    private void UpdateTutorialText()
+    {
+        tutorialText.text = tutorialLines[tutorialIndex];
+    }
+
+    private void TogglePressEnterText(bool active)
+    {
+        pressEnterText.gameObject.SetActive(active);
     }
 }
