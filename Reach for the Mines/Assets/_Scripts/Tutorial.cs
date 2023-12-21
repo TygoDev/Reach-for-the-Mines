@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
@@ -91,6 +92,14 @@ public class Tutorial : MonoBehaviour
     {
         NextTutorial();
         Unsubscribe();
+
+        SceneManager.activeSceneChanged += SwitchedToHUBworld;
+    }
+
+    private void SwitchedToHUBworld(Scene currentScene, Scene nextScene)
+    {
+        if (nextScene.name == "Hub World")
+            NextTutorial();
     }
     #endregion
 

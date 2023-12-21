@@ -8702,6 +8702,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[0]
+      value: Welcome to Reach for the Mines!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[5]
+      value: This is your personal plot, leave it and head for the town.
+      objectReference: {fileID: 0}
     - target: {fileID: 5729504423126208328, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_RootOrder
       value: 10
