@@ -164,6 +164,7 @@ public class ShopCanvas : MonoBehaviour
         {
             systems.inventoryManager.Add(item.item);
             systems.statManager.goldAmount -= item.item.purchasePrice;
+            EventBus<BoughtEvent>.Publish(new BoughtEvent(systems.statManager.goldAmount, item.item));
             systems.updateCurrencyEvent.Invoke();
         }
     }
@@ -177,6 +178,7 @@ public class ShopCanvas : MonoBehaviour
             systems.updateCurrencyEvent.Invoke();
             systems.inventoryManager.RemoveStack(inventoryItem.itemStack);
             playerInventory.PopulateInventory();
+            EventBus<SoldEvent>.Publish(new SoldEvent(systems.statManager.goldAmount));
         }
     }
 

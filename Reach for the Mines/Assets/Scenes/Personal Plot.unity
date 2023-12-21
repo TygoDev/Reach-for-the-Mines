@@ -8704,7 +8704,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.size
-      value: 6
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[0]
@@ -8713,6 +8713,65 @@ PrefabInstance:
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[5]
       value: This is your personal plot, leave it and head for the town.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[6]
+      value: Welcome to town, hold down LEFT CLICK near one of the rocks to mine
+        it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[7]
+      value: Locate the shop in the center of town, press E to interact with it and
+        sell your items.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[8]
+      value: Obtain 500 gold.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[9]
+      value: Locate the copper mine, and enter it!
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[10]
+      value: Mine as much as possible before the timer runs out.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[11]
+      value: Buy a crafting table and return to your personal plot.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[12]
+      value: Place the crafting table by pressing I and clicking on it.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[13]
+      value: Interact with the crafting table by pressing E.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[14]
+      value: In town you can buy recipes from the shop for other stations.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[15]
+      value: Obtain the recipes for the furnace and anvil. And upgrade your pickaxe
+        to copper.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[16]
+      value: Obtain a lead pickaxe.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[17]
+      value: Obtain an iron pickaxe.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[18]
+      value: Obtain a bronze pickaxe.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[19]
+      value: Obtain a bronze pickaxe.
       objectReference: {fileID: 0}
     - target: {fileID: 5729504423126208328, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_RootOrder
@@ -8761,6 +8820,34 @@ PrefabInstance:
     - target: {fileID: 6048232278638681304, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_Name
       value: Systems
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.data[7].two
+      value: 
+      objectReference: {fileID: 11400000, guid: ef98ef1f0cf099b4eb06281a372d5b6f, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.data[7].one.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.data[7].one.Array.data[0].one
+      value: 
+      objectReference: {fileID: 11400000, guid: 7506c0c982f2ec949b134352c8ce9308, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.data[7].one.Array.data[0].two
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.data[7].one.Array.data[1].one
+      value: 
+      objectReference: {fileID: 11400000, guid: 4a6e63970d09d12479ed39aa6beb1b3d, type: 2}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: lockedRecipes.Array.data[7].one.Array.data[1].two
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -74,6 +74,7 @@ public class StationPlacing : MonoBehaviour
             systems.inventoryManager.Remove(currentItem);
             currentItem = null;
 
+            EventBus<StationPlacedEvent>.Publish(new StationPlacedEvent(currentStationInstance));
             Disable();
         }
     }

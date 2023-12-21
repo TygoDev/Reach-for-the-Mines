@@ -38,9 +38,14 @@ public class MenuTrigger : MonoBehaviour
     {
 
         if (value)
+        {
+            EventBus<StationInteractedEvent>.Publish(new StationInteractedEvent(gameObject));
             systems.stateManager.UpdateGameState(GameState.Menu);
+        }
         else
+        {
             systems.stateManager.UpdateGameState(GameState.Gameplay);
+        }
 
         menuToTrigger.enabled = value;
     }

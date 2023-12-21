@@ -88,6 +88,7 @@ public class Interactable : MonoBehaviour
             }
 
             InteractableDestroyed.Invoke();
+            EventBus<MinedEvent>.Publish(new MinedEvent());
             Destroy(gameObject);
         }
     }

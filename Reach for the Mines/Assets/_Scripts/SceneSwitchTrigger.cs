@@ -47,6 +47,7 @@ public class SceneSwitchTrigger : MonoBehaviour
             systems.statManager.goldAmount -= cost;
             systems.spawnpoint = spawnpoint;
             systems.stateManager.UpdateGameState(GameState.Gameplay);
+            EventBus<SceneSwitchedEvent>.Publish(new SceneSwitchedEvent(sceneToLoad));
             SceneManager.LoadScene(sceneToLoad);
         }
     }
