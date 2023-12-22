@@ -67,14 +67,12 @@ public class StationPlacing : MonoBehaviour
         if (currentStationInstance != null && currentBuildingArea != null && placingEnabled)
         {
             currentStationInstance.transform.position = new Vector3(currentStationCenter.x, 0, currentStationCenter.z);
-
+            EventBus<StationPlacedEvent>.Publish(new StationPlacedEvent(currentStationInstance));
             currentBuildingArea = null;
             currentStationInstance = null;
             canPlaceStation = true;
             systems.inventoryManager.Remove(currentItem);
             currentItem = null;
-
-            EventBus<StationPlacedEvent>.Publish(new StationPlacedEvent(currentStationInstance));
             Disable();
         }
     }

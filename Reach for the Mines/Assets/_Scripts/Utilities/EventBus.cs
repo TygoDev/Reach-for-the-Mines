@@ -78,6 +78,16 @@ public class StationInteractedEvent : MyEvent
     }
 }
 
+public class PickaxeUpgradedEvent : MyEvent
+{
+    public readonly Item pickaxe;
+
+    public PickaxeUpgradedEvent(Item value)
+    {
+        pickaxe = value;
+    }
+}
+
 public class SceneSwitchedEvent : MyEvent
 {
     public readonly string newScene;

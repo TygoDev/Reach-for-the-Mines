@@ -48,6 +48,8 @@ public class Anvil : MonoBehaviour
         }
         systems.statManager.harvestStrength = selectedCraftable.Two.value;
         systems.inventoryManager.currentPickaxe = selectedCraftable.Two;
+
+        EventBus<PickaxeUpgradedEvent>.Publish(new PickaxeUpgradedEvent(systems.inventoryManager.currentPickaxe));
     }
 
     private void RestoreCraftingItemsAfterFail(List<ItemStack> tempList, ItemStack tempStack)

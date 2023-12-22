@@ -8704,7 +8704,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.size
-      value: 19
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[0]
@@ -8738,36 +8738,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[11]
-      value: Buy a crafting table and return to your personal plot.
+      value: Buy a crafting table.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[12]
-      value: Place the crafting table by pressing I and clicking on it.
+      value: Return to your personal plot.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[13]
-      value: Interact with the crafting table by pressing E.
+      value: Place the crafting table by pressing I and clicking on it.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[14]
-      value: In town you can buy recipes from the shop for other stations.
+      value: Interact with the crafting table by pressing E.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[15]
+      value: In town you can buy recipes from the shop for other stations.
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: tutorialLines.Array.data[16]
       value: Obtain the recipes for the furnace and anvil. And upgrade your pickaxe
         to copper.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: tutorialLines.Array.data[16]
+      propertyPath: tutorialLines.Array.data[17]
       value: Obtain a lead pickaxe.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
-      propertyPath: tutorialLines.Array.data[17]
-      value: Obtain an iron pickaxe.
-      objectReference: {fileID: 0}
-    - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[18]
-      value: Obtain a bronze pickaxe.
+      value: Obtain an iron pickaxe.
       objectReference: {fileID: 0}
     - target: {fileID: 2480311175799769542, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: tutorialLines.Array.data[19]
@@ -8820,6 +8820,10 @@ PrefabInstance:
     - target: {fileID: 6048232278638681304, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_Name
       value: Systems
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: lockedRecipes.Array.size

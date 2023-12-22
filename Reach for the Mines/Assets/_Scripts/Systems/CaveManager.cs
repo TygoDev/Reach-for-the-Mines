@@ -45,6 +45,7 @@ public class CaveManager : MonoBehaviour
     {
         systems.spawnpoint = spawnpoint;
 
+        EventBus<SceneSwitchedEvent>.Publish(new SceneSwitchedEvent("Hub World"));
         SceneManager.LoadScene("Hub World");
     }
 }

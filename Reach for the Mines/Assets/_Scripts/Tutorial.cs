@@ -45,6 +45,7 @@ public class Tutorial : MonoBehaviour
             return;
 
         systems.inputManager.enterEvent -= FirstAdvancement;
+        EventBus<SceneSwitchedEvent>.OnEvent -= SwitchedToHUBworld;
         systems.inputManager.mouseRotateEvent -= MouseMoved;
         systems.inputManager.moveEvent -= CharacterMoved;
         systems.inputManager.sprintCanceledEvent -= CharacterSprinted;
@@ -59,6 +60,7 @@ public class Tutorial : MonoBehaviour
         EventBus<StationPlacedEvent>.OnEvent -= CraftingBenchPlaced;
         EventBus<StationInteractedEvent>.OnEvent -= CraftingBenchInteracted;
         systems.inputManager.enterEvent -= AdvanceAfterCraftingBench;
+        EventBus<PickaxeUpgradedEvent>.OnEvent -= PickaxeUpgraded;
     }
 
     private void OnDisable()
@@ -133,7 +135,16 @@ public class Tutorial : MonoBehaviour
     {
         NextTutorial();
 
-        EventBus<SoldEvent>.OnEvent += EnoughItemsSold;
+        if(soldEvent.totalGold >= 500)
+        {
+            NextTutorial();
+
+            EventBus<SceneSwitchedEvent>.OnEvent += CopperMineEntered;
+        }
+        else
+        {
+            EventBus<SoldEvent>.OnEvent += EnoughItemsSold;
+        }
     }
 
     private void EnoughItemsSold(SoldEvent soldEvent)
@@ -185,7 +196,7 @@ public class Tutorial : MonoBehaviour
 
     private void CraftingBenchPlaced(StationPlacedEvent stationPlacedEvent)
     {
-        if(stationPlacedEvent.station.name == "Crafting Bench")
+        if(stationPlacedEvent.station.name == "Crafting Bench(Clone)")
         {
             NextTutorial();
 
@@ -195,7 +206,7 @@ public class Tutorial : MonoBehaviour
 
     private void CraftingBenchInteracted(StationInteractedEvent stationInteractedEvent)
     {
-        if(stationInteractedEvent.station.name == "Crafting Bench")
+        if(stationInteractedEvent.station.name == "Crafting Bench(Clone)")
         {
             NextTutorial();
             TogglePressEnterText(true);
@@ -206,7 +217,17 @@ public class Tutorial : MonoBehaviour
 
     private void AdvanceAfterCraftingBench()
     {
+        TogglePressEnterText(false);
         NextTutorial();
+
+        EventBus<PickaxeUpgradedEvent>.OnEvent += PickaxeUpgraded;
+    }
+
+    private void PickaxeUpgraded(PickaxeUpgradedEvent pickaxeUpgradedEvent)
+    {
+        NextTutorial();
+
+        EventBus<PickaxeUpgradedEvent>.OnEvent += PickaxeUpgraded;
     }
 
     #endregion
