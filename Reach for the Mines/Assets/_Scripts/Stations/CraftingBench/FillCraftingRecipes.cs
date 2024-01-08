@@ -7,10 +7,11 @@ public class FillCraftingRecipes : MonoBehaviour
 {
     [SerializeField] private CraftingBenchUI craftingBenchUI = null;
     [SerializeField] private PurchasableItem craftingItem = null;
+    private List<PurchasableItem> existingRecipes = new List<PurchasableItem>();
 
     private Systems systems = null;
 
-    private void Start()
+    private void OnEnable()
     {
         systems = Systems.Instance;
 
@@ -28,17 +29,27 @@ public class FillCraftingRecipes : MonoBehaviour
         {
             foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
             {
-
                 if (craftable.Two.itemType != ItemType.Pickaxe)
                 {
+                    foreach (var item in existingRecipes)
+                    {
+                        if(item.craftable == craftable)
+                        {
+                            goto GoNext;
+                        }
+                    }
+
                     PurchasableItem newButton = Instantiate(craftingItem, transform);
                     newButton.FillSlot(craftable, null);
                     craftingBenchUI.recipeButtons.Add(newButton);
+                    existingRecipes.Add(newButton);
+
+                GoNext:;
+                   
                 }
             }
 
             craftingBenchUI.SetClickEvents();
         }
     }
-
 }
