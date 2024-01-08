@@ -17,6 +17,12 @@ public class CraftingBenchUI : MonoBehaviour
     private void Start()
     {
         craftingBench = GetComponent<CraftingBench>();
+        foreach (var item in recipeButtons)
+        {
+            Destroy(item.CraftingItemButton);
+        }
+
+        recipeButtons.Clear();
     }
 
     public void PickUpStation()

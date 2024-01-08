@@ -13,42 +13,32 @@ public class FillCraftingRecipes : MonoBehaviour
     private void Start()
     {
         systems = Systems.Instance;
-        systems.stateManager.onGameStateChanged += OnGameStateChanged;
-        InitializeRecipes();
+
+        EventBus<StationInteractedEvent>.OnEvent += InitializeRecipes;
     }
 
     private void OnDisable()
     {
-        systems.stateManager.onGameStateChanged -= OnGameStateChanged;
+        EventBus<StationInteractedEvent>.OnEvent -= InitializeRecipes;
     }
 
-    private void InitializeRecipes()
+    private void InitializeRecipes(StationInteractedEvent stationInteractedEvent)
     {
-        foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
+        if (stationInteractedEvent.station.name == "Crafting Bench(Clone)")
         {
-            if (craftable.Two.itemType != ItemType.Pickaxe)
+            foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
             {
-                PurchasableItem newButton = Instantiate(craftingItem, transform);
-                newButton.FillSlot(craftable,null);
-                craftingBenchUI.recipeButtons.Add(newButton);
+
+                if (craftable.Two.itemType != ItemType.Pickaxe)
+                {
+                    PurchasableItem newButton = Instantiate(craftingItem, transform);
+                    newButton.FillSlot(craftable, null);
+                    craftingBenchUI.recipeButtons.Add(newButton);
+                }
             }
-        }
 
-        craftingBenchUI.SetClickEvents();
-    }
-
-    // -------------- EVENT LISTENERS -------------- 
-
-    private void OnGameStateChanged(GameState state)
-    {
-        if(state == GameState.Menu && craftingBenchUI.GetComponent<Canvas>().enabled)
-        {
-            foreach (var item in craftingBenchUI.recipeButtons)
-            {
-                Destroy(item.gameObject);
-            }
-            craftingBenchUI.recipeButtons.Clear();
-            InitializeRecipes();
+            craftingBenchUI.SetClickEvents();
         }
     }
+
 }
