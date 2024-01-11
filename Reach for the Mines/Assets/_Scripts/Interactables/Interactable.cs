@@ -78,7 +78,7 @@ public class Interactable : MonoBehaviour
 
                 Vector3 randomPosition = new Vector3(
                     Random.Range(transform.position.x - 1, transform.position.x + 1),
-                    0.5f,
+                    transform.position.y,
                     Random.Range(transform.position.z - 1, transform.position.z + 1)
                 );
 
