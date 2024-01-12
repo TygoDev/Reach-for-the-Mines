@@ -17,6 +17,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction sprintCanceledEvent = delegate { };
     public event UnityAction openInventoryEvent = delegate { };
     public event UnityAction hitEvent = delegate { };
+    public event UnityAction stoppedHittingEvent = delegate { };
     public event UnityAction interactEvent = delegate { };
 
     //menu
@@ -84,7 +85,11 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
             hitEvent.Invoke();
         }
         else if (context.phase == InputActionPhase.Canceled)
+        {
             hitActionInProgress = false;
+            stoppedHittingEvent.Invoke();
+        }
+
     }
 
     public void OnEnter(InputAction.CallbackContext context)

@@ -8,68 +8,52 @@ public class FillPickaxeRecipes : MonoBehaviour
 {
     [SerializeField] private AnvilUI anvilUI = null;
     [SerializeField] private PurchasableItem craftingItem = null;
+    private List<PurchasableItem> existingRecipes = new List<PurchasableItem>();
 
     private Systems systems = null;
 
     private void Start()
     {
-        Initialize();
-
-    }
-
-    private void Initialize()
-    {
-        anvilUI = GetComponentInParent<AnvilUI>();
         systems = Systems.Instance;
-        InitializeRecipes();
-        Subscribe();
     }
 
-    private void Subscribe()
+    private void OnEnable()
     {
-        systems.stateManager.onGameStateChanged += OnGameStateChanged;
+        EventBus<StationInteractedEvent>.OnEvent += InitializeRecipes;
     }
 
     private void OnDisable()
     {
-        systems.stateManager.onGameStateChanged -= OnGameStateChanged;
+        EventBus<StationInteractedEvent>.OnEvent -= InitializeRecipes;
     }
 
-    private void OnDestroy()
+    private void InitializeRecipes(StationInteractedEvent stationInteractedEvent)
     {
-        systems.stateManager.onGameStateChanged -= OnGameStateChanged;
-    }
-
-    private void InitializeRecipes()
-    {
-        foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
+        if (stationInteractedEvent.station.name == "Anvil(Clone)")
         {
-            if (craftable.Two.itemType == ItemType.Pickaxe)
+            foreach (Craftable craftable in systems.inventoryManager.unlockedRecipes)
             {
-                PurchasableItem newButton = Instantiate(craftingItem, transform);
-                newButton.FillSlot(craftable, null);
-                anvilUI.recipeButtons.Add(newButton);
+                foreach (var item in existingRecipes)
+                {
+                    if (item.craftable == craftable)
+                    {
+                        goto GoNext;
+                    }
+                }
+
+                if (craftable.Two.itemType == ItemType.Pickaxe)
+                {
+                    PurchasableItem newButton = Instantiate(craftingItem, transform);
+                    newButton.FillSlot(craftable, null);
+                    anvilUI.recipeButtons.Add(newButton);
+                    existingRecipes.Add(newButton);
+                }
+
+            GoNext:;
+
             }
-        }
 
-        anvilUI.SetClickEvents();
-    }
-
-    // -------------- EVENT LISTENERS -------------- 
-
-    private void OnGameStateChanged(GameState state)
-    {
-        if (anvilUI == null)
-            anvilUI = GetComponentInParent<AnvilUI>();
-
-        if (state == GameState.Menu && anvilUI.GetComponent<Canvas>().enabled)
-        {
-            foreach (var item in anvilUI.recipeButtons)
-            {
-                Destroy(item.gameObject);
-            }
-            anvilUI.recipeButtons.Clear();
-            InitializeRecipes();
+            anvilUI.SetClickEvents();
         }
     }
 }
