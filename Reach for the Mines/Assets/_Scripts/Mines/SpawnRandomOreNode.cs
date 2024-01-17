@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SpawnRandomOreNode : MonoBehaviour
 {
-    public List<Interactable> oreNodes = new List<Interactable>();
+    public List<Ore> oreNodes = new List<Ore>();
 
     private void Start()
     {

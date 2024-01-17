@@ -86,8 +86,8 @@ GameObject:
   m_Component:
   - component: {fileID: 952482832631846396}
   - component: {fileID: 3205410997627569680}
-  - component: {fileID: 2068724790440412226}
   - component: {fileID: 6414715899829526418}
+  - component: {fileID: 3267782954076081674}
   m_Layer: 0
   m_Name: IronNode
   m_TagString: Interactable
@@ -133,38 +133,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2068724790440412226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 875973176874378970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6a196d3e32f2a40963dd1ef8748241, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 25
-  healthBarCanvas: {fileID: 1453148717910232419}
-  currentlyHitting: 0
-  possibleDrops:
-  - one: {fileID: 11400000, guid: 5c37ee15f106f2d458feef5d74228bd6, type: 2}
-    two: 70
-  - one: {fileID: 11400000, guid: 880121b21ec568b46a2336c507718055, type: 2}
-    two: 15
-  - one: {fileID: 11400000, guid: 9aadc356d84def6408787747bf1ad374, type: 2}
-    two: 14
-  - one: {fileID: 11400000, guid: 2a9a0b977024d8444aabcffb3e6246c3, type: 2}
-    two: 1
-  itemPrefab: {fileID: 0}
-  itemPrefabModels:
-  - {fileID: 2461558826391987920, guid: de919ea8c28d70946beda2c6b91e7135, type: 3}
-  - {fileID: 2461558826391987920, guid: 51525168cacb77642ba6c7ce2563763c, type: 3}
-  - {fileID: 2461558826391987920, guid: 1e1ed5f09d0fc394e9042af5db859cae, type: 3}
-  - {fileID: 2461558826391987920, guid: 280799eb2f6a55c46b7cb2d9b6f8b97b, type: 3}
-  amountToDrop: 4
-  healthSlider: {fileID: 7391218541887795580}
 --- !u!114 &6414715899829526418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +145,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0d669fdfdfac24cbdc5d50acdfeb52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactable: {fileID: 2068724790440412226}
+  ore: {fileID: 3267782954076081674}
   xpValue: 20
+--- !u!114 &3267782954076081674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 875973176874378970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a1a34e8155803446be35204e279c77d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  healthBarCanvas: {fileID: 1453148717910232419}
+  currentlyHitting: 0
+  possibleDrops:
+  - one: {fileID: 11400000, guid: 5c37ee15f106f2d458feef5d74228bd6, type: 2}
+    two: 70
+  - one: {fileID: 11400000, guid: 9aadc356d84def6408787747bf1ad374, type: 2}
+    two: 10
+  - one: {fileID: 11400000, guid: 880121b21ec568b46a2336c507718055, type: 2}
+    two: 15
+  - one: {fileID: 11400000, guid: 2a9a0b977024d8444aabcffb3e6246c3, type: 2}
+    two: 5
+  itemPrefab: {fileID: 0}
+  itemPrefabModels:
+  - {fileID: 2461558826391987920, guid: 51525168cacb77642ba6c7ce2563763c, type: 3}
+  - {fileID: 2461558826391987920, guid: de919ea8c28d70946beda2c6b91e7135, type: 3}
+  - {fileID: 2461558826391987920, guid: 280799eb2f6a55c46b7cb2d9b6f8b97b, type: 3}
+  - {fileID: 2461558826391987920, guid: 1e1ed5f09d0fc394e9042af5db859cae, type: 3}
+  amountToDrop: 4
+  healthSlider: {fileID: 7391218541887795580}
 --- !u!1 &3046011430325602998
 GameObject:
   m_ObjectHideFlags: 0

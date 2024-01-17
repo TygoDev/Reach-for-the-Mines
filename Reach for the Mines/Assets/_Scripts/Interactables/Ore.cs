@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class Interactable : MonoBehaviour
+public class Ore : MonoBehaviour
 {
     public float health = 10f;
     public Canvas healthBarCanvas = null;
     public bool currentlyHitting = false;
-    public event UnityAction InteractableDestroyed = delegate { };
+    public event UnityAction OreDestroyed = delegate { };
 
     [SerializeField] private List<Drop> possibleDrops = new List<Drop>();
     [SerializeField] private GameObject itemPrefab = null;
@@ -87,7 +87,7 @@ public class Interactable : MonoBehaviour
                 Instantiate(itemPrefab, randomPosition, randomRotation);
             }
 
-            InteractableDestroyed.Invoke();
+            OreDestroyed.Invoke();
             EventBus<MinedEvent>.Publish(new MinedEvent());
             Destroy(gameObject);
         }

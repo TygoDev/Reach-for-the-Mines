@@ -19,6 +19,7 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public event UnityAction hitEvent = delegate { };
     public event UnityAction stoppedHittingEvent = delegate { };
     public event UnityAction interactEvent = delegate { };
+    public event UnityAction pauseEvent = delegate { };
 
     //menu
     public event UnityAction unPauseEvent = delegate { };
@@ -134,7 +135,11 @@ public class InputManager : ScriptableObject, GameInput.IGameplayActions, GameIn
     public void OnPause(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Canceled)
+        {
+            pauseEvent.Invoke();
             stateManager.UpdateGameState(GameState.Menu);
+        }
+
     }
 
     public void OnOpenInventory(InputAction.CallbackContext context)
