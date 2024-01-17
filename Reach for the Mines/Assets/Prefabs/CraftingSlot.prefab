@@ -144,8 +144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Furnace
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
+  m_sharedMaterial: {fileID: -3818345601617713921, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -169,8 +169,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 31.6
+  m_fontSizeBase: 31.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -348,8 +348,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   craftable:
-    recipe: []
-    result: {fileID: 0}
+    one: []
+    two: {fileID: 0}
+  item: {fileID: 0}
   itemImage: {fileID: 6157672256542242523}
   itemName: {fileID: 6361323608350740914}
+  itemDescription: {fileID: 0}
+  cost: {fileID: 0}
   button: {fileID: 1767114340189408921}
