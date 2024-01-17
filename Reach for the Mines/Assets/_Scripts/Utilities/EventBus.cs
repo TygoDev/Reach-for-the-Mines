@@ -31,6 +31,13 @@ public class TestEvent : MyEvent
     }
 }
 
+public class UnStuckEvent : MyEvent
+{
+    public UnStuckEvent()
+    {
+    }
+}
+
 public class MinedEvent : MyEvent
 {
     public MinedEvent() { }

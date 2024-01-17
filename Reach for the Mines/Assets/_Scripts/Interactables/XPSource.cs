@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Interactable))]
+[RequireComponent(typeof(Ore))]
 public class XPSource : MonoBehaviour
 {
-    [SerializeField] private Interactable interactable = null;
+    [SerializeField] private Ore ore = null;
     [SerializeField] private float xpValue = 0;
 
     private Systems systems = null;
@@ -20,12 +20,12 @@ public class XPSource : MonoBehaviour
 
     private void Subscribe()
     {
-        interactable.InteractableDestroyed += AddXP;
+        ore.OreDestroyed += AddXP;
     }
 
     private void OnDisable()
     {
-        interactable.InteractableDestroyed -= AddXP;
+        ore.OreDestroyed -= AddXP;
     }
 
     private void AddXP()

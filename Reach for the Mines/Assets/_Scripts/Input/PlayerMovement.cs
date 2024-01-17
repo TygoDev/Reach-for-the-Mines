@@ -23,8 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         systems = Systems.Instance;
-        transform.position = systems.spawnpoint;
-        systems.spawnpoint = new Vector3(0, 1, 0);
+        transform.position = systems.spawnpoint;        
         Subscribe();
     }
 
@@ -35,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
         systems.inputManager.jumpEvent += OnJump;
         systems.inputManager.sprintEvent += OnSprint;
         systems.inputManager.sprintCanceledEvent += OnSprintCanceled;
+
+        EventBus<UnStuckEvent>.OnEvent += ResetPosition;
     }
 
     private void OnDisable()
@@ -44,6 +45,8 @@ public class PlayerMovement : MonoBehaviour
         systems.inputManager.jumpEvent -= OnJump;
         systems.inputManager.sprintEvent -= OnSprint;
         systems.inputManager.sprintCanceledEvent -= OnSprintCanceled;
+
+        EventBus<UnStuckEvent>.OnEvent -= ResetPosition;
     }
 
     private void Update()
@@ -130,6 +133,11 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // EVENT LISTENERS
+
+    private void ResetPosition(UnStuckEvent myEvent)
+    {
+        transform.position = systems.spawnpoint;
+    }
 
     private void OnMove(Vector2 action)
     {

@@ -10,8 +10,8 @@ public class InteractableDetection : MonoBehaviour
     private const string MENUTRIGGER = "MenuTrigger";
 
     private Systems systems = null;
-    private List<Interactable> interactables = new List<Interactable>();
-    private Interactable activeInteractable = null;
+    private List<Ore> interactables = new List<Ore>();
+    private Ore activeInteractable = null;
     private MenuTrigger menuTrigger = null;
 
     private void Start()
@@ -57,8 +57,8 @@ public class InteractableDetection : MonoBehaviour
 
     private void SetInteractable(Collider other)
     {
-        interactables.Add(other.GetComponent<Interactable>());
-        foreach (Interactable item in interactables)
+        interactables.Add(other.GetComponent<Ore>());
+        foreach (Ore item in interactables)
         {
             item.SetHealthbar(true);
         }
@@ -68,7 +68,7 @@ public class InteractableDetection : MonoBehaviour
 
     private void UnSetInteractable(Collider other)
     {
-        Interactable interactable = other.GetComponent<Interactable>();
+        Ore interactable = other.GetComponent<Ore>();
 
         if (interactables.Contains(interactable))
         {
