@@ -79,6 +79,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 812709165609321263, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: health
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 812709165609321263, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: healthSlider
       value: 
       objectReference: {fileID: 3771788492735045406}
@@ -124,7 +128,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 9aadc356d84def6408787747bf1ad374, type: 2}
     - target: {fileID: 812709165609321263, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[1].two
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 812709165609321263, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[2].one
@@ -140,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 052c3a81603651f489fee27e798f602d, type: 2}
     - target: {fileID: 812709165609321263, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: possibleDrops.Array.data[3].two
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2320623349806021685, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: ore

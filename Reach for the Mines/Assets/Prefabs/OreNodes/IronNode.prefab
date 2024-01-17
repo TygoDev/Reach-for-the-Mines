@@ -159,18 +159,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a1a34e8155803446be35204e279c77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
+  health: 22
   healthBarCanvas: {fileID: 1453148717910232419}
   currentlyHitting: 0
   possibleDrops:
   - one: {fileID: 11400000, guid: 5c37ee15f106f2d458feef5d74228bd6, type: 2}
     two: 70
   - one: {fileID: 11400000, guid: 9aadc356d84def6408787747bf1ad374, type: 2}
-    two: 10
+    two: 12
   - one: {fileID: 11400000, guid: 880121b21ec568b46a2336c507718055, type: 2}
     two: 15
   - one: {fileID: 11400000, guid: 2a9a0b977024d8444aabcffb3e6246c3, type: 2}
-    two: 5
+    two: 3
   itemPrefab: {fileID: 0}
   itemPrefabModels:
   - {fileID: 2461558826391987920, guid: 51525168cacb77642ba6c7ce2563763c, type: 3}

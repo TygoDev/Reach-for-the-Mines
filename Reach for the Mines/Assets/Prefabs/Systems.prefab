@@ -68,15 +68,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
+  m_sharedMaterial: {fileID: -3818345601617713921, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 25.5
+  m_fontSizeBase: 25.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -180,13 +180,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - one: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
-    two: 1
-  - one: {fileID: 11400000, guid: 36dca13c861968345a67f284d3ee6a93, type: 2}
+  - one: {fileID: 11400000, guid: 4f03d6998e29d0d4cb8d42c7c3722648, type: 2}
     two: 1
   - one: {fileID: 11400000, guid: a0f3a3a5e496da64080a8e1991a8966f, type: 2}
     two: 1
-  - one: {fileID: 11400000, guid: 4f03d6998e29d0d4cb8d42c7c3722648, type: 2}
+  - one: {fileID: 11400000, guid: 712e2c29fdb05574b9c180884964502f, type: 2}
+    two: 1
+  - one: {fileID: 11400000, guid: 36dca13c861968345a67f284d3ee6a93, type: 2}
     two: 1
   unlockedRecipes: []
   lockedRecipes:
@@ -262,7 +262,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 17}
+  m_AnchoredPosition: {x: 0, y: 5.61}
   m_SizeDelta: {x: 280, y: 28.120895}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5647622532119840846
@@ -295,15 +295,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Mission
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
+  m_sharedMaterial: {fileID: -3818345601617713921, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -320,8 +320,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 47.6
+  m_fontSizeBase: 47.6
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -338,7 +338,7 @@ MonoBehaviour:
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -430,15 +430,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Press ENTER to continue
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
+  m_sharedMaterial: {fileID: -3818345601617713921, guid: d0c4629bbac9df8439e84af0a304cd14, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -455,8 +455,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 31.7
+  m_fontSizeBase: 31.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -471,9 +471,9 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
-  m_overflowMode: 1
+  m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
@@ -529,7 +529,7 @@ Transform:
   - {fileID: 1117328724519674480}
   - {fileID: 4746522310670719242}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4075064222471719567
 MonoBehaviour:
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.4392157}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.2627451}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -752,3 +752,19 @@ MonoBehaviour:
   - Use the W A S and D keys to move your character.
   - Use the SHIFT button while moving to sprint.
   - Press the SPACEBAR to jump.
+  - This is your personal plot, leave it and head for the town.
+  - Welcome to town, hold down LEFT CLICK near one of the rocks to mine it!
+  - Locate the shop in the center of town, press E to interact with it and sell your
+    items.
+  - Obtain 500 gold.
+  - Locate the copper mine, and enter it!
+  - Mine as much as possible before the timer runs out.
+  - Buy a crafting table.
+  - Return to your personal plot.
+  - Place the crafting table by pressing I and clicking on it.
+  - Interact with the crafting table by pressing E.
+  - In town you can buy recipes from the shop for other stations.
+  - Obtain the recipes for the furnace and anvil. And upgrade your pickaxe to copper.
+  - Obtain a lead pickaxe.
+  - Obtain an iron pickaxe.
+  - Obtain a bronze pickaxe.
