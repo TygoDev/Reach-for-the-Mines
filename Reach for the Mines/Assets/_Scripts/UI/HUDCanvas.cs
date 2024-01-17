@@ -42,7 +42,7 @@ public class HUDCanvas : MonoBehaviour
 
     private void UpdateGoldValue()
     {
-        goldText.text = "G: " + systems.statManager.goldAmount.ToString();
+        goldText.text = systems.statManager.goldAmount.ToString();
     }
 
     private void UpdateLevelValue()
