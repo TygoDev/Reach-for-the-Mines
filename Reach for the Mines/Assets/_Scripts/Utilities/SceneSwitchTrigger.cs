@@ -34,7 +34,7 @@ public class SceneSwitchTrigger : MonoBehaviour
         else if (other.CompareTag(PLAYER))
         {
             confirmMenuText.text = textToSay;
-            menuTrigger.ToogleMenu(true);
+            menuTrigger.ToggleMenu(true);
             confirmButton.onClick.AddListener(LoadScene);
 
         }

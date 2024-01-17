@@ -17,7 +17,7 @@ public class Ore : MonoBehaviour
     [SerializeField] private int amountToDrop = 4;
     [SerializeField] private Slider healthSlider = null;
 
-    private float damage = 0;
+    private float damage = 0f;
     private Camera mainCamera = null;
 
     private void Start()
@@ -32,13 +32,13 @@ public class Ore : MonoBehaviour
         if (healthBarCanvas.gameObject.activeInHierarchy)
             healthBarCanvas.transform.LookAt(mainCamera.transform.position);
 
-        if (currentlyHitting && health > 0)
+        if (currentlyHitting && health > 0f)
         {
             health -= Time.deltaTime * damage;
             healthSlider.value = health;
 
         }
-        else if (health <= 0)
+        else if (health <= 0f)
         {
             Harvest();
         }
@@ -77,12 +77,12 @@ public class Ore : MonoBehaviour
                 }
 
                 Vector3 randomPosition = new Vector3(
-                    Random.Range(transform.position.x - 1, transform.position.x + 1),
+                    Random.Range(transform.position.x - 1f, transform.position.x + 1f),
                     transform.position.y,
-                    Random.Range(transform.position.z - 1, transform.position.z + 1)
+                    Random.Range(transform.position.z - 1f, transform.position.z + 1f)
                 );
 
-                Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0, 360), 0f);
+                Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
 
                 Instantiate(itemPrefab, randomPosition, randomRotation);
             }

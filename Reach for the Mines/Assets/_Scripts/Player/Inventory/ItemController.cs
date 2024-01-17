@@ -28,6 +28,11 @@ public class ItemController : MonoBehaviour
 
     private void Update()
     {
+        Magnetize();
+    }
+
+    private void Magnetize()
+    {
         Vector3 directionToTarget = target.transform.position - transform.position;
         float distanceToTarget = directionToTarget.magnitude;
 

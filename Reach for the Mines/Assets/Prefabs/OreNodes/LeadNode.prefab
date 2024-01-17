@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 5563215743560426253}
   m_Layer: 0
   m_Name: LeadNode
-  m_TagString: Interactable
+  m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

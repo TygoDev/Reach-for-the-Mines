@@ -23,12 +23,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody>();
         systems = Systems.Instance;
-        transform.position = systems.spawnpoint;        
-        Subscribe();
-    }
+        transform.position = systems.spawnpoint;
 
-    private void Subscribe()
-    {
         systems.inputManager.moveEvent += OnMove;
         systems.inputManager.mouseRotateEvent += OnCameraRotate;
         systems.inputManager.jumpEvent += OnJump;
@@ -132,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
             return false;
     }
 
-    // EVENT LISTENERS
+    #region event listeners
 
     private void ResetPosition(UnStuckEvent myEvent)
     {
@@ -168,9 +164,5 @@ public class PlayerMovement : MonoBehaviour
         movementSpeed = defaultSpeed;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = grounded ? Color.green : Color.red;
-        Gizmos.DrawWireSphere(transform.position, 2.0f);
-    }
+    #endregion
 }

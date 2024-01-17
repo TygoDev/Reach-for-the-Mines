@@ -274,6 +274,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CopperNode
       objectReference: {fileID: 0}
+    - target: {fileID: 5075974051467006968, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
+      propertyPath: m_TagString
+      value: Ore
+      objectReference: {fileID: 0}
     - target: {fileID: 5237980573682938113, guid: 844a1da3919137648b3b9c8a1dac050a, type: 3}
       propertyPath: m_RootOrder
       value: 0

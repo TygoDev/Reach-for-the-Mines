@@ -34,7 +34,7 @@ public class MenuTrigger : MonoBehaviour
         systems.inputManager.unPauseEvent += OnInventoryClose;
     }
 
-    public void ToogleMenu(bool value)
+    public void ToggleMenu(bool value)
     {
 
         if (value)
