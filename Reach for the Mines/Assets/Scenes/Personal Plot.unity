@@ -8130,6 +8130,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Systems
       objectReference: {fileID: 0}
+    - target: {fileID: 6582636620017907556, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
+      propertyPath: items.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8245515278944593863, guid: 0e7e329374855eb47bcc580419f73e39, type: 3}
       propertyPath: m_SizeDelta.y
       value: 176.6765
