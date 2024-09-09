@@ -27,18 +27,7 @@ public class FurnaceCanvas : MonoBehaviour
     private InventoryItem slotToFill = null;
     private bool isProcessing = false;
 
-
-    private void Start()
-    {
-        //Initialize();
-    }
-
     private void OnEnable()
-    {
-        Initialize();
-    }
-
-    private void Initialize()
     {
         systems = Systems.Instance;
         systems.stateManager.onGameStateChanged += OnGameStateChange;

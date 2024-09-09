@@ -10,28 +10,20 @@ public class MenuTrigger : MonoBehaviour
 
     [SerializeField] private Canvas menuToTrigger = null;
 
-    private Systems systems = default;
-
-    private void Start()
-    {
-        systems = Systems.Instance;
-        Initialize();
-    }
-
     private void OnEnable()
     {
-        Initialize();
-    }
-
-    private void Initialize()
-    {
-        if(menuToTrigger == null)
+        if (menuToTrigger == null)
             menuToTrigger = GetComponentInChildren<Canvas>();
 
         menuToTrigger.enabled = false;
 
-        if(systems!=null)
-        systems.inputManager.unPauseEvent += OnInventoryClose;
+        if (Systems.Instance != null)
+            Systems.Instance.inputManager.unPauseEvent += OnInventoryClose;
+    }
+
+    private void OnDisable()
+    {
+        Systems.Instance.inputManager.unPauseEvent -= OnInventoryClose;
     }
 
     public void ToggleMenu(bool value)
@@ -40,21 +32,16 @@ public class MenuTrigger : MonoBehaviour
         if (value)
         {
             EventBus<StationInteractedEvent>.Publish(new StationInteractedEvent(gameObject));
-            systems.stateManager.UpdateGameState(GameState.Menu);
+            Systems.Instance.stateManager.UpdateGameState(GameState.Menu);
         }
         else
         {
-            systems.stateManager.UpdateGameState(GameState.Gameplay);
+            Systems.Instance.stateManager.UpdateGameState(GameState.Gameplay);
         }
 
         menuToTrigger.enabled = value;
     }
 
-
-    private void OnDisable()
-    {
-        systems.inputManager.unPauseEvent -= OnInventoryClose;
-    }
 
     private void OnDestroy()
     {
